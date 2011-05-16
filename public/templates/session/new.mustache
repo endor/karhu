@@ -1,0 +1,48 @@
+<form action="#/session" method="put" id="login_form">
+  <h1 id="login_logo">
+    <img src="images/logo_login.png" alt="Login Logo"/>
+  </h1>
+  <div id="guest_login">
+    <h2 class="heavy">Enter as a Guest</h2>
+    <p>
+      <label for="addr">Street</label><br/>
+      <input type="text" id="addr" name="addr" class="full" />
+    </p>
+    <p>
+      <label for="city">City</label><br/>
+      <input type="text" id="city" name="city" class="short"/>
+    </p>
+    <p>
+      <label for="state">State</label><br/>
+      <select name="state" id="state">
+        {{{states}}}
+      </select>
+    </p>
+    <p>
+      <label for="zip">Zip Code</label><br/>
+      <input type="text" id="zip" name="zip" class="short" />
+    </p>    
+  </div>
+  <div id="login_spacer">
+    &nbsp;
+  </div>
+  <div id="login">
+    <h2 class="heavy">Login to Your Account</h2>
+    <p>
+      <label for="email">Email</label><br/>
+      <input type="text" id="email" name="email" class="full"/>
+    </p>
+    <p>
+      <label for="password">Password</label><br/>
+      <input type="password" id="password" name="password" class="full"/>
+    </p>
+    <p class="sub_button">
+      <button type="submit" class="blackBtn"><span>Login</span></button>
+    </p>
+    
+  </div>
+
+
+  
+  <p class="warning"></p>
+</form>

@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="jspec/jspec.css" type="text/css"/>
+    <script src="../../vendor/jquery/jquery.js"></script>
+    <script src="../../vendor/sha256/sha256.js"></script>
+    <script src="../../vendor/underscore/underscore.js"></script>
+    <script src="./jspec/jspec.js"></script>
+    <script src="./jspec/jspec.jquery.js"></script>
+    <script src="../models/order.js"></script>
+    <script src="../models/tray_item.js"></script>
+    <script src="../models/reorder.js"></script>
+    <script src="../models/credit_card.js"></script>
+    <script src="../views/menu.js"></script>
+    <script src="../views/cuisines.js"></script>
+    <script src="../views/tray.js"></script>
+    <script src="../views/checkout.js"></script>
+    <script src="../views/credit_card.js"></script>
+    <script src="../views/date_and_time.js"></script>
+    <script src="../views/previous_orders.js"></script>
+    <script src="../helpers/application_helper.js"></script>
+    <script>
+      function runSuites() {
+        JSpec
+        .exec('application_helper_spec.js')
+        .exec('menu_view_spec.js')
+        .exec('order_view_spec.js')
+        .exec('checkout_view_spec.js')
+        .exec('credit_card_view_spec.js')
+        .exec('order_spec.js')
+        .exec('tray_item_spec.js')
+        .exec('cuisines_view_spec.js')
+        .exec('date_and_time_view_spec.js')
+        .exec('previous_orders_view_spec.js')
+        .exec('reorder_spec.js')
+        .exec('credit_card_spec.js')
+        .run({failuresOnly : true})
+        .report();
+      }
+    </script>
+  </head>
+  <body onLoad="runSuites()">
+    <div id="jspec"></div>
+  </body>
+</html>

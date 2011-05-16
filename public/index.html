@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Produkt-Stammdatenpflege als HTML5 Web App</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.facebox.css" />
+    <link rel="stylesheet" type="text/css" href="css/screen.css" />
+		
+		<script type="text/javascript" src="./vendor/lab/lab.js"></script>
+		<script type="text/javascript">
+		  $LAB
+		  .script('./vendor/underscore/underscore.js')
+		  .script('./vendor/jquery/jquery.js').wait()
+		  .script('./vendor/jquery/jquery.facebox.js')
+		  .script('./vendor/jquery/jquery.validate.js')
+		  .script('./vendor/sammy/sammy.js').wait()
+		  .script('./vendor/sammy/sammy.json.js')
+		  .script('./vendor/sammy/sammy.mustache.js')
+		  .script('./vendor/sammy/sammy.nested_params.js')
+		  .script('./vendor/sammy/sammy.storage.js').wait()
+		  .script('./config.js').wait()
+		  .script('./js/controllers/account.js')
+		  .script('./js/controllers/address.js')
+		  .script('./js/controllers/addresses.js')
+		  .script('./js/controllers/restaurants.js')
+		  .script('./js/controllers/items.js')
+		  .script('./js/controllers/tray.js')
+		  .script('./js/controllers/checkout.js')
+		  .script('./js/controllers/session.js')
+		  .script('./js/controllers/tip.js')
+		  .script('./js/controllers/credit_cards.js')
+		  .script('./js/controllers/previous_orders.js')
+		  .script('./js/controllers/users.js')
+		  .script('./js/models/tray.js')
+		  .script('./js/models/tray_item.js')
+		  .script('./js/models/order.js')
+		  .script('./js/models/reorder.js')
+		  .script('./js/models/credit_card.js')
+		  .script('./js/views/restaurants.js')
+		  .script('./js/views/menu.js')
+		  .script('./js/views/tray.js')
+		  .script('./js/views/checkout.js')
+		  .script('./js/views/credit_card.js')
+		  .script('./js/views/cuisines.js')
+		  .script('./js/views/date_and_time.js')
+		  .script('./js/views/previous_orders.js')
+		  .script('./js/helpers/application_helper.js')
+		  .script('./js/helpers/url_helper.js')
+		  .script('./js/helpers/tip_helper.js')
+		  .script('./js/helpers/extras_helper.js').wait()
+		  .script('./js/app.js');
+		</script>
+  </head>
+
+  <body>
+    <div id="header">
+      <a href="#/">
+        <img src="images/logo.png" alt="Logo"/>  
+      </a>
+      <!-- TODO: build form for search -->
+      
+      <img src="images/bg_search.png" alt="Search Background"/
+        style="margin-left: 60px">
+      <div id="menu">
+        
+        <a href="#/previous_orders/password_validation" class="dialog">Your Orders</a>
+        <a href="#/account">Your Account</a>
+        <a href="#">Help</a>
+        <form method="delete" action="#/session" class="logout">
+          <input type="submit" value="Logout" class="button" />
+        </form>
+        <br/>
+        
+        <span id="greeting">Welcome</span>
+      </div>
+      
+      <div id="flash"></div>
+    </div>
+
+    <div id="container" class="container clearfix">
+      <div id="col-l">
+        <div class="details"></div>
+      </div>
+      <div id="col-m">
+        <div class="main"></div>  
+      </div>
+      <div id="col-r">
+        <div id="user_info">
+          <div class="addresses"></div>
+          <div class="date_and_time"></div>
+          <div class="tray"></div>
+        </div>
+        <div class="nav"></div>
+        <div class="recent_orders"></div>
+      </div>
+    </div>
+  </body>  
+</html>
