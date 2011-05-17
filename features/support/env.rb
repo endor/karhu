@@ -34,3 +34,7 @@ def patiently(&block)
     end
   end
 end
+
+def fixtures_path
+  File.dirname(__FILE__) + '/../fixtures'
+end

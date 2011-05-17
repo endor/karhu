@@ -1,231 +1,39 @@
-/* 
-Colours:
-  background:   #FFFFFF
-  orange:       #FF4038
-  red:          #D2142E
-  dark red:     #980015
-  bg-your-tray: #E6E6DC
-  lighter-gray: #D0CFC3
-  light-gray:   #A7A69B
-  darker-gray   #757469
-  text-gray:    #55544B
-
-  
-
-
-Layout dimentions:
-  left column   150px
-  space          20px
-  middle column 440px
-  space          20px
-  right column  300px
-  
-  sum width:    930px
-  
-
- */
-
-/* =============== */
-/* = Basic Setup = */
-/* =============== */
-
-html                     {font-size:100.01%;}
-body                     {background:#fff; color:#55544B; font-family:"Helvetica Neue", Arial, Helvetica, sans-serif; font-size:75%;}
-a                        {color:#D2001B; text-decoration: none;}
-
-/* ================= */
-/* = General Rules = */
-/* ================= */
-
-.heavy                   {color: #000; font-size: 1.9em; margin-bottom: 18px;}
-.special                   {color: #D2142E; font-size: 1.9em; font-weight: normal; margin-bottom: 12px;}
-.section                 {border-bottom: 1px solid #A7A69B; color: #A7A69B; font-size: 2em; font-weight: normal; line-height: 1.5em;}
-
-/* ========== */
-/* = Layout = */
-/* ========== */
-
-#header                  {margin: 10px auto 0; width: 960px; background: url(../images/bg_dots_line.png) repeat-x bottom; padding-bottom: 10px;}
-#container               {margin: 10px auto 0; width: 960px;}
-#col-l                   {float: left; width: 154px; background: url(../images/hr_150.png) no-repeat top center; margin-top: 35px;}
-#col-m                   {float: left; margin-left: 20px; width: 446px; margin-top: 28px;}
-#col-r                   {float: left; width: 300px; padding-left: 40px;}
-#footer                  {margin: 10px auto 0; width: 950px;}
-
-.details                 {margin-top: 25px; padding-left: 10px;}
-.details h2              {margin-bottom: 4px;}
-.details h3              {color:#D2142E; font-size:1.6em; font-weight:normal; padding: 14px 0 6px 0;}
-
-/* ======================== */
-/* = Elements of the Site = */
-/* ======================== */
-
-#login_form                   {-moz-border-radius: 6px; -webkit-border-radius: 6px; background-color: #E6E6DC; float: left; padding: 1em; width: 718px;}
-h1#login_logo                 {color: #D2001B; font-size: 3em; font-weight: normal; margin: 0.4em 0 0.5em 0; text-align: center; width: 718px;}
-#login_logo img               {vertical-align: baseline;}
-
-#login_form div               {float: left; text-align: left;}
-#login_form p                 {margin-bottom: 8px;}
-#login_form label             {font-size: 1.4em;}
-#login_form input.full        {width: 240px;}
-#login_form input.short       {width: 150px;}
-#login_form input.full, 
-#login_form input.short       {-moz-border-radius: 3px; -webkit-border-radius: 3px; border: 1px solid #D0CFC3; color: #55544B; font-size: 1.3em; height: 28px; margin-top: 4px; padding-left: 0.3em;}
-#login_form .sub_button       {float: right; margin: 63px 33px 0 0;}
-#login_form label.error       {color: #980015; display: block; font-size: 1em;}
-
-#guest_login                  {margin-left: 60px; margin-top: 9px; width: 280px;}
-#login_spacer                 {background: url(../images/bg_login_spacer.png) no-repeat top center; height: 250px; width: 50px;}
-#login                        {margin-left: 32px; margin-top: 9px; width: 280px;}
-
-
-#header a                {margin-left: 0.4em;}
-#header form             {display: inline;}
-#header input.button     {background-color: #fff; border: none; color: #D2001B; font-size: 1em; padding: 0; text-align: right;}
-#menu                    {float: right; margin-top: 15px; text-align: right; width: 290px;}
-#greeting                {display: inline-block; font-size: 1.5em; padding-top: 12px;}
-
-
-ul.cuisines li                {font-size: 1.2em; margin-bottom: 8px;}
-ul.cuisines input             {margin: 0;}
-
-
-ul.restaurants li             {border-bottom: 1px solid #A7A69B; height: 90px;}
-ul.restaurants h3             {padding: 20px 0 19px 0;}
-ul.restaurants h3 a           {color: #55544B; font-size: 2em; font-weight: normal;}
-ul.restaurants li div         {float: left;}
-ul.restaurants li .address    {width: 230px;}
-ul.restaurants li .deliver    {width: 125px;}
-ul.restaurants li .minimum    {width: 85px;}
-
-
-#menulist ul             {float: left; width: 208px; margin-bottom: 24px;}
-#menulist .list_left     {margin-right: 30px;}
-#menulist h2             {margin-bottom: 10px;}
-#menulist h3             {clear: left; width: 446px;}
-#menulist li             {border-bottom: 1px solid #A7A69B; float: left; width: 208px;}
-#menulist li:hover       {background-color: #E6E6DC;}
-#menulist h4             {float: left; width: 168px; font-weight: normal;}
-#menulist a              {color: #000; padding: 8px 0;}
-#menulist a.name         {width: 168px; display: block; float: left;}
-#menulist a.price        {width: 40px; display:block; float: left; text-align: right;}
-
-
-/* ======================= */
-/* =    user_info box    = */
-/* ======================= */
-
-#user_info               {-moz-border-radius: 8px; -webkit-border-radius: 8px; background-color: #E6E6DC; float: left; margin-top: 44px; padding: 15px; width: 270px;}
-#user_info h2            {clear: left; color: #D2142E; float: left; font-size: 1.6em; font-weight: normal; height: 70px; padding-left:55px; width: 98px;}
-
-.addresses               {border-bottom: 1px solid #999; float: left; width: 270px;}
-.addresses h2            {background:transparent url(../images/icon_house.png) no-repeat left top; padding-top: 13px;}
-.addresses form          {margin-top: 14px; width: 116px; display: block; float: left;}
-
-.date_and_time           {border-bottom: 1px solid #999; clear: left; float: left; margin-top: 14px; width: 270px;}
-.date_and_time h2        {background:transparent url(../images/icon_clock.png) no-repeat left top; line-height: 1.4em; padding-top: 10px;}
-.date_and_time select    {display: inline;}
-.date_and_time p         {margin-bottom: 10px;}
-.date_and_time .date_select {padding-top: 15px;}
-
-.tray                    {float: left; margin-top: 14px; width: 270px;}
-.tray .delete            {background-color: #E6E6DC;}
-.price                   {text-align: right;}
-h2#your_tray             {background:transparent url(../images/icon_tray.png) no-repeat left 10px; color: #000; font-size: 2.5em; font-weight: bold; padding: 24px 0 0 112px; width: 158px; height: 58px;}
-.tray h3                 {float: left; padding-bottom: 10px; font-weight: normal; font-size: 1.2em;}
-#tray_items              {border-bottom: 1px solid #A7A69B; float: left;}
-#tray_items button       {background-color: transparent; border: none; margin: 0; padding: 0;}
-#tray_items h3           {padding-bottom: 4px;}
-#tray_items .extras      {float: left; margin-left: 27px; margin-bottom: 6px;}
-#tray_items .extras li   {margin-bottom: 4px; float: left;}
-#tray_items .extras .price {font-weight: normal;}
-li.dish                  {clear: both; margin-top: 9px;}
-.dish form               {display: inline-block; float: left; width: 28px;}
-.dish h3, .dish h4,
-.dish h5                 {float: left; width: 192px;}
-.dish h3 a               {color: #55544B;}
-.dish h3 a:hover         {text-decoration: underline;}
-.dish h4, .dish h5       {font-weight: normal;}
-.dish .price             {float: left; font-weight: bold; width: 45px;}
-
-ul.extra_groups          {clear: left; margin-left: 29px;}
-
-#tray_tip                {border-bottom: 1px solid #A7A69B; float: left; padding: 12px 0;}
-#tray_tip a              {display: block; float: left; width: 28px;}
-#tray_tip h4             {float: left; font-weight: normal; width: 196px; }
-#tray_tip .price         {width: 45px; float: left;}
-
-#tray_total              {float: left;}
-#tray_total h4           {float: left; font-size: 1.3em; font-weight: bold; margin-left: 28px; margin-top: 10px; width: 192px;}
-#tray_total .price       {float: left; width: 45px; font-size: 1.3em; font-weight: bold; margin-top: 10px;}
-
-#user_info .checkout     {float: left; padding-top: 12px; width: 276px; text-align: right;}
-
-.nav                     {float: left; padding: 30px 10px;}
-.nav img                 {padding-left: 6px; vertical-align: middle;}
-
-
-
-/* ========================== */
-/* =    items_show popup    = */
-/* ========================== */
-
-#items_show              {float: left; text-align: left; width: 675px;}
-#items_show h2           {background:transparent url(../images/hr_653.png) no-repeat left bottom; color: #55544B; font-size: 1.6em; padding: 10px 0 22px 4px; width: 649px;}
-#items_show h2 .price    {float: right;}
-.quantity                {color: #D2001B; font-size: 1.4em; font-weight: bold; text-align: right; width: 649px;}
-.quantity input          {-moz-border-radius: 2px; -webkit-border-radius: 2px; border: 1px solid #A7A69B; color: #757469; font-size: 0.9em; height: 30px; padding-right: 0.3em; text-align: right; width: 52px;}
-.quantity span           {color: #000; padding: 0 12px;}
-#items_show h3           {border-bottom: 1px solid #757469; color: #D2001B; float: left; font-size: 1.2em; font-weight: normal; padding: 14px 0 4px 4px; width: 649px;}
-#items_show ul.extras    {float: left; padding-left: 4px; width: 674px;}
-#items_show li.extra     {border-bottom: 1px solid #A7A69B; float: left; margin-right: 20px; padding: 4px 5px; width: 304px;}
-p.btn_item_submit        {float: left; margin: 12px 0; text-align: right; width: 658px;}
-
-/* ======================= */
-/* =    checkout page    = */
-/* ======================= */
-
-#checkout h3             {color: #A7A69B; font-size: 2.25em; font-weight: normal; margin: 12px 0 24px 0;}
-#checkout label          {color: #000; font-size: 1.2em; font-weight: bold;}
-#checkout input          {-moz-border-radius: 2px; -webkit-border-radius: 2px; border: 1px solid #A7A69B; color: #757469; height: 26px; margin: 12px 0 24px 0; width: 270px;}
-
-/* ================== */
-/* =     Buttons    = */
-/* ================== */
-
-button                        {border:0; cursor:pointer; overflow:visible; padding:0; position:relative;}
-button::-moz-focus-inner      {border:none;}
-button span                   {display:block; position:relative; white-space:nowrap;}
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-	/* Safari and Google Chrome only - fix margins */
-	button span {
-		margin-top: -1px;
-	}
+h1 {
+  color: gray;
+  font-size: 1.5em;
+  margin-bottom: 1em;
 }
 
-button.blackBtn          {background:transparent url(../images/btn_black_r.png) no-repeat right top; font-size:1.2em; font-weight:bold; margin-right:5px; padding:0 12px 0 0; text-align:center;}	
-button.blackBtn span     {background:transparent url(../images/btn_black_l.png) no-repeat left top; color:#fff; height:24px; padding:6px 0 0 16px;}
+header {
+  margin: 2em;
+  width: 90%;
+}
 
-a.blackBtn               {background:transparent url(../images/btn_black_r.png) no-repeat right top; display: inline-block; font-size:1.2em; font-weight:bold; margin-right:5px; padding:0px 14px 0px 0; text-align:center;}
-a.blackBtn span          {background:transparent url(../images/btn_black_l.png) no-repeat left top; color:#fff; height:24px; padding:7px 0 5px 16px; display: inline-block;}
+a {
+  text-decoration: none;
+}
 
+nav a {
+  color: green;
+}
 
-/* =========================== */
-/* =    Adjusting Facebox    = */
-/* =========================== */
+nav {
+  padding-bottom: 0.5em;
+  border-bottom: solid 1px #DDDDDD;  
+}
 
-#facebox .footer { border-top: none;}
+.main {
+  margin-left: 2em;
+  width: 90%;
+}
 
-/* new clearfix */
-.clearfix:after          {clear:both; content:" "; display:block; font-size:0; height:0; visibility:hidden;}
-* html .clearfix             { zoom: 1; } /* IE6 */
-*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+h2 {
+  margin-bottom: 1em;
+  font-size: 1.2em;
+}
 
-
-label.error              {color: #980015; display: block; font-size: 0.6em;}
-.warning                 {background-color: #FCC; display: none;}
-.logout                  {display: none;}
-
-a.selected_tip           {background-color:#D2001B; color:white;}
-#credit_cards li.active  {background-color:#D0CFC3;}
+.categories li {
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+  border-bottom: solid 1px #DDDDDD;
+}
