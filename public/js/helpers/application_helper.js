@@ -1,4 +1,4 @@
-var ApplicationHelper = {
+karhu.ApplicationHelper = {
   flash: function(message) {
     $('#flash').html(message).show().delay(2000).fadeOut('slow');
   },
@@ -11,19 +11,21 @@ var ApplicationHelper = {
         $(document).unbind('keydown.facebox');
       }
     });
-  },
+  }
+};
 
-  ajax_get: (function() {
-    var error_function = function(a, b, c) { console.log(a, b, c); }
-
-    return function(url, data, success, error) {
+(function() {
+  var errorFunction = function(a, b, c) { console.log(a, b, c); };
+  
+  ['get', 'post'].forEach(function(verb) {
+    karhu.ApplicationHelper['ajax_' + verb] = function(url, data, success, error) {
       $.ajax({
         url: url,
         data: data,
-        type: 'get',
+        type: verb,
         success: success,
-        error: error || error_function
-      });
-    }
-  })()
-};
+        error: error || errorFunction
+      });      
+    };
+  });
+})();

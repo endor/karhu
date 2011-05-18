@@ -40,6 +40,15 @@ get('/config.js') do
 end
 
 post /\/(.+)/ do |path|
+  file = ROOT + "/features/fixtures/#{URI.decode(path).gsub(' ', '_')}.json"
+
+  objects = JSON.parse(File.read(file)) rescue []
+  objects.push(params)
+  
+  File.open(file, "w") do |f|
+    f << objects.to_json
+  end
+  
   handle_put_delete_and_post(path, request.env, params, 'post')
 end
 
@@ -59,6 +68,6 @@ get /\/(.+)/ do |path|
   if(File.exists?(file))
     File.read(file)
   else
-    throw(:halt, [404, "Not found\n"])
+    '[]'
   end
 end

@@ -37,3 +37,7 @@ h2 {
   margin-bottom: 0.5em;
   border-bottom: solid 1px #DDDDDD;
 }
+
+label {
+  display: block;
+}
