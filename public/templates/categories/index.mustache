@@ -10,7 +10,11 @@
   {{#categories}}
     <li>
       <h3>{{name}}</h3>
-      {{description}}
+      <p>{{description}}</p>
+      <form method="delete" action="#/categories/{{id}}">
+        <input type="hidden" name="name" value="{{name}}" />
+        <input type="submit" value="delete" />
+      </form>
     </li>
   {{/categories}}  
 </ul>

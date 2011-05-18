@@ -4,7 +4,7 @@ h1 {
   margin-bottom: 1em;
 }
 
-header {
+#header {
   margin: 2em;
   width: 90%;
 }
@@ -40,4 +40,19 @@ h2 {
 
 label {
   display: block;
+}
+
+#flash {
+  display: none;
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  padding: 1em;
+  font-weight: bold;
+  color: #FFF;
+  background-color: #444;
+  background-color: rgba(0,0,0,0.7);
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
 }

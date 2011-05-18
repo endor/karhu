@@ -17,4 +17,13 @@ karhu.Categories = function(app) {
       context.flash('Not able to create ' + context.params.category.name);
     });
   });
+  
+  app.del('#/categories/:id', function(context) {
+    context.ajax_delete('/categories/' + context.params.id, {}, function() {
+      context.flash(context.params.name + ' successfully deleted.');
+      context.redirect('#/categories');      
+    }, function(a, b, c) {
+      context.flash('Not able to delete ' + context.params.name);
+    });
+  });
 };

@@ -26,7 +26,6 @@ helpers do
   end
   
   def log_request(path, env, params, method)
-    params.delete('captures')
     file = ROOT + "/features/support/last_requests.log"
     requests = JSON.parse(File.read(file)) rescue []
     File.open(file, "w") do |f|
@@ -40,10 +39,11 @@ get('/config.js') do
 end
 
 post /\/(.+)/ do |path|
+  params.delete('captures')
   file = ROOT + "/features/fixtures/#{URI.decode(path).gsub(' ', '_')}.json"
 
   objects = JSON.parse(File.read(file)) rescue []
-  objects.push(params)
+  objects.push(params.merge({:id => (objects.length + 1)}))
   
   File.open(file, "w") do |f|
     f << objects.to_json
@@ -53,10 +53,22 @@ post /\/(.+)/ do |path|
 end
 
 put /\/(.+)/ do |path|
+  params.delete('captures')
   handle_put_delete_and_post(path, request.env, params, 'put')
 end
 
 delete /\/(.+)/ do |path|
+  params.delete('captures')
+  _path = URI.decode(path).gsub(' ', '_').split('/')
+  file = ROOT + "/features/fixtures/#{_path.first}.json"
+  
+  objects = JSON.parse(File.read(file)) rescue []
+  objects.delete_if{|obj| obj['id'] == _path.last.to_i}
+  
+  File.open(file, "w") do |f|
+    f << objects.to_json
+  end
+  
   handle_put_delete_and_post(path, request.env, params, 'delete')
 end
 

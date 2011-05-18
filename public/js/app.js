@@ -5,6 +5,7 @@ karhu.app = $.sammy(function() {
   
   this.element_selector = 'body';
   this.cache_partials = false;
+  this.debug = true;
   
   this.helpers(karhu.ApplicationHelper);
   this.helpers({ store: config.store });

@@ -29,3 +29,11 @@ Feature: Categories
       And I should see "Brote"
       And I should see "Gebacken"
   
+  Scenario: delete category
+    Given a category "Baeume" with the description "Grosse Pflanzen"
+    When I go to the start page
+      And I follow "Categories"
+    Then I should see "Baeume" within ".categories"
+    When I press "delete"
+    Then I should not see "Baeume" within ".categories"
+  
