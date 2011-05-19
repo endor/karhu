@@ -1,6 +1,9 @@
 unless ARGV.any? {|a| a =~ /^gems/}
   begin
     require 'cucumber/rake/task'
+    require 'jasmine'
+
+    load 'jasmine/tasks/jasmine.rake'
 
     vendored_cucumber_bin = nil
     
@@ -29,7 +32,7 @@ unless ARGV.any? {|a| a =~ /^gems/}
     desc 'Alias for cucumber:ok'
     task :cucumber => 'cucumber:ok'
 
-    task :default => :cucumber
+    task :default => ['cucumber', 'jasmine:ci']
   rescue LoadError
     desc 'cucumber rake task not available (cucumber not installed)'
     task :cucumber do
