@@ -37,3 +37,13 @@ Feature: Categories
     When I press "delete"
     Then I should not see "Baeume" within ".categories"
   
+  Scenario: edit category
+    Given a category "Musik" with the description "Toene"
+    When I go to the start page
+      And I follow "Categories"
+      And I follow "edit"
+      And I fill in "Description" with "Klaenge"
+      And I press "Update Category"
+    Then I should see "Musik"
+      And I should see "Klaenge"
+      But I should not see "Toene"

@@ -14,9 +14,13 @@ end
 
 helpers do  
   def handle_put_delete_and_post(path, env, params, method)
+    params.delete('captures')
     log_request(path, env, params, method)
-    
-    file = ROOT + '/features/support/api_failure'
+    path = URI.decode(path).gsub(' ', '_')
+
+    yield(params, path)
+
+    file = File.join(ROOT, 'features', 'support', 'api_failure')
     if(File.exists?(file))
       status 400
       File.read(file)
@@ -38,42 +42,62 @@ get('/config.js') do
   File.read(ROOT + '/config/test.js')
 end
 
-post /\/(.+)/ do |path|
-  params.delete('captures')
-  file = ROOT + "/features/fixtures/#{URI.decode(path).gsub(' ', '_')}.json"
-
-  objects = JSON.parse(File.read(file)) rescue []
-  objects.push(params.merge({:id => (objects.length + 1)}))
-  
-  File.open(file, "w") do |f|
-    f << objects.to_json
+post /\/(.+)/ do |path|  
+  handle_put_delete_and_post(path, request.env, params, 'post') do |params, path|
+    FileUtils.mkdir_p(File.join(fixtures_path, path))
+    
+    plural_file = File.join(fixtures_path, path + ".json")
+    objects = JSON.parse(File.read(plural_file)) rescue []
+    object = params.merge({:id => objects.length + 1})
+    objects.push(object)
+    File.open(plural_file, "w") do |f|
+      f << objects.to_json
+    end
+    
+    singular_file = File.join(fixtures_path, path, object[:id].to_s + ".json")
+    File.open(singular_file, "w") do |f|
+      f << object.to_json
+    end
   end
-  
-  handle_put_delete_and_post(path, request.env, params, 'post')
 end
 
 put /\/(.+)/ do |path|
-  params.delete('captures')
-  handle_put_delete_and_post(path, request.env, params, 'put')
+  handle_put_delete_and_post(path, request.env, params, 'put') do
+    type, id = path.split('/')
+    
+    plural_file = File.join(fixtures_path, type + ".json")
+    objects = JSON.parse(File.read(plural_file)) rescue []
+    objects.select{|obj| obj['id'] == id.to_i}.first.merge!(params)
+    File.open(plural_file, "w") do |f|
+      f << objects.to_json
+    end
+    
+    singular_file = File.join(fixtures_path, path + ".json")
+    object = JSON.parse(File.read(singular_file)) rescue {}
+    object.merge!(params)
+    File.open(singular_file, "w") do |f|
+      f << object.to_json
+    end
+  end
 end
 
 delete /\/(.+)/ do |path|
-  params.delete('captures')
-  _path = URI.decode(path).gsub(' ', '_').split('/')
-  file = ROOT + "/features/fixtures/#{_path.first}.json"
-  
-  objects = JSON.parse(File.read(file)) rescue []
-  objects.delete_if{|obj| obj['id'] == _path.last.to_i}
-  
-  File.open(file, "w") do |f|
-    f << objects.to_json
+  handle_put_delete_and_post(path, request.env, params, 'delete') do
+    type, id = path.split('/')
+    
+    plural_file = File.join(fixtures_path, type + ".json")
+    objects = JSON.parse(File.read(plural_file)) rescue []
+    objects.delete_if{|obj| obj['id'] == id.to_i}
+    File.open(plural_file, "w") do |f|
+      f << objects.to_json
+    end
+    
+    FileUtils.rm_rf(File.join(fixtures_path, path + ".json"))
   end
-  
-  handle_put_delete_and_post(path, request.env, params, 'delete')
 end
 
 get /\/(.+)/ do |path|
-  log_request(path, env, params, 'get')
+  log_request(path, request.env, params, 'get')
   
   content_type :json
   file = ROOT + "/features/fixtures/#{URI.decode(path).gsub(' ', '_')}.json"

@@ -1,0 +1,17 @@
+<h2>Edit Category</h2>
+
+<form method="PUT" action="#/categories/{{id}}">
+  <p>
+    <label for="category_name">Name</label>
+    <input type="text" name="category[name]" id="category_name" value="{{name}}" />
+  </p>
+
+  <p>
+    <label for="category_description">Description</label>
+    <textarea name="category[description]" id="category_description">{{description}}</textarea>
+  </p>
+  
+  <p>
+    <input type="submit" value="Update Category" />
+  </p>
+</form>

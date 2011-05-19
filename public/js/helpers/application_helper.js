@@ -17,7 +17,7 @@ karhu.ApplicationHelper = {
 (function() {
   var errorFunction = function(a, b, c) { console.log(a, b, c); };
   
-  ['get', 'post', 'delete'].forEach(function(verb) {
+  ['get', 'post', 'delete', 'put'].forEach(function(verb) {
     karhu.ApplicationHelper['ajax_' + verb] = function(url, data, success, error) {
       $.ajax({
         url: url,
