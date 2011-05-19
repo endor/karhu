@@ -56,3 +56,11 @@ label {
   -webkit-border-radius: 6px;
   border-radius: 6px;
 }
+
+table td, table th {
+  padding: 10px;
+}
+
+table tr {
+  border-bottom: solid 1px #DDDDDD;
+}

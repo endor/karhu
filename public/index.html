@@ -23,7 +23,8 @@
 		  .script('./vendor/sammy/sammy.storage.js').wait()
 		  .script('./config.js').wait()
 		  .script('./js/controllers/categories.js')
-		  .script('./js/models/category.js')
+		  .script('./js/controllers/products.js')
+		  .script('./js/models/product.js')
 		  .script('./js/views/date_and_time.js')
 		  .script('./js/helpers/application_helper.js').wait()
 		  .script('./js/app.js');
@@ -38,6 +39,7 @@
       
       <nav>
         <ul>
+          <li><a href="#/products">Products</a></li>
           <li><a href="#/categories">Categories</a></li>
         </ul>
       </nav>

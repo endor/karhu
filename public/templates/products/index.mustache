@@ -1,0 +1,24 @@
+<h2>Products</h2>
+
+<table class="products">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Valid To</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#products}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{description}}</td>
+        <td>{{unit_price}}</td>
+        <td>{{valid_to}}</td>
+        <td>{{#category}}{{name}}{{/category}}</td>
+      </tr>
+    {{/products}}
+  </tbody>
+</table>

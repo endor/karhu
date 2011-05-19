@@ -11,7 +11,8 @@ karhu.app = $.sammy(function() {
   this.helpers({ store: config.store });
   
   karhu.Categories(this);
-
+  karhu.Products(this);
+  
   this.swap = function(content) {
     return $('.main').html(content);
   },
