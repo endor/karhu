@@ -16,11 +16,11 @@ src_files:
   - vendor/jquery/jquery.*.js
   - vendor/sammy/sammy.js
   - vendor/sammy/sammy.*.js
+  - js/root.js
   - config.js
   - js/controllers/*.js
   - js/models/*.js
   - js/helpers/*.js
-  - js/app.js
 
 # stylesheets
 #

@@ -9,8 +9,6 @@
 		
 		<script type="text/javascript" src="vendor/lab/lab.js"></script>
 		<script type="text/javascript">
-		  karhu = {};
-
 		  $LAB
 		  .script('./vendor/underscore/underscore.js')
 		  .script('./vendor/jquery/jquery.js').wait()
@@ -21,6 +19,7 @@
 		  .script('./vendor/sammy/sammy.mustache.js')
 		  .script('./vendor/sammy/sammy.nested_params.js')
 		  .script('./vendor/sammy/sammy.storage.js').wait()
+		  .script('./js/root.js').wait()
 		  .script('./config.js').wait()
 		  .script('./js/controllers/categories.js')
 		  .script('./js/controllers/products.js')

@@ -15,3 +15,21 @@ Feature: Products
       And I should see "232,00"
       And I should see "20.12.2027"
       And I should see "Birke"
+  
+  Scenario: create product
+    Given a category "Baeume" with the description "Grosse Pflanzen"
+    When I go to the start page
+      And I follow "Products"
+      And I follow "Add Product"
+      And I fill in "Name" with "Tanne"
+      And I fill in "Description" with "Nadelbaum"
+      And I fill in "Unit Price" with "345,05"
+      And I fill in "Valid To" with "04.04.2035"
+      And I select "Baeume" from "Category"
+      And I press "Add Product"
+    Then I should see "Tanne"
+      And I should see "Nadelbaum"
+      And I should see "345,05"
+      And I should see "04.04.2035"
+      And I should see "Baeume"
+  

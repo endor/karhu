@@ -19,6 +19,15 @@ end
 helpers do
   def handle_put_delete_and_post(path, env, params, method)
     params.delete('captures')
+    new_params = {}
+    params.each do |key, value|
+      if key.match(/\_id/) || key == 'id'
+        new_params[key] = value.to_i
+      else
+        new_params[key] = value
+      end
+    end
+    params = new_params
     path = URI.decode(path).gsub(' ', '_')
     yield(params, path)
     ''

@@ -17,6 +17,15 @@ helpers do
     params.delete('captures')
     log_request(path, env, params, method)
     path = URI.decode(path).gsub(' ', '_')
+    new_params = {}
+    params.each do |key, value|
+      if key.match(/\_id/) || key == 'id'
+        new_params[key] = value.to_i
+      else
+        new_params[key] = value
+      end
+    end
+    params = new_params
 
     yield(params, path)
 
