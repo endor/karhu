@@ -42,3 +42,16 @@ Feature: Products
     When I press "delete"
     Then I should not see "Fichte" within ".products"
   
+  Scenario: edit product
+    Given a category "Alphabete" with the description "ABC"
+      And a category "Baeume" with the description "Grosse Pflanzen"
+      And a product "Fichte" with the description "Nadelbaum" and the price "232,00" that is valid to "20.12.2027" and belongs to the category "Baeume"
+    When I go to the start page
+      And I follow "Products"
+      And I follow "edit"
+    Then "Baeume" should be the selected "Category"
+    When I fill in "Description" with "Gruen"
+      And I press "Update Product"
+    Then I should see "Fichte"
+      And I should see "Gruen"
+      But I should not see "Nadelbaum"

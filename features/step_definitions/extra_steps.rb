@@ -28,18 +28,10 @@ Then /I should be on the (.+)/ do |path|
   assert page.current_url.match(/#{Regexp.escape path_to(path)}/)
 end
 
-Then /"([^\"]+)" should be visible/ do |text|
-  assert locate("//*[contains(., '#{text}')]").text.include?(text)
+Then /^"([^\"]*)" should be the selected "([^\"]*)"$/ do |selection, name_of_select|
+  assert page.has_select?(name_of_select, :selected => selection)
 end
 
-Then /"([^\"]+)" should be hidden/ do |text|
-  assert !locate("//*[contains(., '#{text}')]").text.include?(text)
-end
-
-Then /^the link "([^\"]*)" should have the class "([^\"]*)"$/ do |title, css_class|
-  assert page.has_xpath?("//a[@title='#{title}'][contains(@class, '#{css_class}')]")
-end
-
-Then /^the link "([^\"]*)" should not have the class "([^\"]*)"$/ do |title, css_class|
-  assert page.has_no_xpath?("//a[@title='#{title}'][contains(@class, '#{css_class}')]")
+When /I wait for 7s/ do
+  sleep 7
 end

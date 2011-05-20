@@ -26,6 +26,7 @@
         <td>{{valid_to}}</td>
         <td>{{#category}}{{name}}{{/category}}</td>
         <td>
+          <a href="#/products/{{id}}/edit">edit</a>
           <form method="delete" action="#/products/{{id}}">
             <input type="hidden" name="name" value="{{name}}" />
             <input type="submit" value="delete" />

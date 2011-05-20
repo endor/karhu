@@ -22,7 +22,24 @@ karhu.Products = function(app) {
       context.flash('Not able to create ' + context.params.product.name);      
     });
   });
+
+  app.get('#/products/:id/edit', function(context) {
+    context.ajax_get('/categories', {}, function(categories) {
+      context.ajax_get('/products/' + context.params.id, {}, function(product) {
+        context.partial('templates/products/edit.mustache', new karhu.EditProduct(product, categories));
+      });
+    });
+  });
   
+  app.put('#/products/:id', function(context) {
+    context.ajax_put('/products/' + context.params.id, context.params.product, function() {
+      context.flash(context.params.product.name + ' successfully updated.');
+      context.redirect('#/products');
+    }, function() {
+      context.flash('Not able to update ' + context.params.product.name);      
+    });
+  });
+    
   app.del('#/products/:id', function(context) {
     context.ajax_delete('/products/' + context.params.id, {}, function() {
       context.flash(context.params.name + ' successfully deleted.');

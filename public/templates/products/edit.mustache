@@ -1,0 +1,36 @@
+<h2>Edit Product</h2>
+
+<form method="PUT" action="#/products/{{id}}">
+  <p>
+    <label for="product_name">Name</label>
+    <input type="text" name="product[name]" id="product_name" value="{{name}}" />
+  </p>
+
+  <p>
+    <label for="product_description">Description</label>
+    <textarea name="product[description]" id="product_description">{{description}}</textarea>
+  </p>
+  
+  <p>
+    <label for="product_unit_price">Unit Price</label>
+    <input type="text" name="product[unit_price]" id="product_unit_price" value="{{unit_price}}" />
+  </p>
+
+  <p>
+    <label for="product_valid_to">Valid To</label>
+    <input type="text" name="product[valid_to]" id="product_valid_to" value="{{valid_to}}" />
+  </p>
+
+  <p>
+    <label for="product_category_id">Category</label>
+    <select id="product_category_id" name="product[category_id]">
+      {{#categories}}
+        <option value="{{id}}" {{#selected}} selected="selected"{{/selected}}>{{name}}</option>
+      {{/categories}}
+    </select>
+  </p>  
+  
+  <p>
+    <input type="submit" value="Update Product" />
+  </p>
+</form>
