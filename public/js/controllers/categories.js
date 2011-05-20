@@ -37,7 +37,7 @@ karhu.Categories = function(app) {
     context.ajax_delete('/categories/' + context.params.id, {}, function() {
       context.flash(context.params.name + ' successfully deleted.');
       context.redirect('#/categories');      
-    }, function(a, b, c) {
+    }, function() {
       context.flash('Not able to delete ' + context.params.name);
     });
   });

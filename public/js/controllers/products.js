@@ -44,7 +44,7 @@ karhu.Products = function(app) {
     context.ajax_delete('/products/' + context.params.id, {}, function() {
       context.flash(context.params.name + ' successfully deleted.');
       context.redirect('#/products');      
-    }, function(a, b, c) {
+    }, function() {
       context.flash('Not able to delete ' + context.params.name);
     });
   });
