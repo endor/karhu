@@ -2,11 +2,11 @@
 
 <nav class="product_nav">
   <ul>
-    <li><a href="#/products/new">Add Product</a></li>
+    <li><a href="#/products/new" class="button">Add Product</a></li>
   </ul>
 </nav>
 
-<table class="products">
+<table class="products_table">
   <thead>
     <tr>
       <th>Name</th>
@@ -25,8 +25,8 @@
         <td>{{unit_price}}</td>
         <td>{{valid_to}}</td>
         <td>{{#category}}{{name}}{{/category}}</td>
-        <td>
-          <a href="#/products/{{id}}/edit">edit</a>
+        <td class="actions">
+          <a href="#/products/{{id}}/edit" class="button">edit</a>
           <form method="delete" action="#/products/{{id}}">
             <input type="hidden" name="name" value="{{name}}" />
             <input type="submit" value="delete" />

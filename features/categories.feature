@@ -33,9 +33,9 @@ Feature: Categories
     Given a category "Baeume" with the description "Grosse Pflanzen"
     When I go to the start page
       And I follow "Categories"
-    Then I should see "Baeume" within ".categories"
+    Then I should see "Baeume" within ".categories_table"
     When I press "delete"
-    Then I should not see "Baeume" within ".categories"
+    Then I should not see "Baeume" within ".categories_table"
   
   Scenario: edit category
     Given a category "Musik" with the description "Toene"

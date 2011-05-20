@@ -3,7 +3,7 @@
 <form method="PUT" action="#/products/{{id}}">
   <p>
     <label for="product_name">Name</label>
-    <input type="text" name="product[name]" id="product_name" value="{{name}}" />
+    <input type="text" name="product[name]" id="product_name" value="{{name}}" class="text" />
   </p>
 
   <p>
@@ -13,12 +13,12 @@
   
   <p>
     <label for="product_unit_price">Unit Price</label>
-    <input type="text" name="product[unit_price]" id="product_unit_price" value="{{unit_price}}" />
+    <input type="text" name="product[unit_price]" id="product_unit_price" value="{{unit_price}}" class="text" />
   </p>
 
-  <p>
+  <p class="text">
     <label for="product_valid_to">Valid To</label>
-    <input type="text" name="product[valid_to]" id="product_valid_to" value="{{valid_to}}" />
+    <input type="text" name="product[valid_to]" id="product_valid_to" value="{{valid_to}}" class="datepicker" />
   </p>
 
   <p>

@@ -5,6 +5,7 @@
     <title>Produkt-Stammdatenpflege als HTML5 Web App</title>
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery.facebox.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.ui.css" />
     <link rel="stylesheet" type="text/css" href="css/screen.css" />
 		
 		<script type="text/javascript" src="vendor/lab/lab.js"></script>
@@ -14,6 +15,7 @@
 		  .script('./vendor/jquery/jquery.js').wait()
 		  .script('./vendor/jquery/jquery.facebox.js')
 		  .script('./vendor/jquery/jquery.validate.js')
+		  .script('./vendor/jquery/jquery.ui.js')
 		  .script('./vendor/sammy/sammy.js').wait()
 		  .script('./vendor/sammy/sammy.json.js')
 		  .script('./vendor/sammy/sammy.mustache.js')
@@ -31,22 +33,22 @@
   </head>
 
   <body>
-    <div id="header">
-      <a href="#/">
-        <h1>Produkt-Stammdatenpflege als HTML5 Web App</h1>
-      </a>
-      
-      <nav>
-        <ul>
-          <li><a href="#/products">Products</a></li>
-          <li><a href="#/categories">Categories</a></li>
-        </ul>
-      </nav>
-      
-      <div id="flash"></div>
-    </div>
+    <div id="container">
+      <div id="header">
+        <a href="#/">
+          <h1>Produkt-Stammdatenpflege als HTML5 Web App</h1>
+        </a>
 
-    <div id="container" class="container clearfix">
+        <nav>
+          <ul>
+            <li><a href="#/products" class="products">Products</a></li>
+            <li><a href="#/categories" class="categories">Categories</a></li>
+          </ul>
+        </nav>
+
+        <div id="flash"></div>
+      </div>
+
       <div class="main"></div>  
     </div>
   </body>  

@@ -11,6 +11,11 @@ karhu.ApplicationHelper = {
         $(document).unbind('keydown.facebox');
       }
     });
+  },
+  
+  beautify_input_elements: function() {
+    $('input:submit, a.button').button();
+    $('.datepicker').datepicker();
   }
 };
 

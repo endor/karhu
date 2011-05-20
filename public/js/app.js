@@ -14,16 +14,26 @@ karhu.app = $.sammy(function() {
   karhu.Products(this);
   
   this.swap = function(content) {
-    return $('.main').html(content);
+    var result = $('.main').html(content);
+    this.context_prototype.prototype.beautify_input_elements();
+    return result;
   },
   
   this.get('#/', function(context) {
-    context.redirect('#/categories');
+    context.redirect('#/products');
   });
   
   this.bind('init', function() { with(this) {
     this.configure_facebox();
-  }});  
+  }});
+  
+  this.before(function(context) {
+    var type = context.path.match(/\#\/(\w+)/);
+    if(type) {
+      $('#header nav a').removeClass('active');
+      $('#header nav .' + type[1]).addClass('active');
+    };
+  });  
 });
  
 $(function() {

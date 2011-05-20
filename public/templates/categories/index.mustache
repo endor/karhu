@@ -2,22 +2,29 @@
 
 <nav class="category_nav">
   <ul>
-    <li><a href="#/categories/new">Add Category</a></li>
+    <li><a href="#/categories/new" class="button">Add Category</a></li>
   </ul>
 </nav>
 
-<ul class="categories">
+<table class="categories_table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
   {{#categories}}
-    <li>
-      <h3>{{name}}</h3>
-      <p>{{description}}</p>
-      <div class="actions">
-        <a href="#/categories/{{id}}/edit">edit</a>
+    <tr>
+      <td>{{name}}</td>
+      <td>{{description}}</td>
+      <td class="actions">
+        <a href="#/categories/{{id}}/edit" class="button">edit</a>
         <form method="delete" action="#/categories/{{id}}">
           <input type="hidden" name="name" value="{{name}}" />
           <input type="submit" value="delete" />
-        </form>        
-      </div>
-    </li>
+        </form>
+      </td>
+    </tr>
   {{/categories}}  
-</ul>
+</table>

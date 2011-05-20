@@ -1,35 +1,80 @@
+#container {
+  margin: 2em;
+  padding: 1em;
+  border: solid 1px #DFD9C3;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px; 
+  -o-border-radius: 6px; 
+  border-radius: 6px;
+}
+
 h1 {
-  color: gray;
-  font-size: 1.5em;
-  margin-bottom: 1em;
+  color: #433F38;
+  font-size: 2.2em;
+  margin-bottom: 1.5em;
+  border: solid 1px #DFD9C3;
+  padding: 0.5em;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px; 
+  -o-border-radius: 6px; 
+  border-radius: 6px;
+  background-color: #ECE8DA;
+  background-image: url(/images/ui-bg_gloss-wave_100_ece8da_500x100.png);
 }
 
 #header {
-  margin: 2em;
-  width: 90%;
+  margin-bottom: 3em;
+}
+
+#header nav li {
+  display: inline-block;
 }
 
 a {
   text-decoration: none;
 }
 
-nav a {
+#header nav a {
   color: green;
+  padding: 10px;
+  margin-right: 5px;
+  background-color: #459E00;
+  border: solid 1px #327E04;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px; 
+  -o-border-radius: 6px; 
+  border-radius: 6px;
+}
+
+#header nav a:hover {
+  background-color: #67B021;
+}
+
+#header nav a.active {
+  background-color: #FAFAF4;
+  border: solid 1px #D4CCB0;
+  color: #459E00;
 }
 
 nav {
   padding-bottom: 0.5em;
-  border-bottom: solid 1px #DDDDDD;  
-}
-
-.main {
-  margin-left: 2em;
-  width: 90%;
 }
 
 h2 {
   margin-bottom: 1em;
-  font-size: 1.2em;
+  font-size: 1.7em;
+  color: #433F38;
+  border: solid 1px #DFD9C3;
+  padding: 0.5em;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px; 
+  -o-border-radius: 6px; 
+  border-radius: 6px;
+  background-color: #F5F3E5;
+  background-image: url(/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png);
 }
 
 .categories li {
@@ -57,10 +102,73 @@ label {
   border-radius: 6px;
 }
 
+table {
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
 table td, table th {
   padding: 10px;
+  vertical-align: top;
+  font-size: 18px;
+}
+
+table td {
+  text-align: center;
 }
 
 table tr {
   border-bottom: solid 1px #DDDDDD;
+}
+
+table .actions span {
+  float: left;
+  display: inline !important;
+}
+table .actions input {
+  float: left;
+  display: inline;
+}
+
+table .actions input {
+  height: 44px !important;
+}
+
+table .actions form {
+  display: inline-block;
+}
+
+table .actions {
+  text-align: right;
+}
+
+label {
+  font-size: 18px;
+}
+
+input.text, .text input {
+  border: solid 1px #DFD9C3;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px; 
+  -o-border-radius: 6px; 
+  border-radius: 6px;
+  height: 2em;
+  width: 20em;
+  font-size: 18px; 
+}
+
+textarea {
+  border: solid 1px #DFD9C3;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px; 
+  -o-border-radius: 6px; 
+  border-radius: 6px;
+  height: 6em;
+  width: 20em;
+  font-size: 18px; 
+}
+
+form p {
+  margin-bottom: 1em;
 }
