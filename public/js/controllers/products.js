@@ -22,4 +22,13 @@ karhu.Products = function(app) {
       context.flash('Not able to create ' + context.params.product.name);      
     });
   });
+  
+  app.del('#/products/:id', function(context) {
+    context.ajax_delete('/products/' + context.params.id, {}, function() {
+      context.flash(context.params.name + ' successfully deleted.');
+      context.redirect('#/products');      
+    }, function(a, b, c) {
+      context.flash('Not able to delete ' + context.params.name);
+    });
+  });
 };

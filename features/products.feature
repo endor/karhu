@@ -33,3 +33,12 @@ Feature: Products
       And I should see "04.04.2035"
       And I should see "Baeume"
   
+  Scenario: delete product
+    Given a category "Baeume" with the description "Grosse Pflanzen"
+      And a product "Fichte" with the description "Nadelbaum" and the price "232,00" that is valid to "20.12.2027" and belongs to the category "Baeume"
+    When I go to the start page
+      And I follow "Products"
+    Then I should see "Fichte" within ".products"
+    When I press "delete"
+    Then I should not see "Fichte" within ".products"
+  
