@@ -24,6 +24,7 @@ karhu.Products = function(app) {
   });
 
   app.get('#/products/:id/edit', function(context) {
+    context.store.set('last_edited_product', context.params.id);
     context.ajax_get('/categories', {}, function(categories) {
       context.ajax_get('/products/' + context.params.id, {}, function(product) {
         context.partial('templates/products/edit.mustache', new karhu.EditProduct(product, categories));
@@ -32,6 +33,7 @@ karhu.Products = function(app) {
   });
   
   app.put('#/products/:id', function(context) {
+    context.store.clear('last_edited_product');
     context.ajax_put('/products/' + context.params.id, context.params.product, function() {
       context.flash(context.params.product.name + ' successfully updated.');
       context.redirect('#/products');

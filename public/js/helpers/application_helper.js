@@ -1,6 +1,6 @@
 karhu.ApplicationHelper = {
   flash: function(message) {
-    $('#flash').html(message).show().delay(2000).fadeOut('slow');
+    $('#flash').html(message).show().delay(4000).fadeOut('slow');
   },
   
   configure_facebox: function() {
