@@ -16,6 +16,7 @@ karhu.app = $.sammy(function() {
   this.swap = function(content) {
     var result = $('.main').html(content);
     this.context_prototype.prototype.beautify_input_elements();
+    this.context_prototype.prototype.notify_before_closing_browser_window(this);
     return result;
   };
   
