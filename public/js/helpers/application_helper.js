@@ -15,7 +15,10 @@ karhu.ApplicationHelper = {
   
   beautifyInputElements: function() {
     $('input:submit, a.button').button();
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({
+      changeMonth: true,
+			changeYear: true
+    });
   },
   
   notifyBeforeClosingBrowserWindow: function() {
