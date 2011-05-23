@@ -8,15 +8,26 @@ karhu.app = $.sammy(function() {
   this.debug = true;
   
   this.helpers(karhu.ApplicationHelper);
+  this.helpers(karhu.OfflineHelper);
   this.helpers({ store: config.store });
   
   karhu.Categories(this);
   karhu.Products(this);
   
   this.swap = function(content) {
-    var result = $('.main').html(content);
-    this.context_prototype.prototype.beautify_input_elements();
-    this.context_prototype.prototype.notify_before_closing_browser_window(this);
+    var context = this,
+      result = $('.main').html(content),
+      fns = [
+        'beautifyInputElements',
+        'notifyBeforeClosingBrowserWindow',
+        'adjustElementsToOnlineStatus',
+        'syncQueue'
+      ];
+      
+    fns.forEach(function(fn) {
+      context.context_prototype.prototype[fn].call(context);
+    });
+
     return result;
   };
   
@@ -25,7 +36,9 @@ karhu.app = $.sammy(function() {
   });
   
   this.bind('init', function() {
-    this.configure_facebox();
+    this.configureFacebox();
+    this.notifyOfOnlineOfflineStatus();
+    this.cachePartials();
   });
   
   this.before(function(context) {

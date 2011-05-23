@@ -12,6 +12,10 @@ get '/' do
   redirect "/index.html"
 end
 
+get '/test' do
+  'test'
+end
+
 get('/config.js') do
   File.read(ROOT + '/config/default.js')
 end

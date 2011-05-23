@@ -31,3 +31,7 @@ end
 Then /^"([^\"]*)" should be the selected "([^\"]*)"$/ do |selection, name_of_select|
   assert page.has_select?(name_of_select, :selected => selection)
 end
+
+When /I wait for (\d)s/ do |seconds|
+  sleep seconds.to_i
+end

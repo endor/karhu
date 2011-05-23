@@ -7,8 +7,16 @@ require 'test/unit/assertions'
 include Test::Unit::Assertions
 
 Capybara.app = Sinatra::Application
-Capybara.javascript_driver = :selenium
-Capybara.default_driver = :selenium
+
+Capybara.register_driver :firefox_custom do |app|
+  require 'selenium/webdriver'
+  profile_path = File.dirname(__FILE__) + "/prototype_profile"
+  profile = Selenium::WebDriver::Firefox::Profile.new(profile_path)
+  driver = Capybara::Driver::Selenium.new(app, :profile => profile)
+  driver
+end
+
+Capybara.default_driver = :firefox_custom
 
 Symbol.class_eval do
   def to_proc

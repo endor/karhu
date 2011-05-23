@@ -33,6 +33,25 @@ Feature: Products
       And I should see "04/04/2035"
       And I should see "Baeume"
   
+  Scenario: create product when offline
+    Given a category "Baeume" with the description "Grosse Pflanzen"
+      And a product "Fichte" with the description "Nadelbaum" and the price "232.00" that is valid to "12/20/2027" and belongs to the category "Baeume"
+    When I go to the start page
+      And I wait for 3s
+      And I get disconnected from the internet
+      And I follow "Products"
+      And I follow "Add Product"
+      And I fill in "Name" with "Tanne"
+      And I fill in "Description" with "Nadelbaum"
+      And I fill in "Unit Price" with "345.05"
+      And I fill in "Valid To" with "04/04/2035"
+      And I select "Baeume" from "Category"
+      And I press "Add Product"
+    Then I should see "Fichte"
+      And I should see "Tanne"
+    When I get connected to the internet
+    Then the api should have received a call to create a product with the name "Tanne"
+
   Scenario: delete product
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00" that is valid to "12/20/2027" and belongs to the category "Baeume"

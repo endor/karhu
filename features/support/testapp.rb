@@ -12,6 +12,10 @@ get '/' do
   redirect "/index.html"
 end
 
+get '/test' do
+  'test'
+end
+
 helpers do  
   def handle_put_delete_and_post(path, env, params, method)
     params.delete('captures')
@@ -40,7 +44,8 @@ helpers do
   
   def log_request(path, env, params, method)
     file = ROOT + "/features/support/last_requests.log"
-    requests = JSON.parse(File.read(file)) rescue []
+    requests = (JSON.parse(File.read(file)) rescue []) || []
+    request = {'params' => params, 'path' => path, 'method' => method}
     File.open(file, "w") do |f|
       f << (requests << request).to_json
     end
@@ -51,7 +56,7 @@ get('/config.js') do
   File.read(ROOT + '/config/test.js')
 end
 
-post /\/(.+)/ do |path|  
+post /\/(.+)/ do |path|
   handle_put_delete_and_post(path, request.env, params, 'post') do |params, path|
     FileUtils.mkdir_p(File.join(fixtures_path, path))
     
