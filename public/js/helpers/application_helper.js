@@ -66,7 +66,7 @@ karhu.ApplicationHelper = {
         });        
       } else {
         $.ajax({
-          url: url,
+          url: url + (verb === 'get' ? '?random=' + (new Date).getTime() : ''),
           data: data,
           type: verb,
           success: function(result) {

@@ -99,7 +99,6 @@ end
 get /\/(.+)/ do |path|
   content_type :json
   file = ROOT + "/features/fixtures/#{URI.decode(path).gsub(' ', '_')}.json"
-  headers "Pragma" => "no-cache"
   if(File.exists?(file))
     File.read(file)
   else
