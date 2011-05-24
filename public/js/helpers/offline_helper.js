@@ -8,7 +8,6 @@ karhu.OfflineHelper = {
   },
   
   stateChangedToOnline: function() {
-    this.flash("Hallelujah");
     if(karhu.offline) {
       karhu.offline = false;
       this.flash("You are currently online.");
@@ -22,8 +21,6 @@ karhu.OfflineHelper = {
       context = this;
 
     this.store.clear('queue');
-
-    this.flash('syncing queue');
 
     queue.forEach(function(action) {
       context['ajax_' + action.verb].call(context, action.url, action.data, function() {});

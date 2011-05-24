@@ -21,8 +21,8 @@ karhu.ApplicationHelper = {
     });
   },
   
-  notifyBeforeClosingBrowserWindow: function() {
-    var path = this.last_route.path.toString();
+  notifyBeforeClosingBrowserWindow: function(context) {
+    var path = context.last_route.path.toString();
     if(path.match(/\/new/) || path.match(/\/edit/)) {
       window.onbeforeunload = function() {
         return "You are currently editing or creating a new record. Are you sure you want to leave?";

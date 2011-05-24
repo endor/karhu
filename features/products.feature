@@ -32,7 +32,7 @@ Feature: Products
       And I should see "345.05"
       And I should see "04/04/2035"
       And I should see "Baeume"
-  
+
   Scenario: create product when offline
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00" that is valid to "12/20/2027" and belongs to the category "Baeume"
@@ -47,10 +47,19 @@ Feature: Products
       And I fill in "Valid To" with "04/04/2035"
       And I select "Baeume" from "Category"
       And I press "Add Product"
+      And I follow "Add Product"
+      And I fill in "Name" with "Kiefer"
+      And I fill in "Description" with "Nadelbaum"
+      And I fill in "Unit Price" with "227.25"
+      And I fill in "Valid To" with "01/08/2029"
+      And I select "Baeume" from "Category"
+      And I press "Add Product"
     Then I should see "Fichte"
       And I should see "Tanne"
+      And I should see "Kiefer"
     When I get connected to the internet
     Then the api should have received a call to create a product with the name "Tanne"
+      And the api should have received a call to create a product with the name "Kiefer"
 
   Scenario: delete product
     Given a category "Baeume" with the description "Grosse Pflanzen"

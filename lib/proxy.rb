@@ -6,7 +6,7 @@ require 'uri'
 ROOT = File.join(File.dirname(__FILE__), '..')
 set :static, true
 set :public, File.join(ROOT, 'public')
-set :logging, false
+set :logging, true
 
 get '/' do
   redirect "/index.html"

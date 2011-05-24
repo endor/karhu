@@ -16,6 +16,7 @@ karhu.app = $.sammy(function() {
   
   this.swap = function(content) {
     var context = this,
+      event_content = context.context_prototype.prototype,
       result = $('.main').html(content),
       fns = [
         'beautifyInputElements',
@@ -25,7 +26,7 @@ karhu.app = $.sammy(function() {
       ];
       
     fns.forEach(function(fn) {
-      context.context_prototype.prototype[fn].call(context);
+      event_content[fn].call(event_content, context);
     });
 
     return result;

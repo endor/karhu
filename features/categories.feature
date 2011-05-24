@@ -28,6 +28,27 @@ Feature: Categories
       And I should see "Fluessige Dinge"
       And I should see "Brote"
       And I should see "Gebacken"
+
+  Scenario: create category when offline
+    Given a category "Baeume" with the description "Grosse Pflanzen"
+    When I go to the start page
+      And I wait for 3s
+      And I get disconnected from the internet
+      And I follow "Categories"
+      And I follow "Add Category"
+      And I fill in "Name" with "Elefanten"
+      And I fill in "Description" with "Tiere"
+      And I press "Add Category"
+      And I follow "Add Category"
+      And I fill in "Name" with "Tiger"
+      And I fill in "Description" with "Tiere"
+      And I press "Add Category"
+    Then I should see "Baeume"
+      And I should see "Elefanten"
+      And I should see "Tiger"
+    When I get connected to the internet
+    Then the api should have received a call to create a category with the name "Elefanten"
+      And the api should have received a call to create a category with the name "Tiger"
   
   Scenario: delete category
     Given a category "Baeume" with the description "Grosse Pflanzen"
