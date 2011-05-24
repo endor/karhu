@@ -9,12 +9,15 @@ karhu.Products = function(app) {
   });
   
   app.get('#/products/new', function(context) {
-    context.ajax_get('/categories', {}, function(categories) {
-      context.partial('templates/products/new.mustache', {categories: categories});
+    context.handleLastAccess(null, 'last_added_product', function(last_added_product) {
+      context.ajax_get('/categories', {}, function(categories) {
+        context.partial('templates/products/new.mustache', new karhu.EditProduct({}, categories, last_added_product));
+      });      
     });
   });
   
   app.post('#/products', function(context) {
+    context.store.clear('last_added_product');
     context.handleCancel(context.params.cancel, '#/products', function() {
       context.ajax_post('/products', context.params.product, function() {
         context.flash(context.params.product.name + ' successfully created.');
@@ -26,11 +29,12 @@ karhu.Products = function(app) {
   });
 
   app.get('#/products/:id/edit', function(context) {
-    context.store.set('last_edited_product', context.params.id);
-    context.ajax_get('/categories', {}, function(categories) {
-      context.ajax_get('/products/' + context.params.id, {}, function(product) {
-        context.partial('templates/products/edit.mustache', new karhu.EditProduct(product, categories));
-      });
+    context.handleLastAccess(context.params, 'last_edited_product', function(last_edited_product) {
+      context.ajax_get('/categories', {}, function(categories) {
+        context.ajax_get('/products/' + context.params.id, {}, function(product) {
+          context.partial('templates/products/edit.mustache', new karhu.EditProduct(product, categories, last_edited_product));
+        });
+      });      
     });
   });
   

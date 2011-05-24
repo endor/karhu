@@ -3,12 +3,12 @@
 <form method="PUT" action="#/categories/{{id}}">
   <p>
     <label for="category_name">Name</label>
-    <input type="text" name="category[name]" id="category_name" value="{{name}}" class="text" />
+    <input type="text" name="category[name]" id="category_name" value="{{name}}" class="text store_change" />
   </p>
 
   <p>
     <label for="category_description">Description</label>
-    <textarea name="category[description]" id="category_description">{{description}}</textarea>
+    <textarea name="category[description]" id="category_description" class="store_change">{{description}}</textarea>
   </p>
   
   <p>

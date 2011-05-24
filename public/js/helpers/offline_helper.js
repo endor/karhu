@@ -1,6 +1,7 @@
 karhu.OfflineHelper = {
 
   stateChangedToOffline: function() {
+    console.log('stateChangedToOffline')
     if(!karhu.offline) {
       karhu.offline = true;
       this.flash("You are currently offline.");
@@ -9,6 +10,7 @@ karhu.OfflineHelper = {
   },
   
   stateChangedToOnline: function() {
+    console.log('stateChangedToOnline')
     if(karhu.offline) {
       karhu.offline = false;
       this.flash("You are currently online.");
@@ -61,6 +63,7 @@ karhu.OfflineHelper = {
   },
   
   saveRequestInQueue: function(verb, data, url, success, callback) {
+    console.log('saveRequestInQueue', verb, url, JSON.stringify(data));
     if(verb !== 'get') { this.storeInQueue(verb, data, url); }
     if(verb === 'post') { this.addToCachedObjects(data, url); }
     if(verb === 'put') { this.updateCachedObjects(data, url); }

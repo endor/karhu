@@ -3,27 +3,27 @@
 <form method="PUT" action="#/products/{{id}}">
   <p>
     <label for="product_name">Name</label>
-    <input type="text" name="product[name]" id="product_name" value="{{name}}" class="text" />
+    <input type="text" name="product[name]" id="product_name" value="{{name}}" class="text store_change" />
   </p>
 
   <p>
     <label for="product_description">Description</label>
-    <textarea name="product[description]" id="product_description">{{description}}</textarea>
+    <textarea name="product[description]" id="product_description" class="store_change">{{description}}</textarea>
   </p>
   
   <p>
     <label for="product_unit_price">Unit Price</label>
-    <input type="text" name="product[unit_price]" id="product_unit_price" value="{{unit_price}}" class="text" />
+    <input type="text" name="product[unit_price]" id="product_unit_price" value="{{unit_price}}" class="text store_change" />
   </p>
 
   <p class="text">
     <label for="product_valid_to">Valid To</label>
-    <input type="text" name="product[valid_to]" id="product_valid_to" value="{{valid_to}}" class="datepicker" />
+    <input type="text" name="product[valid_to]" id="product_valid_to" value="{{valid_to}}" class="datepicker store_change" />
   </p>
 
   <p>
     <label for="product_category_id">Category</label>
-    <select id="product_category_id" name="product[category_id]">
+    <select id="product_category_id" name="product[category_id]" class="store_change">
       {{#categories}}
         <option value="{{id}}" {{#selected}} selected="selected"{{/selected}}>{{name}}</option>
       {{/categories}}

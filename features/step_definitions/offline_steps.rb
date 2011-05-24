@@ -9,7 +9,8 @@ end
 
 When /I get connected to the internet/ do
   page.execute_script('$.ajax = window.origAjax;')
-  visit('#/products')
+  When 'I follow "Categories"'
+    And 'I follow "Products"'
 end
 
 Then /the api should have received a call to create a (\w+) with the name "([^\"]+)"/ do |type, name|

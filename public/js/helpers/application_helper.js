@@ -33,6 +33,21 @@ karhu.ApplicationHelper = {
     $('.cancel').live('click', function() {
       $(this).prepend('<input type="hidden" name="cancel" value="true" />');
     });
+  },
+  
+  prepareInputFields: function() {
+    var context = this;
+
+    $('.store_change').live('change', function() {
+      var $this = $(this),
+        type = $this.attr('id').split('_')[0],
+        item = context.app.last_location[1].match(/edit/) ?
+                    'last_edited_' + type : 'last_added_' + type;
+
+      var object = context.store.get(item);
+      object.data[$this.attr('name').match(/\[([^\]]+)\]/)[1]] = $this.val();
+      context.store.set(item, object);
+    });
   }
 };
 
@@ -65,7 +80,7 @@ karhu.ApplicationHelper = {
                 context.saveRequestInQueue(verb, data, url, success);
               }
               if(error) { error.call(context); }
-            }
+            };
           })()
         });
       }

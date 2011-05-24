@@ -9,6 +9,7 @@ karhu.app = $.sammy(function() {
   
   this.helpers(karhu.ApplicationHelper);
   this.helpers(karhu.OfflineHelper);
+  this.helpers(karhu.AccessLastItemHelper);
   this.helpers({ store: config.store });
   
   karhu.Categories(this);
@@ -20,8 +21,7 @@ karhu.app = $.sammy(function() {
       result = $('.main').html(content),
       fns = [
         'beautifyInputElements',
-        'adjustElementsToOnlineStatus',
-        'syncQueue'
+        'adjustElementsToOnlineStatus'
       ];
       
     fns.forEach(function(fn) {
@@ -40,6 +40,7 @@ karhu.app = $.sammy(function() {
     this.notifyOfOnlineOfflineStatus();
     this.cachePartials();
     this.prepareCancelButtons();
+    this.prepareInputFields();
   });
   
   this.before(function(context) {
@@ -51,10 +52,10 @@ karhu.app = $.sammy(function() {
   });
   
   this.around(function(callback) {
-    var last_edited_product = this.store.get('last_edited_product');
-    if(last_edited_product && !this.path.match(new RegExp('\\/products\\/' + last_edited_product))) {
-      this.flash('Please finnish editing your product.');
-      this.redirect('#/products/' + last_edited_product + '/edit');
+    var key = _.find(this.store.keys(), function(key) { return key.match(/last\_(edited|added)/); });
+
+    if(key) {
+      this.accessLastItem(key, callback);
     } else {
       callback();
     }
