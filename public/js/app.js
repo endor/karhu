@@ -20,7 +20,6 @@ karhu.app = $.sammy(function() {
       result = $('.main').html(content),
       fns = [
         'beautifyInputElements',
-        'notifyBeforeClosingBrowserWindow',
         'adjustElementsToOnlineStatus',
         'syncQueue'
       ];

@@ -52,17 +52,21 @@ karhu.OfflineHelper = {
     this.store.set('get' + match[1], objects);    
   },
   
+  retrieveObjectFromCachedList: function(url) {
+    var match = url.match(/(\/\w+)\/(\d+)/);
+
+    return _.find(this.store.get('get' + match[1]), function(object) {
+      return parseInt(object.id, 10) === parseInt(match[2], 10);
+    });    
+  },
+  
   saveRequestInQueue: function(verb, data, url, success, callback) {
     if(verb !== 'get') { this.storeInQueue(verb, data, url); }
     if(verb === 'post') { this.addToCachedObjects(data, url); }
     if(verb === 'put') { this.updateCachedObjects(data, url); }
     
     if(verb === 'get' && url.match(/\/\w+\/\d+/)) {
-      var match = url.match(/(\/\w+)\/(\d+)/);
-      var object = _.find(this.store.get('get' + match[1]), function(object) {
-        return parseInt(object.id, 10) === parseInt(match[2], 10);
-      });
-      success(object);
+      success(this.retrieveObjectFromCachedList(url));
     } else {
       success(this.store.get(verb + url));
     }
