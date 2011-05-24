@@ -35,3 +35,7 @@ end
 When /I wait for (\d)s/ do |seconds|
   sleep seconds.to_i
 end
+
+Then /the "([^\"]+)" link should be hidden/ do |text|
+  assert !page.find(:xpath, "//a[contains(., '#{text}')]").visible?
+end

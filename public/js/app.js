@@ -14,6 +14,7 @@ karhu.app = $.sammy(function() {
   
   karhu.Categories(this);
   karhu.Products(this);
+  karhu.CachedActions(this);
   
   this.swap = function(content) {
     var context = this,
@@ -44,7 +45,7 @@ karhu.app = $.sammy(function() {
   });
   
   this.before(function(context) {
-    var type = context.path.match(/\#\/(\w+)/);
+    var type = context.path.match(/\#\/([^\/]+)/);
     if(type) {
       $('#header nav a').removeClass('active');
       $('#header nav .' + type[1]).addClass('active');

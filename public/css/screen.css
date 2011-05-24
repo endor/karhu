@@ -175,3 +175,14 @@ textarea {
 form p {
   margin-bottom: 1em;
 }
+
+#header .cached-actions {
+  display: none;
+}
+
+ul.cached_actions_list li {
+  padding: 5px;
+  font-size: 18px;
+  border-bottom: solid 1px #DDDDDD;
+  margin-bottom: 10px;
+}

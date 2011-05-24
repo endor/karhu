@@ -77,3 +77,40 @@ Feature: Workflow
     Then the "Name" field should contain "Paint"
       And the "Description" field should contain "it Black"
   
+  Scenario: see queue when offline
+    Given a category "Baeume" with the description "Grosse Pflanzen"
+      And a product "Fichte" with the description "Nadelbaum" and the price "232.00" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And a product "Tanne" with the description "Nadelbaum" and the price "232.00" that is valid to "12/20/2027" and belongs to the category "Baeume"
+    When I go to the start page
+    Then the "Queue" link should be hidden
+    When I wait for 3s
+      And I get disconnected from the internet
+      And I follow "Products"
+      And I follow "Edit Fichte"
+      And I fill in "Description" with "F.I.C.H.T.E."
+      And I press "Update Product"
+      And I follow "Add Product"
+      And I fill in "Name" with "Kiefer"
+      And I fill in "Description" with "Nadelbaum"
+      And I fill in "Unit Price" with "227.25"
+      And I fill in "Valid To" with "01/08/2029"
+      And I select "Baeume" from "Category"
+      And I press "Add Product"
+      And I follow "Edit Tanne"
+      And I fill in "Description" with "T.A.N.N.E."
+      And I press "Update Product"
+      And I follow "Categories"
+      And I follow "edit"
+      And I fill in "Description" with "Klein"
+      And I press "Update Category"
+      And I follow "Queue"
+    Then I should see "Updated Product Fichte"
+      And I should see "F.I.C.H.T.E."
+      And I should see "Created Product Kiefer"
+      And I should see "Nadelbaum"
+      And I should see "Updated Category Baeume"
+      And I should see "Klein"
+    When I get connected to the internet
+    Then the "Queue" link should be hidden
+    
+  

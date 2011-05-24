@@ -1,19 +1,19 @@
 karhu.OfflineHelper = {
 
   stateChangedToOffline: function() {
-    console.log('stateChangedToOffline')
     if(!karhu.offline) {
       karhu.offline = true;
       this.flash("You are currently offline.");
+      $('.cached-actions').show();
       $('.delete_form').hide();
     }
   },
   
   stateChangedToOnline: function() {
-    console.log('stateChangedToOnline')
     if(karhu.offline) {
       karhu.offline = false;
       this.flash("You are currently online.");
+      $('.cached-actions').hide();
       $('.delete_form').show();
       this.syncQueue();
     }
@@ -63,7 +63,6 @@ karhu.OfflineHelper = {
   },
   
   saveRequestInQueue: function(verb, data, url, success, callback) {
-    console.log('saveRequestInQueue', verb, url, JSON.stringify(data));
     if(verb !== 'get') { this.storeInQueue(verb, data, url); }
     if(verb === 'post') { this.addToCachedObjects(data, url); }
     if(verb === 'put') { this.updateCachedObjects(data, url); }
@@ -91,6 +90,10 @@ karhu.OfflineHelper = {
   adjustElementsToOnlineStatus: function() {
     if(karhu.offline) {
       $('.delete_form').hide();
+      $('.cached-actions').show();
+    } else {
+      $('.delete_form').show();
+      $('.cached-actions').hide();      
     }
   },
   
@@ -102,6 +105,7 @@ karhu.OfflineHelper = {
         context.load('templates/' + type + '/' + partial + '.mustache', {cache: true});
       });
     });
+    context.load('templates/cached_actions/index.mustache', {cache: true});
   }
   
 };
