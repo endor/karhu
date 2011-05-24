@@ -12,4 +12,10 @@ Feature: Workflow
       And I follow "Edit Tanne"
       And the browser is closed and reopened with the start page
     Then the "Name" field should contain "Tanne"
-  
+    When I follow "Categories"
+    Then the "Name" field should contain "Tanne"
+    When I fill in "Description" with "Hans"
+      And I press "Cancel"
+    Then I should see "Tanne"
+      And I should see "Nadelbaum"
+      But I should not see "Hans"

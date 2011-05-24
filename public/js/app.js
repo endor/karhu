@@ -39,6 +39,7 @@ karhu.app = $.sammy(function() {
     this.configureFacebox();
     this.notifyOfOnlineOfflineStatus();
     this.cachePartials();
+    this.prepareCancelButtons();
   });
   
   this.before(function(context) {

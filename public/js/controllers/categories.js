@@ -10,11 +10,13 @@ karhu.Categories = function(app) {
   });
   
   app.post('#/categories', function(context) {
-    context.ajax_post('/categories', context.params.category, function() {
-      context.flash(context.params.category.name + ' successfully created.');
-      context.redirect('#/categories');
-    }, function() {
-      context.flash('Not able to create ' + context.params.category.name);
+    context.handleCancel(context.params.cancel, '#/categories', function() {
+      context.ajax_post('/categories', context.params.category, function() {
+        context.flash(context.params.category.name + ' successfully created.');
+        context.redirect('#/categories');
+      }, function() {
+        context.flash('Not able to create ' + context.params.category.name);
+      });
     });
   });
 
@@ -25,11 +27,13 @@ karhu.Categories = function(app) {
   });
   
   app.put('#/categories/:id', function(context) {
-    context.ajax_put('/categories/' + context.params.id, context.params.category, function() {
-      context.flash(context.params.category.name + ' successfully updated.');
-      context.redirect('#/categories');
-    }, function() {
-      context.flash('Not able to update ' + context.params.category.name);      
+    context.handleCancel(context.params.cancel, '#/categories', function() {
+      context.ajax_put('/categories/' + context.params.id, context.params.category, function() {
+        context.flash(context.params.category.name + ' successfully updated.');
+        context.redirect('#/categories');
+      }, function() {
+        context.flash('Not able to update ' + context.params.category.name);      
+      });
     });
   });
     

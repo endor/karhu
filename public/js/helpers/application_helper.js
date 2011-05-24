@@ -19,6 +19,20 @@ karhu.ApplicationHelper = {
       changeMonth: true,
 			changeYear: true
     });
+  },
+  
+  handleCancel: function(cancel, redirect_url, callback) {
+    if(cancel) {
+      this.redirect(redirect_url);
+    } else {
+      callback.call(this);
+    }
+  },
+  
+  prepareCancelButtons: function() {
+    $('.cancel').live('click', function() {
+      $(this).prepend('<input type="hidden" name="cancel" value="true" />');
+    });
   }
 };
 

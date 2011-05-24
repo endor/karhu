@@ -15,11 +15,13 @@ karhu.Products = function(app) {
   });
   
   app.post('#/products', function(context) {
-    context.ajax_post('/products', context.params.product, function() {
-      context.flash(context.params.product.name + ' successfully created.');
-      context.redirect('#/products');      
-    }, function() {
-      context.flash('Not able to create ' + context.params.product.name);      
+    context.handleCancel(context.params.cancel, '#/products', function() {
+      context.ajax_post('/products', context.params.product, function() {
+        context.flash(context.params.product.name + ' successfully created.');
+        context.redirect('#/products');      
+      }, function() {
+        context.flash('Not able to create ' + context.params.product.name);      
+      });      
     });
   });
 
@@ -34,11 +36,13 @@ karhu.Products = function(app) {
   
   app.put('#/products/:id', function(context) {
     context.store.clear('last_edited_product');
-    context.ajax_put('/products/' + context.params.id, context.params.product, function() {
-      context.flash(context.params.product.name + ' successfully updated.');
-      context.redirect('#/products');
-    }, function() {
-      context.flash('Not able to update ' + context.params.product.name);      
+    context.handleCancel(context.params.cancel, '#/products', function() {
+      context.ajax_put('/products/' + context.params.id, context.params.product, function() {
+        context.flash(context.params.product.name + ' successfully updated.');
+        context.redirect('#/products');
+      }, function() {
+        context.flash('Not able to update ' + context.params.product.name);      
+      });
     });
   });
     
