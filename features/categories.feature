@@ -68,3 +68,31 @@ Feature: Categories
     Then I should see "Musik"
       And I should see "Klaenge"
       But I should not see "Toene"
+      
+  Scenario: edit category when offline
+    Given a category "Baeume" with the description "Grosse Pflanzen"
+      And a category "Musik" with the description "Toene"
+    When I go to the start page
+      And I wait for 3s
+      And I get disconnected from the internet
+      And I follow "Categories"
+      And I follow "Edit Baeume"
+      And I fill in "Description" with "B.A.E.U.M.E."
+      And I press "Update Category"
+      And I follow "Add Category"
+      And I fill in "Name" with "Weine"
+      And I fill in "Description" with "Getraenke"
+      And I press "Add Category"
+      And I follow "Edit Musik"
+      And I fill in "Description" with "M.U.S.I.K."
+      And I press "Update Category"
+    Then I should see "Baeume"
+      And I should see "B.A.E.U.M.E."
+      And I should see "Weine"
+      And I should see "Musik"
+      And I should see "M.U.S.I.K."
+    When I get connected to the internet
+      And the api should have received a call to create a category with the name "Weine"
+      And the api should have received a call to update a category with the name "Baeume" and the new description "B.A.E.U.M.E."
+      And the api should have received a call to update a category with the name "Musik" and the new description "M.U.S.I.K."
+  

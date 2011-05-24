@@ -83,3 +83,35 @@ Feature: Products
     Then I should see "Fichte"
       And I should see "Gruen"
       But I should not see "Nadelbaum"
+
+  Scenario: edit product when offline
+    Given a category "Baeume" with the description "Grosse Pflanzen"
+      And a product "Fichte" with the description "Nadelbaum" and the price "232.00" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And a product "Tanne" with the description "Nadelbaum" and the price "232.00" that is valid to "12/20/2027" and belongs to the category "Baeume"
+    When I go to the start page
+      And I wait for 3s
+      And I get disconnected from the internet
+      And I follow "Products"
+      And I follow "Edit Fichte"
+      And I fill in "Description" with "F.I.C.H.T.E."
+      And I press "Update Product"
+      And I follow "Add Product"
+      And I fill in "Name" with "Kiefer"
+      And I fill in "Description" with "Nadelbaum"
+      And I fill in "Unit Price" with "227.25"
+      And I fill in "Valid To" with "01/08/2029"
+      And I select "Baeume" from "Category"
+      And I press "Add Product"
+      And I follow "Edit Tanne"
+      And I fill in "Description" with "T.A.N.N.E."
+      And I press "Update Product"
+    Then I should see "Fichte"
+      And I should see "F.I.C.H.T.E."
+      And I should see "Kiefer"
+      And I should see "Tanne"
+      And I should see "T.A.N.N.E."
+    When I get connected to the internet
+      And the api should have received a call to create a product with the name "Kiefer"
+      And the api should have received a call to update a product with the name "Fichte" and the new description "F.I.C.H.T.E."
+      And the api should have received a call to update a product with the name "Tanne" and the new description "T.A.N.N.E."
+  

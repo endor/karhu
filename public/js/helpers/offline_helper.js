@@ -1,4 +1,5 @@
 karhu.OfflineHelper = {
+
   stateChangedToOffline: function() {
     if(!karhu.offline) {
       karhu.offline = true;
@@ -27,20 +28,45 @@ karhu.OfflineHelper = {
     });
   },
   
+  storeInQueue: function(verb, data, url) {
+    var queue = this.store.get('queue') || [];
+    queue.push({verb: verb, data: data, url: url});
+    this.store.set('queue', queue);    
+  },
+  
+  addToCachedObjects: function(data, url) {
+    var objects = this.store.get('get' + url);
+    objects.push(data);
+    this.store.set('get' + url, objects);
+  },
+  
+  updateCachedObjects: function(data, url) {
+    var match = url.match(/(\/\w+)\/(\d+)/),
+      objects = this.store.get('get' + match[1]),
+      id = match[2];
+    
+    _.extend(_.find(objects, function(object) {
+      return parseInt(object.id, 10) === parseInt(id, 10);
+    }), data);
+
+    this.store.set('get' + match[1], objects);    
+  },
+  
   saveRequestInQueue: function(verb, data, url, success, callback) {
-    if(verb !== 'get') {
-      var queue = this.store.get('queue') || [];
-      queue.push({verb: verb, data: data, url: url});
-      this.store.set('queue', queue);
-      
-      if(verb === 'post') {
-        var objects = this.store.get('get' + url);
-        objects.push(data);
-        this.store.set('get' + url, objects);
-      }
+    if(verb !== 'get') { this.storeInQueue(verb, data, url); }
+    if(verb === 'post') { this.addToCachedObjects(data, url); }
+    if(verb === 'put') { this.updateCachedObjects(data, url); }
+    
+    if(verb === 'get' && url.match(/\/\w+\/\d+/)) {
+      var match = url.match(/(\/\w+)\/(\d+)/);
+      var object = _.find(this.store.get('get' + match[1]), function(object) {
+        return parseInt(object.id, 10) === parseInt(match[2], 10);
+      });
+      success(object);
+    } else {
+      success(this.store.get(verb + url));
     }
     
-    success(this.store.get(verb + url));
     if(callback) { callback(); }
   },
   
@@ -61,14 +87,6 @@ karhu.OfflineHelper = {
     }
   },
   
-  /*
-   *
-   * TODO: in the future we might want to replace this with a cache manifest.
-   *   see:
-   *     http://diveintohtml5.org/offline.html
-   *     http://spin.atomicobject.com/2011/04/29/automated-tests-for-html5-offline-web-applications-with-capybara-and-selenium/
-   *
-   */
   cachePartials: function() {
     var context = this;
     

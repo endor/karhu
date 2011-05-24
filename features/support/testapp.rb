@@ -111,8 +111,6 @@ delete /\/(.+)/ do |path|
 end
 
 get /\/(.+)/ do |path|
-  log_request(path, request.env, params, 'get')
-  
   content_type :json
   file = ROOT + "/features/fixtures/#{URI.decode(path).gsub(' ', '_')}.json"
   if(File.exists?(file))

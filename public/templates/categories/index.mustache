@@ -19,7 +19,7 @@
       <td>{{name}}</td>
       <td>{{description}}</td>
       <td class="actions">
-        <a href="#/categories/{{id}}/edit" class="button">edit</a>
+        <a href="#/categories/{{id}}/edit" class="button" title="Edit {{name}}">edit</a>
         <form method="delete" action="#/categories/{{id}}" class="delete_form">
           <input type="hidden" name="name" value="{{name}}" />
           <input type="submit" value="delete" />
