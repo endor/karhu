@@ -10,11 +10,13 @@ karhu.app = $.sammy(function() {
   this.helpers(karhu.OfflineHelper);
   this.helpers(karhu.AccessLastItemHelper);
   this.helpers(karhu.CustomValidatorsHelper);
+  this.helpers(karhu.LocalesHelper);
   this.helpers({ store: config.store });
   
   karhu.Categories(this);
   karhu.Products(this);
   karhu.CachedActions(this);
+  karhu.Locales(this);
   
   //
   // NOTE: for this to work sammy needs to send the event context to swap
@@ -45,6 +47,7 @@ karhu.app = $.sammy(function() {
     this.prepareCancelButtons();
     this.prepareInputFields();
     this.initializeCustomValidators();
+    this.initializeLocales();
   });
   
   this.before(function(context) {
@@ -79,7 +82,7 @@ karhu.app = $.sammy(function() {
     }
   }); 
 });
- 
+
 $(function() {
   karhu.app.run('#/');
   karhu.app.trigger('init');

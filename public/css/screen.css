@@ -1,11 +1,27 @@
 #container {
   margin: 2em;
+  margin-top: 3em;
   padding: 1em;
   border: solid 1px #DFD9C3;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px; 
   -o-border-radius: 6px; 
   border-radius: 6px;
+}
+
+#languages {
+  position: absolute;
+  top: 1em;
+  right: 2.5em;
+}
+
+#languages li {
+  display: inline-block;
+  margin-left: 0.5em;
+}
+
+#languages li a {
+  color: #9F9983;
 }
 
 h1 {

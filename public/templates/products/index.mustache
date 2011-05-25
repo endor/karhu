@@ -1,20 +1,20 @@
-<h2>Products</h2>
+<h2>{{?products}}</h2>
 
 <nav class="product_nav">
   <ul>
-    <li><a href="#/products/new" class="button">Add Product</a></li>
+    <li><a href="#/products/new" class="button">{{?add_product}}</a></li>
   </ul>
 </nav>
 
 <table class="products_table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Valid To</th>
-      <th>Category</th>
-      <th>Actions</th>
+      <th>{{?name}}</th>
+      <th>{{?description}}</th>
+      <th>{{?price}}</th>
+      <th>{{?valid_to}}</th>
+      <th>{{?category}}</th>
+      <th>{{?actions}}</th>
     </tr>
   </thead>
   <tbody>
@@ -27,10 +27,10 @@
         <td>{{#category}}{{name}}{{/category}}</td>
         <td class="actions">
           {{#id}}
-            <a href="#/products/{{id}}/edit" class="button" title="Edit {{name}}">edit</a>
+            <a href="#/products/{{id}}/edit" class="button" title="Edit {{name}}">{{?edit}}</a>
             <form method="delete" action="#/products/{{id}}" class="delete_form">
               <input type="hidden" name="name" value="{{name}}" />
-              <input type="submit" value="delete" />
+              <input type="submit" value="{{?remove}}" />
             </form>
           {{/id}}
         </td>

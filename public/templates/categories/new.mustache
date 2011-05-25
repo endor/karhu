@@ -1,18 +1,18 @@
-<h2>New Category</h2>
+<h2>{{?new_category}}</h2>
 
 <form method="POST" action="#/categories">
   <p>
-    <label for="category_name">Name</label>
+    <label for="category_name">{{?name}}</label>
     <input type="text" name="category[name]" id="category_name" class="text store_change" value="{{name}}" />
   </p>
 
   <p>
-    <label for="category_description">Description</label>
+    <label for="category_description">{{?description}}</label>
     <textarea name="category[description]" id="category_description" class="store_change">{{description}}</textarea>
   </p>
   
   <p>
-    <input type="submit" value="Add Category" />
-    <input type="submit" value="Cancel" class="cancel" />
+    <input type="submit" value="{{?add_category}}" />
+    <input type="submit" value="{{?cancel}}" class="cancel" />
   </p>
 </form>

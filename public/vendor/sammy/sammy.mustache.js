@@ -153,7 +153,7 @@ if (!window.Mustache) {
         var that = this;
 
         var new_regex = function() {
-          return new RegExp(that.otag + "(=|!|>|\\{|%)?([^\\/#\\^]+?)\\1?" +
+          return new RegExp(that.otag + "(=|!|>|\\{|%|\\?)?([^\\/#\\^]+?)\\1?" +
             that.ctag + "+", "g");
         };
 
@@ -162,6 +162,8 @@ if (!window.Mustache) {
           switch(operator) {
           case "!": // ignore comments
             return "";
+          case "?": // translate key
+            return $.global.localize("karhu")[name];
           case "=": // set new delimiters, rebuild the replace regexp
             that.set_delimiters(name);
             regex = new_regex();

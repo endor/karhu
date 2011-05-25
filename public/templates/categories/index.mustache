@@ -1,17 +1,17 @@
-<h2>Categories</h2>
+<h2>{{?categories}}</h2>
 
 <nav class="category_nav">
   <ul>
-    <li><a href="#/categories/new" class="button">Add Category</a></li>
+    <li><a href="#/categories/new" class="button">{{?add_category}}</a></li>
   </ul>
 </nav>
 
 <table class="categories_table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Actions</th>
+      <th>{{?name}}</th>
+      <th>{{?description}}</th>
+      <th>{{?actions}}</th>
     </tr>
   </thead>
   {{#categories}}
@@ -20,10 +20,10 @@
       <td>{{description}}</td>
       <td class="actions">
         {{#id}}
-          <a href="#/categories/{{id}}/edit" class="button" title="Edit {{name}}">edit</a>
+          <a href="#/categories/{{id}}/edit" class="button" title="Edit {{name}}">{{?edit}}</a>
           <form method="delete" action="#/categories/{{id}}" class="delete_form">
             <input type="hidden" name="name" value="{{name}}" />
-            <input type="submit" value="delete" />
+            <input type="submit" value="{{?remove}}" />
           </form>
         {{/id}}
       </td>

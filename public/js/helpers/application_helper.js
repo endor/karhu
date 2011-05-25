@@ -17,7 +17,7 @@ karhu.ApplicationHelper = {
     $('.cancel').live('click', function() {
       $(this).prepend('<input type="hidden" name="cancel" value="true" />');
     });
-  }  
+  }
 };
 
 (function() {

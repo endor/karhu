@@ -22,7 +22,7 @@ Feature: Workflow
     Then I should see "Tanne"
       And I should see "Nadelbaum"
       But I should not see "Hans"
-
+  
   Scenario: when browser is closed while adding a product, when starting the app I should add the same product again
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a category "Maeuse" with the description "Tiere"
@@ -33,7 +33,7 @@ Feature: Workflow
       And I trigger a "change" event on the "product_name"
       And I fill in "Description" with "Fastest Mouse in Mexico"
       And I trigger a "change" event on the "product_description"
-      And I fill in "Unit Price" with "222222$"
+      And I fill in "Price" with "222222$"
       And I trigger a "change" event on the "product_unit_price"
       And I fill in "Valid To" with "04/04/2020"
       And I trigger a "change" event on the "product_valid_to"
@@ -42,10 +42,10 @@ Feature: Workflow
       And the browser is closed and reopened with the start page
     Then the "Name" field should contain "Speedy"
       And the "Description" field should contain "Fastest Mouse in Mexico"
-      And the "Unit Price" field should contain "222222$"
+      And the "Price" field should contain "222222$"
       And the "Valid To" field should contain "04/04/2020"
       And "Maeuse" should be the selected "Category"
-
+  
   Scenario: when browser is closed while editing a category, when starting the app I should edit the same category again
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a category "Weine" with the description "Getraenke"
@@ -92,7 +92,7 @@ Feature: Workflow
       And I follow "Add Product"
       And I fill in "Name" with "Kiefer"
       And I fill in "Description" with "Nadelbaum"
-      And I fill in "Unit Price" with "227.25$"
+      And I fill in "Price" with "227.25$"
       And I fill in "Valid To" with "01/08/2029"
       And I select "Baeume" from "Category"
       And I press "Add Product"
@@ -111,6 +111,15 @@ Feature: Workflow
       And I should see "Updated Category Baeume"
       And I should see "Klein"
     When I get connected to the internet
-    Then the "Queue" link should be hidden
-    
+    Then the "Queue" link should be hidden  
+  
+  Scenario: i18n
+    When I go to the start page
+    Then I should see "Categories"
+    When I follow "Deutsch"
+    Then I should see "Kategorien"
+      But I should not see "Categories"
+    When I follow "English"
+    Then I should see "Categories"
+      But I should not see "Kategorien"
   

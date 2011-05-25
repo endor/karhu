@@ -1,4 +1,11 @@
 describe("Queue", function() {
+  beforeEach(function() {
+    ['en', 'de'].forEach(function(locale) {
+      $.global.localize("karhu", locale, karhu.locales[locale] || {});
+    });
+    $.global.preferCulture('en')
+  });
+  
   it("should return human readable summaries", function() {
     var actions = [
       {verb: 'post', data: {name: 'Fichte', description: 'Nadelbaum'}, url: '/products'},
@@ -16,6 +23,6 @@ describe("Queue", function() {
     var actions = [ {verb: 'post', data: data, url: '/products'} ];
     var view = new karhu.Queue(actions, categories);
     
-    expect(view.cached_actions[0].humanReadableAttributes).toEqual('Name: Fichte, Unit Price: 77, Valid To: 03/03/2009, Category: Baeume');
+    expect(view.cached_actions[0].humanReadableAttributes).toEqual('Name: Fichte, Price: 77, Valid To: 03/03/2009, Category: Baeume');
   });
 });

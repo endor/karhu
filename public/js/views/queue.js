@@ -2,18 +2,9 @@ karhu.Queue = function(queue, categories) {
   queue = queue || [];
   
   var makeReadable = function(attr) {
-    switch(attr) {
-      case 'name':
-        return 'Name';
-      case 'description':
-        return 'Description';
-      case 'unit_price':
-        return 'Unit Price';
-      case 'valid_to':
-        return 'Valid To';
-      case 'category_id':
-        return 'Category';
-    }
+    if(attr === "category_id") { attr = "category"; }
+    if(attr === "unit_price") { attr = "price"; }
+    return $.global.localize("karhu")[attr];
   }
   
   queue.forEach(function(action) {    

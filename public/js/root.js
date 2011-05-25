@@ -1,1 +1,3 @@
-karhu = {};
+karhu = {
+  locales: {}
+};
