@@ -161,7 +161,7 @@ end
 Then /^the "([^\"]*)" field(?: within "([^\"]*)")? should contain "([^\"]*)"$/ do |field, selector, value|
   patiently do
     with_scope(selector) do
-      assert_match(/#{value}/, field_labeled(field).value)
+      assert_match(/#{Regexp.escape value}/, field_labeled(field).value)
     end
   end
 end

@@ -24,6 +24,7 @@
   <p>
     <label for="product_category_id">Category</label>
     <select id="product_category_id" name="product[category_id]" class="store_change">
+      <option value="null">No category selected</option>
       {{#categories}}
         <option value="{{id}}" {{#selected}} selected="selected"{{/selected}}>{{name}}</option>
       {{/categories}}

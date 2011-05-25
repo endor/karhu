@@ -4,11 +4,17 @@ karhu.Category = function() {
   category.validations = function() {
     return {
       rules: {
-        'category[name]': {required: true},
+        'category[name]': {
+          required: true,
+          maxlength: 100
+        },
         'category[description]': {required: true}
       },
       messages: {
-        'category[name]': 'cannot be empty',
+        'category[name]': {
+          required: 'cannot be empty',
+          maxlength: 'cannot be longer than 100 characters'
+        },
         'category[description]': 'cannot be empty'
       }
     };

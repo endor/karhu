@@ -8,16 +8,34 @@ karhu.Product = function(attributes, categories) {
   product.validations = function() {
     return {
       rules: {
-        'product[name]': {required: true},
+        'product[name]': {
+          required: true,
+          maxlength: 100
+        },
         'product[description]': {required: true},
-        'product[unit_price]': {required: true},
-        'product[valid_to]': {required: true}
+        'product[unit_price]': {
+          required: true,
+          formatted: /^(\d{1,3}([.,]\d{3})*|(\d+))([.,]\d{2})?( )?[€$]$/
+        },
+        'product[valid_to]': {
+          required: true,
+          dateLargerThan: Date.today()
+        }
       },
       messages: {
-        'product[name]': 'cannot be empty',
+        'product[name]': {
+          required: 'cannot be empty',
+          maxlength: 'cannot be longer than 100 characters'
+        },
         'product[description]': 'cannot be empty',
-        'product[unit_price]': 'cannot be empty',
-        'product[valid_to]': 'cannot be empty'
+        'product[unit_price]': {
+          required: 'cannot be empty',
+          formatted: 'wrong format, example: 1.230,77€'
+        },
+        'product[valid_to]': {
+          required: 'cannot be empty',
+          dateLargerThan: 'has to be today or after'
+        }
       }
     };
   };

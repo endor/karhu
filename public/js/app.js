@@ -9,6 +9,7 @@ karhu.app = $.sammy(function() {
   this.helpers(karhu.ApplicationHelper);
   this.helpers(karhu.OfflineHelper);
   this.helpers(karhu.AccessLastItemHelper);
+  this.helpers(karhu.CustomValidatorsHelper);
   this.helpers({ store: config.store });
   
   karhu.Categories(this);
@@ -43,6 +44,7 @@ karhu.app = $.sammy(function() {
     this.cachePartials();
     this.prepareCancelButtons();
     this.prepareInputFields();
+    this.initializeCustomValidators();
   });
   
   this.before(function(context) {

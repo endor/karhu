@@ -16,6 +16,7 @@
 		  .script('./vendor/jquery/jquery.facebox.js')
 		  .script('./vendor/jquery/jquery.validate.js')
 		  .script('./vendor/jquery/jquery.ui.js')
+		  .script('./vendor/date/date.js')
 		  .script('./vendor/sammy/sammy.js').wait()
 		  .script('./vendor/sammy/sammy.json.js')
 		  .script('./vendor/sammy/sammy.mustache.js')
@@ -33,7 +34,8 @@
 		  .script('./js/views/queue.js')
 		  .script('./js/helpers/application_helper.js').wait()
 		  .script('./js/helpers/offline_helper.js')
-		  .script('./js/helpers/access_last_item_helper.js').wait()
+		  .script('./js/helpers/access_last_item_helper.js')
+		  .script('./js/helpers/custom_validators_helper.js').wait()
 		  .script('./js/app.js');
 		</script>
   </head>

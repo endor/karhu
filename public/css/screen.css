@@ -161,6 +161,10 @@ input.text, .text input {
   font-size: 18px; 
 }
 
+input.text:focus, .text input:focus, textarea:focus {
+  border: solid 1px #9F9983;
+}
+
 textarea {
   border: solid 1px #DFD9C3;
   -moz-border-radius: 6px;
