@@ -50,6 +50,17 @@ Feature: Categories
     Then the api should have received a call to create a category with the name "Elefanten"
       And the api should have received a call to create a category with the name "Tiger"
   
+  Scenario: create category fails because of validation errors
+    When I go to the start page
+      And I follow "Categories"
+      And I follow "Add Category"
+      And I fill in "Description" with "Fluessige Dinge"
+      And I press "Add Category"
+    Then I should see "cannot be empty"
+    When I fill in "Name" with "Getraenke"
+      And I fill in "Description" with ""
+    Then I should see "cannot be empty"
+  
   Scenario: delete category
     Given a category "Baeume" with the description "Grosse Pflanzen"
     When I go to the start page

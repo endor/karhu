@@ -1,4 +1,19 @@
 karhu.AccessLastItemHelper = {
+  prepareInputFields: function() {
+    var context = this;
+
+    $('.store_change').live('change', function() {
+      var $this = $(this),
+        type = $this.attr('id').split('_')[0],
+        item = context.app.last_location[1].match(/edit/) ?
+                    'last_edited_' + type : 'last_added_' + type;
+
+      var object = context.store.get(item);
+      object.data[$this.attr('name').match(/\[([^\]]+)\]/)[1]] = $this.val();
+      context.store.set(item, object);
+    });
+  },
+
   handleLastAccess: function(params, item, callback) {
     var lastAccessedItem = this.store.get(item),
       toStore;

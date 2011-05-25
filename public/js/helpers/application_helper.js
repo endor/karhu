@@ -3,16 +3,6 @@ karhu.ApplicationHelper = {
     $('#flash').html(message).show().delay(4000).fadeOut('slow');
   },
   
-  configureFacebox: function() {
-    $(document).bind('reveal.facebox', function() {
-      if($('#facebox #addr').length > 0) {
-        $('#facebox .footer').remove();
-        $('#facebox_overlay').unbind('click');
-        $(document).unbind('keydown.facebox');
-      }
-    });
-  },
-  
   beautifyInputElements: function() {
     $('input:submit, a.button').button();
     $('.datepicker').datepicker({
@@ -35,19 +25,9 @@ karhu.ApplicationHelper = {
     });
   },
   
-  prepareInputFields: function() {
-    var context = this;
-
-    $('.store_change').live('change', function() {
-      var $this = $(this),
-        type = $this.attr('id').split('_')[0],
-        item = context.app.last_location[1].match(/edit/) ?
-                    'last_edited_' + type : 'last_added_' + type;
-
-      var object = context.store.get(item);
-      object.data[$this.attr('name').match(/\[([^\]]+)\]/)[1]] = $this.val();
-      context.store.set(item, object);
-    });
+  validate: function(class_name) {
+    var object = new karhu[class_name]();
+    $('.main form').validate(_.extend(object.validations(), {}));
   }
 };
 

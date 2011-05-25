@@ -7,7 +7,10 @@ karhu.Categories = function(app) {
   
   app.get('#/categories/new', function(context) {
     context.handleLastAccess(null, 'last_added_category', function(last_added_category) {
-      context.partial('templates/categories/new.mustache', new karhu.EditCategory({}, last_added_category));
+      context.render('templates/categories/new.mustache', new karhu.EditCategory({}, last_added_category), function(content) {
+        context.swap(content);
+        context.validate('Category');
+      });
     });
   });
   
