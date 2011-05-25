@@ -26,11 +26,13 @@
         <td>{{valid_to}}</td>
         <td>{{#category}}{{name}}{{/category}}</td>
         <td class="actions">
-          <a href="#/products/{{id}}/edit" class="button" title="Edit {{name}}">edit</a>
-          <form method="delete" action="#/products/{{id}}" class="delete_form">
-            <input type="hidden" name="name" value="{{name}}" />
-            <input type="submit" value="delete" />
-          </form>
+          {{#id}}
+            <a href="#/products/{{id}}/edit" class="button" title="Edit {{name}}">edit</a>
+            <form method="delete" action="#/products/{{id}}" class="delete_form">
+              <input type="hidden" name="name" value="{{name}}" />
+              <input type="submit" value="delete" />
+            </form>
+          {{/id}}
         </td>
       </tr>
     {{/products}}

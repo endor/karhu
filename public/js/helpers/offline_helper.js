@@ -16,6 +16,13 @@ karhu.OfflineHelper = {
       $('.cached-actions').hide();
       $('.delete_form').show();
       this.syncQueue();
+
+      var last_location = this.app.last_location;
+      if(last_location[0] === 'get') {
+        this.app.runRoute('get', last_location[1].match(/(\#.+)$/)[1], {});
+      } else {
+        this.app.runRoute('get', '#/products', {});
+      }
     }
   },
   
