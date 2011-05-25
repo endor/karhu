@@ -28,6 +28,10 @@ Then /I should be on the (.+)/ do |path|
   assert page.current_url.match(/#{Regexp.escape path_to(path)}/)
 end
 
+Then /I should not be on the (.+)/ do |path|
+  assert !page.current_url.match(/#{Regexp.escape path_to(path)}/)
+end
+
 Then /^"([^\"]*)" should be the selected "([^\"]*)"$/ do |selection, name_of_select|
   assert page.has_select?(name_of_select, :selected => selection)
 end

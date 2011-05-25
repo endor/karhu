@@ -5,7 +5,6 @@ karhu.app = $.sammy(function() {
   
   this.element_selector = 'body';
   this.cache_partials = false;
-  this.debug = true;
   
   this.helpers(karhu.ApplicationHelper);
   this.helpers(karhu.OfflineHelper);
@@ -16,19 +15,22 @@ karhu.app = $.sammy(function() {
   karhu.Products(this);
   karhu.CachedActions(this);
   
-  this.swap = function(content) {
-    var context = this,
-      event_content = context.context_prototype.prototype,
-      result = $('.main').html(content),
-      fns = [
-        'beautifyInputElements',
-        'adjustElementsToOnlineStatus'
-      ];
-      
-    fns.forEach(function(fn) {
-      event_content[fn].call(event_content, context);
-    });
+  //
+  // NOTE: for this to work sammy needs to send the event context to swap
+  //
+  //   swap: function(contents) {
+  //     return this.app.swap(contents, this);
+  //   },
+  //
+  this.swap = function(content, context) {
+    var result = $('.main').html(content);
 
+    context.beautifyInputElements();
+    context.adjustElementsToOnlineStatus();
+    if(context.objectForValidation) {
+      $('.main form').validate(context.objectForValidation.validations());
+    }
+    
     return result;
   };
   
@@ -44,10 +46,24 @@ karhu.app = $.sammy(function() {
   });
   
   this.before(function(context) {
+    context.objectForValidation = null;
+  });
+  
+  this.before(function(context) {
     var type = context.path.match(/\#\/([^\/]+)/);
     if(type) {
       $('#header nav a').removeClass('active');
       $('#header nav .' + type[1]).addClass('active');
+    }
+  });
+  
+  this.before({only: {verb: ['post', 'put']}}, function(context) {
+    if(context.params.cancel) {
+      var toClear = ['last_added_product', 'last_edited_product', 'last_added_category', 'last_edited_category'];
+      toClear.forEach(function(item) { context.store.clear(item); });      
+      var redirect_path = context.path.match(/(\#\/[^\/]+)/)[1];
+      context.redirect(redirect_path);
+      return false;
     }
   });
   

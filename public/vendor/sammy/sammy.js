@@ -1102,7 +1102,11 @@
         path_matched = options.path.test(context.path);
       }
       if (options.verb) {
-        verb_matched = options.verb === context.verb;
+        if(typeof options.verb === 'string') {
+          verb_matched = options.verb === context.verb;
+        } else {
+          verb_matched = options.verb.indexOf(context.verb) > -1;
+        }
       }
       return positive ? (verb_matched && path_matched) : !(verb_matched && path_matched);
     },
@@ -1839,7 +1843,7 @@
 
     // A shortcut to app's `swap()`
     swap: function(contents) {
-      return this.app.swap(contents);
+      return this.app.swap(contents, this);
     },
 
     // Raises a possible `notFound()` error for the current path.

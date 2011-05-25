@@ -11,6 +11,7 @@ karhu.Products = function(app) {
   app.get('#/products/new', function(context) {
     context.handleLastAccess(null, 'last_added_product', function(last_added_product) {
       context.ajax_get('/categories', {}, function(categories) {
+        context.objectForValidation = new karhu.Product();
         context.partial('templates/products/new.mustache', new karhu.EditProduct({}, categories, last_added_product));
       });      
     });
@@ -18,13 +19,11 @@ karhu.Products = function(app) {
   
   app.post('#/products', function(context) {
     context.store.clear('last_added_product');
-    context.handleCancel(context.params.cancel, '#/products', function() {
-      context.ajax_post('/products', context.params.product, function() {
-        context.flash(context.params.product.name + ' successfully created.');
-        context.redirect('#/products');      
-      }, function() {
-        context.flash('Not able to create ' + context.params.product.name);      
-      });      
+    context.ajax_post('/products', context.params.product, function() {
+      context.flash(context.params.product.name + ' successfully created.');
+      context.redirect('#/products');      
+    }, function() {
+      context.flash('Not able to create ' + context.params.product.name);      
     });
   });
 
@@ -32,6 +31,7 @@ karhu.Products = function(app) {
     context.handleLastAccess(context.params, 'last_edited_product', function(last_edited_product) {
       context.ajax_get('/categories', {}, function(categories) {
         context.ajax_get('/products/' + context.params.id, {}, function(product) {
+          context.objectForValidation = new karhu.Product();
           context.partial('templates/products/edit.mustache', new karhu.EditProduct(product, categories, last_edited_product));
         });
       });      
@@ -40,13 +40,11 @@ karhu.Products = function(app) {
   
   app.put('#/products/:id', function(context) {
     context.store.clear('last_edited_product');
-    context.handleCancel(context.params.cancel, '#/products', function() {
-      context.ajax_put('/products/' + context.params.id, context.params.product, function() {
-        context.flash(context.params.product.name + ' successfully updated.');
-        context.redirect('#/products');
-      }, function() {
-        context.flash('Not able to update ' + context.params.product.name);      
-      });
+    context.ajax_put('/products/' + context.params.id, context.params.product, function() {
+      context.flash(context.params.product.name + ' successfully updated.');
+      context.redirect('#/products');
+    }, function() {
+      context.flash('Not able to update ' + context.params.product.name);      
     });
   });
     

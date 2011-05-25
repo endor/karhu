@@ -25,7 +25,8 @@ Symbol.class_eval do
 end unless :symbol.respond_to?(:to_proc)
 
 Before do
-  FileUtils.rm_rf(File.dirname(__FILE__) + '/../fixtures/*')
+  FileUtils.rm_rf(fixtures_path)
+  FileUtils.mkdir_p(fixtures_path)
 end
 
 def patiently(&block)
