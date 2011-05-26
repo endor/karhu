@@ -3,6 +3,9 @@ Feature: Categories
   As a user
   I want to create, list and delete categories
 
+  Background:
+    Given I am logged in
+
   Scenario: list categories
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a category "Boote" with the description "Dinger die im Wasser schwimmen"

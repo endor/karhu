@@ -3,7 +3,7 @@ karhu.OfflineHelper = {
   stateChangedToOffline: function() {
     if(!karhu.offline) {
       karhu.offline = true;
-      this.flash("You are currently offline.");
+      this.flash("you_are_currently_offline");
       $('.cached-actions').show();
       $('.delete_form').hide();
     }
@@ -12,7 +12,7 @@ karhu.OfflineHelper = {
   stateChangedToOnline: function() {
     if(karhu.offline) {
       karhu.offline = false;
-      this.flash("You are currently online.");
+      this.flash("you_are_currently_online");
       $('.cached-actions').hide();
       $('.delete_form').show();
       this.syncQueue();

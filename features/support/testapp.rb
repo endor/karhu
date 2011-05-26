@@ -1,9 +1,12 @@
+ROOT = File.dirname(__FILE__) + '/../..'
+
 require 'rubygems'
 require 'sinatra'
 require 'json'
 require 'uri'
+require ROOT + "/lib/authentication"
+require ROOT + "/lib/helpers"
 
-ROOT = File.dirname(__FILE__) + '/../..'
 set :static, true
 set :public, ROOT + '/public'
 set :logging, false
@@ -16,20 +19,24 @@ get '/test' do
   'test'
 end
 
-helpers do  
+helpers do
+  include Authentication
+  include Helpers
+
+  def credentials
+    File.read(ROOT + '/features/support/credentials').split(':')
+  end
+  
+  def protected!
+    throw(:halt, [403, "Not authorized\n"]) unless authorized?
+  end
+  
   def handle_put_delete_and_post(path, env, params, method)
+    protected!
     params.delete('captures')
     log_request(path, env, params, method)
     path = URI.decode(path).gsub(' ', '_')
-    new_params = {}
-    params.each do |key, value|
-      if key.match(/\_id/) || key == 'id'
-        new_params[key] = value.to_i
-      else
-        new_params[key] = value
-      end
-    end
-    params = new_params
+    params = cast_values_to_correct_types(params)
 
     yield(params, path)
 
@@ -111,6 +118,7 @@ delete /\/(.+)/ do |path|
 end
 
 get /\/(.+)/ do |path|
+  protected!
   content_type :json
   file = ROOT + "/features/fixtures/#{URI.decode(path).gsub(' ', '_')}.json"
   if(File.exists?(file))

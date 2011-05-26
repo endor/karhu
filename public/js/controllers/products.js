@@ -20,10 +20,10 @@ karhu.Products = function(app) {
   app.post('#/products', function(context) {
     context.store.clear('last_added_product');
     context.ajax_post('/products', context.params.product, function() {
-      context.flash(context.params.product.name + ' successfully created.');
+      context.flash('product_successfully_created');
       context.redirect('#/products');      
     }, function() {
-      context.flash('Not able to create ' + context.params.product.name);      
+      context.flash('not_able_to_create_product');
     });
   });
 
@@ -41,19 +41,19 @@ karhu.Products = function(app) {
   app.put('#/products/:id', function(context) {
     context.store.clear('last_edited_product');
     context.ajax_put('/products/' + context.params.id, context.params.product, function() {
-      context.flash(context.params.product.name + ' successfully updated.');
+      context.flash('product_successfully_updated');
       context.redirect('#/products');
     }, function() {
-      context.flash('Not able to update ' + context.params.product.name);      
+      context.flash('not_able_to_update_product');    
     });
   });
     
   app.del('#/products/:id', function(context) {
     context.ajax_delete('/products/' + context.params.id, {}, function() {
-      context.flash(context.params.name + ' successfully deleted.');
+      context.flash('product_successfully_deleted');
       context.redirect('#/products');      
     }, function() {
-      context.flash('Not able to delete ' + context.params.name);
+      context.flash('not_able_to_delete_product');
     });
   });
 };

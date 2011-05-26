@@ -15,10 +15,10 @@ karhu.Categories = function(app) {
   app.post('#/categories', function(context) {
     context.store.clear('last_added_category');
     context.ajax_post('/categories', context.params.category, function() {
-      context.flash(context.params.category.name + ' successfully created.');
+      context.flash('category_successfully_created');
       context.redirect('#/categories');
     }, function() {
-      context.flash('Not able to create ' + context.params.category.name);
+      context.flash('not_able_to_create_category');
     });
   });
 
@@ -34,19 +34,19 @@ karhu.Categories = function(app) {
   app.put('#/categories/:id', function(context) {
     context.store.clear('last_edited_category');
     context.ajax_put('/categories/' + context.params.id, context.params.category, function() {
-      context.flash(context.params.category.name + ' successfully updated.');
+      context.flash('category_successfully_updated');
       context.redirect('#/categories');
     }, function() {
-      context.flash('Not able to update ' + context.params.category.name);      
+      context.flash('not_able_to_update_category');
     });
   });
     
   app.del('#/categories/:id', function(context) {
     context.ajax_delete('/categories/' + context.params.id, {}, function() {
-      context.flash(context.params.name + ' successfully deleted.');
+      context.flash('category_successfully_deleted');
       context.redirect('#/categories');      
     }, function() {
-      context.flash('Not able to delete ' + context.params.name);
+      context.flash('not_able_to_delete_category');
     });
   });
 };

@@ -7,14 +7,6 @@ karhu.LocalesHelper = {
     $.datepicker.setDefaults($.datepicker.regional[karhu.locale]);
   },
   
-  initializeLocales: function() {
-    ['en', 'de'].forEach(function(locale) {
-      $.global.localize("karhu", locale, karhu.locales[locale] || {});
-    });
-    var locale = this.store.get('locale') || 'en';
-    this.setLocale(locale);
-  },
-  
   translateStaticElements: function() {
     $('.translate').each(function(idx, element) {
       var $element = $(element);

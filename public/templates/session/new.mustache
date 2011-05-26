@@ -1,0 +1,17 @@
+<h2>{{?login}}</h2>
+
+<form method="PUT" action="#/session">
+  <p>
+    <label for="session_user">{{?user}}</label>
+    <input type="text" name="session[user]" id="session_user" class="text" />
+  </p>
+
+  <p>
+    <label for="session_password">{{?password}}</label>
+    <input type="password" name="session[password]" id="session_password" class="text" />
+  </p>
+  
+  <p>
+    <input type="submit" value="{{?login}}" />
+  </p>
+</form>

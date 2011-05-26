@@ -1,22 +1,24 @@
 karhu.app = $.sammy(function() {
-  this.use(Sammy.Mustache);
-  this.use(Sammy.NestedParams);
-  this.use(Sammy.JSON);
-  
   this.element_selector = 'body';
   this.cache_partials = false;
+
+  this.use(Sammy.Mustache);
+  this.use(Sammy.NestedParams);
+  this.use(Sammy.JSON);  
   
   this.helpers(karhu.ApplicationHelper);
   this.helpers(karhu.OfflineHelper);
   this.helpers(karhu.AccessLastItemHelper);
   this.helpers(karhu.CustomValidatorsHelper);
   this.helpers(karhu.LocalesHelper);
+  this.helpers(karhu.AroundBeforeFilterHelper);
   this.helpers({ store: config.store });
-  
+
   karhu.Categories(this);
   karhu.Products(this);
   karhu.CachedActions(this);
   karhu.Locales(this);
+  karhu.Session(this);
   
   //
   // NOTE: for this to work sammy needs to send the event context to swap
@@ -51,37 +53,16 @@ karhu.app = $.sammy(function() {
     this.initializeLocales();
   });
   
-  this.before(function(context) {
-    context.objectForValidation = null;
-  });
   
-  this.before(function(context) {
-    var type = context.path.match(/\#\/([^\/]+)/);
-    if(type) {
-      $('#header nav a').removeClass('active');
-      $('#header nav .' + type[1]).addClass('active');
-    }
-  });
+  var event_context = this.context_prototype.prototype;
   
-  this.before({only: {verb: ['post', 'put']}}, function(context) {
-    if(context.params.cancel) {
-      var toClear = ['last_added_product', 'last_edited_product', 'last_added_category', 'last_edited_category'];
-      toClear.forEach(function(item) { context.store.clear(item); });      
-      var redirect_path = context.path.match(/(\#\/[^\/]+)/)[1];
-      context.redirect(redirect_path);
-      return false;
-    }
-  });
-  
-  this.around(function(callback) {
-    var key = _.find(this.store.keys(), function(key) { return key.match(/last\_(edited|added)/); });
+  this.before(event_context.clearContextVariables);
+  this.before(event_context.markActiveMenuItem);
+  this.before({only: {verb: ['post', 'put']}}, event_context.redirectIfCanceled);
 
-    if(key) {
-      this.accessLastItem(key, callback);
-    } else {
-      callback();
-    }
-  }); 
+  this.around(event_context.initializeLocales);
+  this.around(event_context.redirectToLogin);
+  this.around(event_context.redirectToLastAccessedItem);
 });
 
 $(function() {

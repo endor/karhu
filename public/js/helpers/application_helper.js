@@ -1,5 +1,6 @@
 karhu.ApplicationHelper = {
   flash: function(message) {
+    message = $.global.localize("karhu")[message] || message;
     $('#flash').html(message).show().delay(4000).fadeOut('slow');
   },
   
@@ -18,6 +19,17 @@ karhu.ApplicationHelper = {
     $('.cancel').live('click', function() {
       $(this).prepend('<input type="hidden" name="cancel" value="true" />');
     });
+  },
+  
+  authenticate: function(xhr) {
+    var token = '';
+    if(karhu.token) {
+      token = karhu.token;
+    } else if(karhu.user && karhu.password) {
+      token = SHA256(karhu.user + karhu.password);
+    }
+    karhu.token = token;
+    xhr.setRequestHeader("X-Karhu-Authentication", 'user="' + karhu.user + '", token="' + karhu.token + '"');
   }
 };
 
@@ -30,6 +42,7 @@ karhu.ApplicationHelper = {
         context.saveRequestInQueue(verb, data, url, success, function() {
           $.ajax({
             url: '/test',
+            beforeSend: function(xhr) { context.authenticate(xhr); },
             success: function() { context.stateChangedToOnline(); },
             error: function() {}
           });
@@ -39,6 +52,9 @@ karhu.ApplicationHelper = {
           url: url + (verb === 'get' ? '?random=' + (new Date).getTime() : ''),
           data: data,
           type: verb,
+          beforeSend: function(xhr) {
+            context.authenticate(xhr);
+          },
           success: function(result) {
             context.store.set(verb + url, result);
             success(result);

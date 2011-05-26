@@ -50,10 +50,10 @@ karhu.AccessLastItemHelper = {
     }
 
     if(action === 'edit') {
-      this.flash('Please finnish editing your ' + split_key[2] + '.');
+      this.flash('please_finnish_editing_your_' + split_key[2]);
       this.redirect(path + '/' + object.id + '/edit');        
     } else {
-      this.flash('Please finnish adding your ' + split_key[2] + '.');
+      this.flash('please_finnish_adding_your_' + split_key[2]);
       this.redirect(path + '/new');        
     }
   }

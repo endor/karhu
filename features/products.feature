@@ -3,6 +3,9 @@ Feature: Products
   As a user
   I want to manage products
   
+  Background:
+    Given I am logged in
+  
   Scenario: list products
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
