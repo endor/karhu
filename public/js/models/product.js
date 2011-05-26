@@ -24,17 +24,19 @@ karhu.Product = function(attributes, categories) {
       },
       messages: {
         'product[name]': {
-          required: 'cannot be empty',
-          maxlength: 'cannot be longer than 100 characters'
+          required: 'cannot_be_empty',
+          maxlength: 'cannot_be_longer_than_100_characters'
         },
-        'product[description]': 'cannot be empty',
+        'product[description]': {
+          required: 'cannot_be_empty'
+        },
         'product[unit_price]': {
-          required: 'cannot be empty',
-          formatted: 'wrong format, example: 1.230,77€'
+          required: 'cannot_be_empty',
+          formatted: 'wrong_format_price'
         },
         'product[valid_to]': {
-          required: 'cannot be empty',
-          dateLargerThan: 'has to be today or after'
+          required: 'cannot_be_empty',
+          dateLargerThan: 'today_or_after'
         }
       }
     };

@@ -31,7 +31,8 @@ karhu.app = $.sammy(function() {
     context.beautifyInputElements();
     context.adjustElementsToOnlineStatus();
     if(context.objectForValidation) {
-      $('.main form').validate(context.objectForValidation.validations());
+      var validations = context.objectForValidation.validations();
+      $('.main form').validate(context.translateValidationMessages(validations));
     }
     
     return result;

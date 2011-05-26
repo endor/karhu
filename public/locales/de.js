@@ -21,5 +21,9 @@ karhu.locales.de = {
   add_category: 'Kategorie hinzufügen',
   new_category: 'Neue Kategorie',
   edit_category: 'Kategorie bearbeiten',
-  update_category: 'Kategorie speichern'
+  update_category: 'Kategorie speichern',
+  cannot_be_empty: 'muss ausgefüllt werden',
+  cannot_be_longer_than_100_characters: 'muss weniger als 100 Zeichen lang sein',
+  wrong_format_price: 'falsches Format, Beispiel: 1.230,77€',
+  today_or_after: 'muss heute oder in der Zukunft sein'
 };

@@ -7,9 +7,10 @@ karhu.ApplicationHelper = {
     $('input:submit, a.button').button();
     $('.datepicker').datepicker({
       changeMonth: true,
-			changeYear: true,
-			defaultDate: (1).year().fromNow(),
-		  onClose: function() { $('body').trigger('datepickerClosed'); }
+      changeYear: true,
+      minDate: Date.today(),
+      defaultDate: (1).year().fromNow(),
+      onClose: function() { $('body').trigger('datepickerClosed'); }
     });
   },
   

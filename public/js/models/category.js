@@ -12,10 +12,12 @@ karhu.Category = function() {
       },
       messages: {
         'category[name]': {
-          required: 'cannot be empty',
-          maxlength: 'cannot be longer than 100 characters'
+          required: 'cannot_be_empty',
+          maxlength: 'cannot_be_longer_than_100_characters'
         },
-        'category[description]': 'cannot be empty'
+        'category[description]': {
+          required: 'cannot_be_empty'
+        }
       }
     };
   };
