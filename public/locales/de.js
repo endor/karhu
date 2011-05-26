@@ -25,5 +25,6 @@ karhu.locales.de = {
   cannot_be_empty: 'muss ausgefüllt werden',
   cannot_be_longer_than_100_characters: 'muss weniger als 100 Zeichen lang sein',
   wrong_format_price: 'falsches Format, Beispiel: 1.230,77€',
+  wrong_format_date: 'falsches Format, Beispiel: 31.05.2024',
   today_or_after: 'muss heute oder in der Zukunft sein'
 };

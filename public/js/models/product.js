@@ -4,7 +4,17 @@ karhu.Product = function(attributes, categories) {
   });
   
   var product = {};
-
+  var regular_expressions = {
+    en: {
+      unit_price: /^(\d{1,3}([,]\d{3})*|(\d+))([.]\d{2})?( )?\$$/,
+      valid_to: /\d{2}\/\d{2}\/\d{4}/
+    },
+    de: {
+      unit_price: /^(\d{1,3}([.]\d{3})*|(\d+))([,]\d{2})?( )?€$/,
+      valid_to: /\d{2}\.\d{2}\.\d{4}/
+    }
+  };
+  
   product.validations = function() {
     return {
       rules: {
@@ -15,10 +25,11 @@ karhu.Product = function(attributes, categories) {
         'product[description]': {required: true},
         'product[unit_price]': {
           required: true,
-          formatted: /^(\d{1,3}([.,]\d{3})*|(\d+))([.,]\d{2})?( )?[€$]$/
+          formatted: regular_expressions[karhu.locale].unit_price
         },
         'product[valid_to]': {
           required: true,
+          formatted: regular_expressions[karhu.locale].valid_to,
           dateLargerThan: Date.today()
         }
       },
@@ -36,7 +47,8 @@ karhu.Product = function(attributes, categories) {
         },
         'product[valid_to]': {
           required: 'cannot_be_empty',
-          dateLargerThan: 'today_or_after'
+          dateLargerThan: 'today_or_after',
+          formatted: 'wrong_format_date'
         }
       }
     };

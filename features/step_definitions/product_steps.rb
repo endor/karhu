@@ -19,3 +19,10 @@ Given /a product "([^\"]+)" with the description "([^\"]+)" and the price "([^\"
     f << product.to_json
   end
 end
+
+When /I fill in the product details for "([^\"]+)"/ do |name|
+  When %Q{I fill in "Name" with "#{name}"}
+    And 'I fill in "Description" with "Nadelbaum"'
+    And 'I fill in "Price" with "345.05$"'
+    And 'I fill in "Valid To" with "04/04/2035"'
+end

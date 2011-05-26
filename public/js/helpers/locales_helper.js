@@ -5,7 +5,6 @@ karhu.LocalesHelper = {
     $.global.preferCulture(locale);
     this.translateStaticElements();
     $.datepicker.setDefaults($.datepicker.regional[karhu.locale]);
-    
   },
   
   initializeLocales: function() {

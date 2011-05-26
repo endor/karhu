@@ -6,8 +6,11 @@ karhu.CustomValidatorsHelper = {
     
     $.validator.addMethod("dateLargerThan", function(value, element) {
       var expected = this.settings.rules[$(element).attr('name')].dateLargerThan.clearTime();
-      var actual = Date.parse(value).clearTime();
-      return expected.compareTo(actual) < 0;
+      var actual = Date.parse(value);
+
+      if(actual === null) { return false; }
+      
+      return expected.compareTo(actual.clearTime()) < 0;
     });
     
     $('body').bind('datepickerClosed', function(evt) {
