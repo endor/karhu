@@ -14,7 +14,13 @@ Feature: Session
       And I press "Log in"
     Then I should see "Add Product"
   
-
-  # Scenario: log out
-  # 
-  # 
+  Scenario: log out
+    When I go to the start page
+      And I fill in "User" with "user"
+      And I fill in "Password" with "password"
+      And I press "Log in"
+    Then I should see "Add Product"
+    When I follow "Log out"
+    Then I should not see "Add Product"
+      But I should see "Log in"
+  

@@ -206,3 +206,7 @@ ul.cached_actions_list li {
   border-bottom: solid 1px #DDDDDD;
   margin-bottom: 10px;
 }
+
+.hidden {
+  display: none;
+}

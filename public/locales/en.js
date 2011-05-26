@@ -2,6 +2,7 @@ karhu.locales.en = {
   products: 'Products',
   categories: 'Categories',
   queue: 'Queue',
+  logout: 'Log out',
   header: 'Products data management as HTML5 Web App',
   title: 'Products data management as HTML5 Web App',
   add_product: 'Add Product',

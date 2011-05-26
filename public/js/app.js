@@ -49,8 +49,8 @@ karhu.app = $.sammy(function() {
     this.cachePartials();
     this.prepareCancelButtons();
     this.prepareInputFields();
+    this.prepareLinks();
     this.initializeCustomValidators();
-    this.initializeLocales();
   });
   
   
@@ -58,6 +58,7 @@ karhu.app = $.sammy(function() {
   
   this.before(event_context.clearContextVariables);
   this.before(event_context.markActiveMenuItem);
+  this.before(event_context.showLinks);
   this.before({only: {verb: ['post', 'put']}}, event_context.redirectIfCanceled);
 
   this.around(event_context.initializeLocales);

@@ -2,6 +2,7 @@ karhu.locales.de = {
   products: 'Produkte',
   categories: 'Kategorien',
   queue: 'Queue',
+  logout: 'Ausloggen',
   header: 'Produkt-Stammdatenpflege als HTML5 Web App',
   title: 'Produkt-Stammdatenpflege als HTML5 Web App',
   add_product: 'Produkt hinzufügen',

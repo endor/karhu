@@ -19,4 +19,10 @@ karhu.Session = function(app) {
       validator.showErrors({'session[password]': message});
     });    
   });
+  
+  app.del('#/session', function(context) {
+    context.store.clear('token');
+    context.store.clear('user');
+    context.redirect('#/session/new');
+  });
 };

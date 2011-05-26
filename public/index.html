@@ -56,6 +56,7 @@
     <ul id="languages">
       <li><a href="#/locales/en">English</a></li>
       <li><a href="#/locales/de">Deutsch</a></li>
+      <li class="hidden"><a href="#" class="logout" class="translate" data-translate-key="logout">Log out</a></li>
     </ul>
 
     <div id="container">
@@ -75,7 +76,9 @@
         <div id="flash"></div>
       </div>
 
-      <div class="main"></div>  
+      <div class="main"></div>
+      
+      <form method="DELETE" action="#/session" class="hidden" id="logout_form"></form>
     </div>
   </body>  
 </html>

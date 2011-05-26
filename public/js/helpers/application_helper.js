@@ -20,7 +20,22 @@ karhu.ApplicationHelper = {
       $(this).prepend('<input type="hidden" name="cancel" value="true" />');
     });
   },
+
+  prepareLinks: function() {
+    $('.logout').click(function(evt) {
+      $('#logout_form').submit();
+      evt.preventDefault();
+    });
+  },
   
+  showLinks: function() {
+    if(karhu.token) {
+      $('.logout').parent().show();
+    } else {
+      $('.logout').parent().hide();
+    }
+  },
+
   authenticate: function(xhr) {
     var token = '';
     if(karhu.token) {
