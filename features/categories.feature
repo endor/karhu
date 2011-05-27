@@ -35,9 +35,9 @@ Feature: Categories
   Scenario: create category when offline
     Given a category "Baeume" with the description "Grosse Pflanzen"
     When I go to the start page
+      And I follow "Categories"
       And I wait for 3s
       And I get disconnected from the internet
-      And I follow "Categories"
       And I follow "Add Category"
       And I fill in "Name" with "Elefanten"
       And I fill in "Description" with "Tiere"
@@ -87,9 +87,9 @@ Feature: Categories
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a category "Musik" with the description "Toene"
     When I go to the start page
+      And I follow "Categories"
       And I wait for 3s
       And I get disconnected from the internet
-      And I follow "Categories"
       And I follow "Edit Baeume"
       And I fill in "Description" with "B.A.E.U.M.E."
       And I press "Update Category"

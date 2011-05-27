@@ -1,3 +1,7 @@
+a {
+  color: #9F9983;
+}
+
 #container {
   margin: 2em;
   margin-top: 3em;
@@ -7,6 +11,7 @@
   -webkit-border-radius: 6px; 
   -o-border-radius: 6px; 
   border-radius: 6px;
+  position: relative;
 }
 
 #languages {
@@ -162,6 +167,10 @@ table .actions {
   text-align: right;
 }
 
+table tbody tr:nth-child(2n+2) {
+  background-color: #FFFDEF;
+}
+
 label {
   font-size: 18px;
 }
@@ -209,4 +218,37 @@ ul.cached_actions_list li {
 
 .hidden {
   display: none;
+}
+
+.controls {
+  position: absolute;
+  width: 50%;
+  height: 2em;
+  overflow: hidden;
+  top: 18.5em;
+  right: 1em;
+  border: solid 1px #DFD9C3;
+  padding: 0.4em;
+  padding-left: 1em;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px; 
+  -o-border-radius: 6px; 
+  border-radius: 6px;
+}
+
+.controls .pagination li {
+  display: inline-block;
+  margin-right: 0.3em
+}
+
+.controls .pagination {
+  float: left;
+  width: 80%;
+}
+
+.controls .pages {
+  float: left;
+  height: 2em;
+  width: 3em;
+  margin: 0px;
 }

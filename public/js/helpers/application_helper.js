@@ -45,6 +45,24 @@ karhu.ApplicationHelper = {
     }
     karhu.token = token;
     xhr.setRequestHeader("X-Karhu-Authentication", 'user="' + karhu.user + '", token="' + karhu.token + '"');
+  },
+  
+  updatePagination: function(paginated_objects) {
+    var $pagination = $('.controls .pagination'),
+      template = 'templates/shared/pagination_link.mustache';
+
+    $pagination.html('');
+
+    if(paginated_objects && paginated_objects.total_pages > 1) {
+      for(var i = 1; i <= paginated_objects.total_pages; i += 1) {
+        this.render(template, {url: paginated_objects.url, page: i}, function(rendered_view) {
+          $pagination.append(rendered_view);
+        });
+      }
+      $('.controls').show();
+    } else {
+      $('.controls').hide();
+    }
   }
 };
 
@@ -64,7 +82,7 @@ karhu.ApplicationHelper = {
         });        
       } else {
         $.ajax({
-          url: url + (verb === 'get' ? '?random=' + (new Date).getTime() : ''),
+          url: url + (verb === 'get' ? '?random=' + (new Date()).getTime() : ''),
           data: data,
           type: verb,
           beforeSend: function(xhr) {

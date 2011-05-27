@@ -15,6 +15,12 @@
   * Note: testapp.rb is the ruby backend used for the acceptance tests.
 
 
+## TODO
+
+  * When caching for offline work we need to differentiate between 
+    retrieving a paginated result and retrieving all results -> Categories page vs. Categories in products.
+  * Need to find a way to correctly adjust paginated cached results when an object is added.
+
 ## API
 
     GET /categories

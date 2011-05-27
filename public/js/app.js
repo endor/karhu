@@ -12,7 +12,7 @@ karhu.app = $.sammy(function() {
   this.helpers(karhu.CustomValidatorsHelper);
   this.helpers(karhu.LocalesHelper);
   this.helpers(karhu.AroundBeforeFilterHelper);
-  this.helpers({ store: config.store });
+  this.helpers({ store: karhu.config.store });
 
   karhu.Categories(this);
   karhu.Products(this);
@@ -36,7 +36,8 @@ karhu.app = $.sammy(function() {
       var validations = context.objectForValidation.validations();
       $('.main form').validate(context.translateValidationMessages(validations));
     }
-    
+    context.updatePagination(context.objectForPagination);
+
     return result;
   };
   

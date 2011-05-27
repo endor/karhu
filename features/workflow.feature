@@ -86,7 +86,9 @@ Feature: Workflow
       And a product "Tanne" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
     When I go to the start page
     Then the "Queue" link should be hidden
-    When I wait for 3s
+    When I follow "Products"
+      And I follow "Categories"
+      And I wait for 3s
       And I get disconnected from the internet
       And I follow "Products"
       And I follow "Edit Fichte"

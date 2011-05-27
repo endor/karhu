@@ -40,9 +40,9 @@ Feature: Products
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
     When I go to the start page
+      And I follow "Products"
       And I wait for 3s
       And I get disconnected from the internet
-      And I follow "Products"
       And I follow "Add Product"
       And I fill in "Name" with "Tanne"
       And I fill in "Description" with "Nadelbaum"
@@ -127,7 +127,7 @@ Feature: Products
     Then I should see "Tanne"
       And I should see "Kiefer"
     When I follow "English"
-      
+  
   Scenario: delete product
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
@@ -156,9 +156,9 @@ Feature: Products
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
       And a product "Tanne" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
     When I go to the start page
+      And I follow "Products"
       And I wait for 3s
       And I get disconnected from the internet
-      And I follow "Products"
       And I follow "Edit Fichte"
       And I fill in "Description" with "F.I.C.H.T.E."
       And I press "Update Product"

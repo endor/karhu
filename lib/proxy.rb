@@ -4,6 +4,7 @@ require 'rubygems'
 require 'sinatra'
 require 'json'
 require 'uri'
+require 'will_paginate'
 require ROOT + "/lib/authentication"
 require ROOT + "/lib/helpers"
 
@@ -20,7 +21,7 @@ get '/test' do
 end
 
 get('/config.js') do
-  File.read(ROOT + '/config/default.js')
+  File.read(ROOT + '/config/test.js')
 end
 
 helpers do
@@ -103,9 +104,16 @@ get /\/(.+)/ do |path|
   protected!
   content_type :json
   file = ROOT + "/features/fixtures/#{URI.decode(path).gsub(' ', '_')}.json"
-  if(File.exists?(file))
-    File.read(file)
-  else
-    '[]'
+  results = File.exists?(file) ? JSON.parse(File.read(file)) : []
+  if params[:page]
+    paginated_results = results.paginate(:page => params[:page], :per_page => params[:per_page]) 
+    results = {
+      :current_page => paginated_results.current_page,
+      :total_pages => paginated_results.total_pages,
+      :total_entries => paginated_results.total_entries,
+      :per_page => (params[:per_page] || 30),
+      :values => paginated_results.to_a
+    }
   end
+  results.to_json
 end

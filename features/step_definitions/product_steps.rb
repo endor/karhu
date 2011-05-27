@@ -1,13 +1,16 @@
-Given /a product "([^\"]+)" with the description "([^\"]+)" and the price "([^\"]+)" that is valid to "([^\"]+)" and belongs to the category "([^\"]+)"/ do |name, description, price, valid_to, category_name|
+Given /a product "([^\"]+)" with the description "([^\"]+)"(?: and the price "([^\"]+)" that is valid to "([^\"]+)" and belongs to the category "([^\"]+)")?/ do |name, description, price, valid_to, category_name|
   FileUtils.mkdir_p("#{fixtures_path}/products")
   
   @products ||= []
   
-  category = @categories.select{|cat| cat[:name] == category_name}.first
-
+  category = {:id => nil}
+  if category_name
+    category = @categories.select{|cat| cat[:name] == category_name}.first
+  end
+ 
   product = {
     :name => name, :description => description, :id => @products.length + 1,
-    :unit_price => price, :valid_to => valid_to, :category_id => category[:id]
+    :unit_price => price || "232.00$", :valid_to => valid_to || "12/20/2027", :category_id => category[:id]
   }
   @products.push(product)
   

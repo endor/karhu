@@ -45,7 +45,11 @@ karhu.OfflineHelper = {
   
   addToCachedObjects: function(data, url) {
     var objects = this.store.get('get' + url);
-    objects.push(data);
+    if(_.isArray(objects)) {
+      objects.push(data);
+    } else {
+      objects.values.push(data);
+    }
     this.store.set('get' + url, objects);
   },
   
@@ -54,7 +58,9 @@ karhu.OfflineHelper = {
       objects = this.store.get('get' + match[1]),
       id = match[2];
     
-    _.extend(_.find(objects, function(object) {
+    var values = _.isArray(objects) ? objects : objects.values;
+
+    _.extend(_.find(values, function(object) {
       return parseInt(object.id, 10) === parseInt(id, 10);
     }), data);
 
@@ -63,8 +69,11 @@ karhu.OfflineHelper = {
   
   retrieveObjectFromCachedList: function(url) {
     var match = url.match(/(\/\w+)\/(\d+)/);
-
-    return _.find(this.store.get('get' + match[1]), function(object) {
+    
+    var objects = this.store.get('get' + match[1]);
+    objects = _.isArray(objects) ? objects : objects.values;
+    
+    return _.find(objects, function(object) {
       return parseInt(object.id, 10) === parseInt(match[2], 10);
     });    
   },
@@ -113,6 +122,8 @@ karhu.OfflineHelper = {
       });
     });
     context.load('templates/cached_actions/index.mustache', {cache: true});
+    context.load('templates/session/new.mustache', {cache: true});
+    context.load('templates/shared/pagination_link.mustache', {cache: true});
   }
   
 };
