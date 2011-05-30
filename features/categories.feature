@@ -3,12 +3,10 @@ Feature: Categories
   As a user
   I want to create, list and delete categories
 
-  Background:
-    Given I am logged in
-
   Scenario: list categories
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a category "Boote" with the description "Dinger die im Wasser schwimmen"
+      And I am logged in
     When I go to the start page
       And I follow "Categories"
     Then I should see "Baeume"
@@ -17,6 +15,7 @@ Feature: Categories
       And I should see "Dinger die im Wasser schwimmen"
   
   Scenario: create category
+    Given I am logged in
     When I go to the start page
       And I follow "Categories"
       And I follow "Add Category"
@@ -34,6 +33,7 @@ Feature: Categories
 
   Scenario: create category when offline
     Given a category "Baeume" with the description "Grosse Pflanzen"
+      And I am logged in
     When I go to the start page
       And I follow "Categories"
       And I wait for 3s
@@ -54,6 +54,7 @@ Feature: Categories
       And the api should have received a call to create a category with the name "Tiger"
   
   Scenario: create category fails because of validation errors
+    Given I am logged in
     When I go to the start page
       And I follow "Categories"
       And I follow "Add Category"
@@ -66,6 +67,7 @@ Feature: Categories
   
   Scenario: delete category
     Given a category "Baeume" with the description "Grosse Pflanzen"
+      And I am logged in
     When I go to the start page
       And I follow "Categories"
     Then I should see "Baeume" within ".categories_table"
@@ -74,6 +76,7 @@ Feature: Categories
   
   Scenario: edit category
     Given a category "Musik" with the description "Toene"
+      And I am logged in
     When I go to the start page
       And I follow "Categories"
       And I follow "edit"
@@ -86,6 +89,7 @@ Feature: Categories
   Scenario: edit category when offline
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a category "Musik" with the description "Toene"
+      And I am logged in
     When I go to the start page
       And I follow "Categories"
       And I wait for 3s

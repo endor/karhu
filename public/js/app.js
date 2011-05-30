@@ -1,11 +1,12 @@
 karhu.app = $.sammy(function() {
   this.element_selector = 'body';
-  this.cache_partials = false;
+  this.objects_cached = false;
 
   this.use(Sammy.Mustache);
   this.use(Sammy.NestedParams);
   this.use(Sammy.JSON);  
   
+  this.helpers(karhu.CacheHelper);
   this.helpers(karhu.ApplicationHelper);
   this.helpers(karhu.OfflineHelper);
   this.helpers(karhu.AccessLastItemHelper);
@@ -47,13 +48,14 @@ karhu.app = $.sammy(function() {
   });
   
   this.bind('init', function() {
-    this.notifyOfOnlineOfflineStatus();
     this.cachePartials();
+    this.clearQueues();
     this.prepareCancelButtons();
     this.prepareInputFields();
     this.prepareLinks();
     this.initializeCustomValidators();
     this.initializeKeyboardControl();
+    this.notifyOfOnlineOfflineStatus();
   });
   
   

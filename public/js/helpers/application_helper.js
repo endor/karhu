@@ -82,11 +82,15 @@ karhu.ApplicationHelper = {
   },
   
   displayHelp: function(content) {
-    if(content.match(/form/) && content.match(/(PUT|POST)/)) {
+    if(content.match(/form/) && content.match(/(PUT|POST)/) && !content.match(/password/)) {
       this.render('templates/shared/form_help.mustache', {}, function(rendered_view) {        
         $('.main').append(rendered_view);
       });
     }
+  },
+  
+  randomUrl: function(url, verb) {
+    return url + (verb === 'get' ? '?random=' + (new Date()).getTime() : '');
   }
 };
 
@@ -96,31 +100,34 @@ karhu.ApplicationHelper = {
       var context = this;
       
       if(karhu.offline) {
-        context.saveRequestInQueue(verb, data, url, success, function() {
-          $.ajax({
-            url: '/test',
-            beforeSend: function(xhr) { context.authenticate(xhr); },
-            success: function() { context.stateChangedToOnline(); },
-            error: function() {}
-          });
-        });        
+        context.storeInOfflineQueue(verb, data, url, success);
+        context.checkForOnlineStatus();
       } else {
         $.ajax({
-          url: url + (verb === 'get' ? '?random=' + (new Date()).getTime() : ''),
+          url: context.randomUrl(url, verb),
           data: data,
           type: verb,
           beforeSend: function(xhr) {
             context.authenticate(xhr);
           },
           success: function(result) {
-            context.store.set(verb + url, result);
+            if(verb === 'get') {
+              if(result.values) {
+                context.objectForPagination = _.extend({}, result, {url: '#' + url});
+                result = result.values;
+              }              
+            } else {
+              if(_.isString(result)) { result = JSON.parse(result); }
+              context.storeInOnlineQueue(verb, result, url);              
+            }
+            
             success(result);
           },
           error: (function() {
             return function(xhr, errorMessage, tmp) {
               if(xhr.status === 0 && xhr.readyState === 0) {
                 context.stateChangedToOffline();
-                context.saveRequestInQueue(verb, data, url, success);
+                context.storeInOfflineQueue(verb, data, url, success);
               }
               if(error) { error.call(context); }
             };

@@ -40,14 +40,6 @@ helpers do
     params = cast_values_to_correct_types(params)
 
     yield(params, path)
-
-    file = File.join(ROOT, 'features', 'support', 'api_failure')
-    if(File.exists?(file))
-      status 400
-      File.read(file)
-    else
-      ''
-    end
   end
   
   def log_request(path, env, params, method)
@@ -80,6 +72,7 @@ post /\/(.+)/ do |path|
     File.open(singular_file, "w") do |f|
       f << object.to_json
     end
+    object.to_json
   end
 end
 
@@ -100,6 +93,7 @@ put /\/(.+)/ do |path|
     File.open(singular_file, "w") do |f|
       f << object.to_json
     end
+    object.to_json
   end
 end
 
@@ -115,6 +109,7 @@ delete /\/(.+)/ do |path|
     end
     
     FileUtils.rm_rf(File.join(fixtures_path, path + ".json"))
+    '{}'
   end
 end
 

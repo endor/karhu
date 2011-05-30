@@ -96,6 +96,7 @@ h2 {
   border-radius: 6px;
   background-color: #F5F3E5;
   background-image: url(/images/ui-bg_highlight-hard_100_f5f3e5_1x100.png);
+  z-index: 100;
 }
 
 .categories li {
@@ -124,6 +125,7 @@ label {
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   border-radius: 6px;
+  z-index: 980;
 }
 
 table {
@@ -234,6 +236,7 @@ ul.cached_actions_list li {
   -webkit-border-radius: 6px; 
   -o-border-radius: 6px; 
   border-radius: 6px;
+  z-index: 200;
 }
 
 .controls .pagination li {

@@ -2,9 +2,8 @@ karhu.Products = function(app) {
   app.get('#/products', function(context) {
     var page = context.params.page || 1, per_page = karhu.config.per_page || 10;
     context.ajax_get('/categories', {}, function(categories) {
-      context.ajax_get('/products', {page: page, per_page: per_page}, function(paginated_products) {
-        var products = paginated_products.values.map(function(product) { return new karhu.Product(product, categories); });
-        context.objectForPagination = _.extend(paginated_products, {url: '#/products'});
+      context.ajax_get('/products', {page: page, per_page: per_page}, function(products) {
+        products = products.map(function(product) { return new karhu.Product(product, categories); });
         context.partial('templates/products/index.mustache', {products: products});
       });
     });

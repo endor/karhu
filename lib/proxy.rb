@@ -42,7 +42,6 @@ helpers do
     params = cast_values_to_correct_types(params)
     path = URI.decode(path).gsub(' ', '_')
     yield(params, path)
-    ''
   end  
 end
 
@@ -62,6 +61,7 @@ post /\/(.+)/ do |path|
     File.open(singular_file, "w") do |f|
       f << object.to_json
     end
+    object.to_json
   end
 end
 
@@ -82,6 +82,7 @@ put /\/(.+)/ do |path|
     File.open(singular_file, "w") do |f|
       f << object.to_json
     end
+    object.to_json
   end
 end
 
@@ -97,6 +98,7 @@ delete /\/(.+)/ do |path|
     end
     
     FileUtils.rm_rf(File.join(fixtures_path, path + ".json"))
+    '{}'
   end
 end
 

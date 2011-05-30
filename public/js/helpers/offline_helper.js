@@ -15,7 +15,7 @@ karhu.OfflineHelper = {
       this.flash("you_are_currently_online");
       $('.cached-actions').hide();
       $('.delete_form').show();
-      this.syncQueue();
+      this.runOfflineQueue();
 
       var last_location = this.app.last_location;
       if(last_location[0] === 'get') {
@@ -25,73 +25,7 @@ karhu.OfflineHelper = {
       }
     }
   },
-  
-  syncQueue: function() {
-    var queue = this.store.get('queue') || [],
-      context = this;
-
-    this.store.clear('queue');
-
-    queue.forEach(function(action) {
-      context['ajax_' + action.verb].call(context, action.url, action.data, function() {});
-    });
-  },
-  
-  storeInQueue: function(verb, data, url) {
-    var queue = this.store.get('queue') || [];
-    queue.push({verb: verb, data: data, url: url});
-    this.store.set('queue', queue);    
-  },
-  
-  addToCachedObjects: function(data, url) {
-    var objects = this.store.get('get' + url);
-    if(_.isArray(objects)) {
-      objects.push(data);
-    } else {
-      objects.values.push(data);
-    }
-    this.store.set('get' + url, objects);
-  },
-  
-  updateCachedObjects: function(data, url) {
-    var match = url.match(/(\/\w+)\/(\d+)/),
-      objects = this.store.get('get' + match[1]),
-      id = match[2];
-    
-    var values = _.isArray(objects) ? objects : objects.values;
-
-    _.extend(_.find(values, function(object) {
-      return parseInt(object.id, 10) === parseInt(id, 10);
-    }), data);
-
-    this.store.set('get' + match[1], objects);    
-  },
-  
-  retrieveObjectFromCachedList: function(url) {
-    var match = url.match(/(\/\w+)\/(\d+)/);
-    
-    var objects = this.store.get('get' + match[1]);
-    objects = _.isArray(objects) ? objects : objects.values;
-    
-    return _.find(objects, function(object) {
-      return parseInt(object.id, 10) === parseInt(match[2], 10);
-    });    
-  },
-  
-  saveRequestInQueue: function(verb, data, url, success, callback) {
-    if(verb !== 'get') { this.storeInQueue(verb, data, url); }
-    if(verb === 'post') { this.addToCachedObjects(data, url); }
-    if(verb === 'put') { this.updateCachedObjects(data, url); }
-    
-    if(verb === 'get' && url.match(/\/\w+\/\d+/)) {
-      success(this.retrieveObjectFromCachedList(url));
-    } else {
-      success(this.store.get(verb + url));
-    }
-    
-    if(callback) { callback(); }
-  },
-  
+      
   notifyOfOnlineOfflineStatus: function() {
     var context = this;
     $(window).bind("online offline", function() {
@@ -113,17 +47,14 @@ karhu.OfflineHelper = {
     }
   },
   
-  cachePartials: function() {
+  checkForOnlineStatus: function() {
     var context = this;
-    
-    ['categories', 'products'].forEach(function(type) {
-      ['new', 'edit', 'index'].forEach(function(partial) {
-        context.load('templates/' + type + '/' + partial + '.mustache', {cache: true});
-      });
+    $.ajax({
+      url: '/test',
+      beforeSend: function(xhr) { context.authenticate(xhr); },
+      success: function() { context.stateChangedToOnline(); },
+      error: function() {}
     });
-    context.load('templates/cached_actions/index.mustache', {cache: true});
-    context.load('templates/session/new.mustache', {cache: true});
-    context.load('templates/shared/pagination_link.mustache', {cache: true});
-  }
+  }  
   
 };

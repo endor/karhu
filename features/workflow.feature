@@ -3,13 +3,11 @@ Feature: Workflow
   As a user
   I want to have make sure nothing I enter is lost
 
-  Background:
-    Given I am logged in
-
   Scenario: when browser is closed while editing a product, when starting the app I should edit the same product again
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
       And a product "Tanne" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And I am logged in
     When I go to the start page
       And I follow "Products"
       And I follow "Edit Tanne"
@@ -29,6 +27,7 @@ Feature: Workflow
   Scenario: when browser is closed while adding a product, when starting the app I should add the same product again
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a category "Maeuse" with the description "Tiere"
+      And I am logged in
     When I go to the start page
       And I follow "Products"
       And I follow "Add Product"
@@ -53,6 +52,7 @@ Feature: Workflow
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a category "Weine" with the description "Getraenke"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And I am logged in
     When I go to the start page
       And I follow "Categories"
       And I follow "Edit Weine"
@@ -69,6 +69,7 @@ Feature: Workflow
       But I should not see "Hans"
   
   Scenario: when browser is closed while adding a category, when starting the app I should add the same category again
+    Given I am logged in
     When I go to the start page
       And I follow "Categories"
       And I follow "Add Category"
@@ -84,6 +85,7 @@ Feature: Workflow
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
       And a product "Tanne" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And I am logged in
     When I go to the start page
     Then the "Queue" link should be hidden
     When I follow "Products"
@@ -119,6 +121,7 @@ Feature: Workflow
     Then the "Queue" link should be hidden  
   
   Scenario: i18n
+    Given I am logged in
     When I go to the start page
     Then I should see "Categories"
     When I follow "Deutsch"

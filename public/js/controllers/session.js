@@ -12,6 +12,7 @@ karhu.Session = function(app) {
       delete karhu.password;
       context.store.set('token', karhu.token);
       context.store.set('user', karhu.user);
+      context.cacheObjects();
       context.redirect('#/products');
     }, function() {
       var validator = $('.main form').validate(),

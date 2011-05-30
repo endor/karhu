@@ -3,11 +3,9 @@ Feature: Products
   As a user
   I want to manage products
   
-  Background:
-    Given I am logged in
-  
   Scenario: list products
     Given a category "Baeume" with the description "Grosse Pflanzen"
+      And I am logged in
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
       And a product "Birke" with the description "Laubbaum" and the price "115.75$" that is valid to "03/01/2019" and belongs to the category "Baeume"
     When I go to the start page
@@ -21,6 +19,7 @@ Feature: Products
   
   Scenario: create product
     Given a category "Baeume" with the description "Grosse Pflanzen"
+      And I am logged in
     When I go to the start page
       And I follow "Products"
       And I follow "Add Product"
@@ -39,6 +38,7 @@ Feature: Products
   Scenario: create product when offline
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And I am logged in
     When I go to the start page
       And I follow "Products"
       And I wait for 3s
@@ -66,6 +66,7 @@ Feature: Products
 
   Scenario: create product fails because of validation errors
     Given a category "Baeume" with the description "Grosse Pflanzen"
+      And I am logged in
     When I go to the start page
       And I follow "Products"
       And I follow "Add Product"
@@ -78,6 +79,7 @@ Feature: Products
   
   Scenario: create product fails because of invalid date for the current locale
     Given a category "Baeume" with the description "Grosse Pflanzen"
+      And I am logged in
     When I go to the start page
       And I follow "Products"
       And I follow "Add Product"
@@ -104,6 +106,7 @@ Feature: Products
 
   Scenario: create product fails because of invalid price for the current locale
     Given a category "Baeume" with the description "Grosse Pflanzen"
+      And I am logged in
     When I go to the start page
       And I follow "Products"
       And I follow "Add Product"
@@ -131,6 +134,7 @@ Feature: Products
   Scenario: delete product
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And I am logged in
     When I go to the start page
       And I follow "Products"
     Then I should see "Fichte" within ".products_table"
@@ -141,6 +145,7 @@ Feature: Products
     Given a category "Alphabete" with the description "ABC"
       And a category "Baeume" with the description "Grosse Pflanzen"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And I am logged in
     When I go to the start page
       And I follow "Products"
       And I follow "edit"
@@ -155,6 +160,7 @@ Feature: Products
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
       And a product "Tanne" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And I am logged in
     When I go to the start page
       And I follow "Products"
       And I wait for 3s
