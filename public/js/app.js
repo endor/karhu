@@ -37,6 +37,7 @@ karhu.app = $.sammy(function() {
       $('.main form').validate(context.translateValidationMessages(validations));
     }
     context.updatePagination(context.objectForPagination);
+    context.displayHelp(content);
 
     return result;
   };
@@ -52,6 +53,7 @@ karhu.app = $.sammy(function() {
     this.prepareInputFields();
     this.prepareLinks();
     this.initializeCustomValidators();
+    this.initializeKeyboardControl();
   });
   
   

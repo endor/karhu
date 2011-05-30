@@ -252,3 +252,38 @@ ul.cached_actions_list li {
   width: 3em;
   margin: 0px;
 }
+
+/*
+#header nav li:first-letter {
+  text-decoration: underline !important;
+  color: white;
+}
+
+#header nav li.active:first-letter {
+  text-decoration: underline !important;
+  color: #459E00;
+}
+
+.underline:first-letter {
+  text-decoration: underline !important;
+}
+*/
+
+.main {
+  position: relative;
+}
+
+#help {
+  position: absolute;
+  top: 5em;
+  right: 0.5em;
+  padding: 1em;
+  border: solid 1px black;
+  min-height: 12em;
+  width: 20em;
+  border: solid 1px #DFD9C3;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px; 
+  -o-border-radius: 6px; 
+  border-radius: 6px;
+}

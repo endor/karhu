@@ -6,8 +6,8 @@ karhu.AroundBeforeFilterHelper = {
   markActiveMenuItem: function(context) {
     var type = context.path.match(/\#\/([^\/\?]+)/);
     if(type) {
-      $('#header nav a').removeClass('active');
-      $('#header nav .' + type[1]).addClass('active');
+      $('#header nav a, #header nav li').removeClass('active');
+      $('#header nav .' + type[1]).addClass('active').parent().addClass('active');
     }
   },
   

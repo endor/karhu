@@ -21,7 +21,10 @@
     retrieving a paginated result and retrieving all results -> Categories page vs. Categories in products.
   * Need to find a way to correctly adjust paginated cached results when an object is added.
 
+
 ## API
+
+### Categories
 
     GET /categories
     GET /categories/1
@@ -34,6 +37,8 @@
       name: "Kategorie 1",
       description: "Die erste Kategorie"
     }    
+
+### Products
 
     GET /products
     GET /products/1
@@ -48,4 +53,20 @@
       unit_price: "232,00",
       valid_to: "20.12.2012",
       category_id: "1234"
+    }
+    
+### Pagination
+
+#### Request
+    
+    GET /products?page=1&per_page=3
+    
+#### Response
+
+    {
+      current_page: 1,
+      total_pages: 2,
+      total_entries: 7,
+      per_page: 5,
+      values: [{product1}, {product2}, ...]
     }

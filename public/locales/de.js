@@ -49,5 +49,7 @@ karhu.locales.de = {
   please_finnish_editing_your_product: 'Bitte bearbeite das Produkt zu Ende.',
   please_finnish_adding_your_category: 'Bitte bearbeite die Kategorie zu Ende.',
   please_finnish_adding_your_product: 'Bitte bearbeite das Produkt zu Ende.',
-  invalid_user_password_combination: 'Ungültige Benutzer/Passwort Kombination.'
+  invalid_user_password_combination: 'Ungültige Benutzer/Passwort Kombination.',
+  help: 'Hilfe',
+  help_text: 'Drücke auf ESC zum abbrechen und auf ENTER in einem Textfeld um das Formular abzuschicken.'
 };

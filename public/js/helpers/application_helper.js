@@ -13,6 +13,9 @@ karhu.ApplicationHelper = {
       defaultDate: (1).year().fromNow(),
       onClose: function() { $('body').trigger('datepickerClosed'); }
     });
+    $('input, textarea').keydown(function(evt) {
+      evt.stopPropagation();
+    });
   },
   
   prepareCancelButtons: function() {
@@ -62,6 +65,27 @@ karhu.ApplicationHelper = {
       $('.controls').show();
     } else {
       $('.controls').hide();
+    }
+  },
+  
+  initializeKeyboardControl: function() {
+    var usedKeyCodes = {
+      '65': 'a', '67': 'c', '68': 'd', '69': 'e', '76': 'l', '80': 'p',
+      '49': '1', '50': '2', '51': '3', '52': '4', '53': '5', '54': '6',
+      '55': '7', '56': '8', '57': '9', '27': 'esc'
+    };
+    $(document).keydown(function(evt) {
+      if(!evt.metaKey && !evt.ctrlKey) {
+        $('[data-key="' + usedKeyCodes[evt.keyCode] + '"]').click();
+      }
+    });
+  },
+  
+  displayHelp: function(content) {
+    if(content.match(/form/) && content.match(/(PUT|POST)/)) {
+      this.render('templates/shared/form_help.mustache', {}, function(rendered_view) {        
+        $('.main').append(rendered_view);
+      });
     }
   }
 };

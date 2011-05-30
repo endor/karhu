@@ -54,9 +54,21 @@
 
   <body>
     <ul id="languages">
-      <li><a href="#/locales/en">English</a></li>
-      <li><a href="#/locales/de">Deutsch</a></li>
-      <li class="hidden"><a href="#" class="logout" class="translate" data-translate-key="logout">Log out</a></li>
+      <li>
+        <a href="#/locales/en" data-key="e">
+          <div class="underline">English</div>
+        </a>
+      </li>
+      <li>
+        <a href="#/locales/de" data-key="d">
+          <div class="underline">Deutsch</div>
+        </a>
+      </li>
+      <li class="hidden">
+        <a href="#" class="logout" class="translate" data-translate-key="logout" data-key="l">
+          <div class="underline">Log out</div>
+        </a>
+      </li>
     </ul>
 
     <div id="container">
@@ -67,9 +79,21 @@
 
         <nav>
           <ul>
-            <li><a href="#/products" class="products translate" data-translate-key="products">Products</a></li>
-            <li><a href="#/categories" class="categories translate" data-translate-key="categories">Categories</a></li>
-            <li><a href="#/cached-actions" class="cached-actions translate" data-translate-key="queue">Queue</a></li>
+            <li>
+              <a href="#/products" class="products translate" data-translate-key="products" data-key="p">
+                Products
+              </a>
+            </li>
+            <li>
+              <a href="#/categories" class="categories translate" data-translate-key="categories" data-key="c">
+                Categories
+              </a>
+            </li>
+            <li>
+              <a href="#/cached-actions" class="cached-actions translate" data-translate-key="queue" data-key="q">
+                Queue
+              </a>
+            </li>
           </ul>
         </nav>
 
