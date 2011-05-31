@@ -118,16 +118,9 @@ karhu.ApplicationHelper = {
             context.authenticate(xhr);
           },
           success: function(result) {
-            if(verb === 'get') {
-              if(result.values) {
-                context.objectForPagination = _.extend({}, result, {url: '#' + url});
-                result = result.values;
-              }              
-            } else {
-              if(_.isString(result)) { result = JSON.parse(result); }
+            if(verb !== 'get') {
               context.storeInOnlineQueue(verb, result, url);              
-            }
-            
+            }            
             success(result);
           },
           error: (function() {

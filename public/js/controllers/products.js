@@ -1,9 +1,18 @@
 karhu.Products = function(app) {
   app.get('#/products', function(context) {
-    var page = context.params.page || 1, per_page = karhu.config.per_page || 10;
+    var params = {
+      page: context.params.page || 1,
+      per_page: karhu.config.per_page || 10
+    };
+    
+    if(context.params.sort) {
+      params.sort = context.params.sort;
+    }
+    
     context.ajax_get('/categories', {}, function(categories) {
-      context.ajax_get('/products', {page: page, per_page: per_page}, function(products) {
-        products = products.map(function(product) { return new karhu.Product(product, categories); });
+      context.ajax_get('/products', params, function(paginated_products) {
+        context.objectForPagination = _.extend({}, paginated_products, {url: '#/products'});      
+        products = paginated_products.values.map(function(product) { return new karhu.Product(product, categories); });
         context.partial('templates/products/index.mustache', {products: products});
       });
     });

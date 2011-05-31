@@ -43,3 +43,9 @@ end
 Then /the "([^\"]+)" link should be hidden/ do |text|
   assert !page.find(:xpath, "//a[contains(., '#{text}')]").visible?
 end
+
+Then /^I should see "([^\"]*)" before "([^\"]*)"$/ do |first, second|
+  unless page.body.match(/#{first}.*#{second}/im) 
+    raise("#{first} can't be found before #{second}") 
+  end
+end

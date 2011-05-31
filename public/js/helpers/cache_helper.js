@@ -83,6 +83,8 @@ karhu.CacheHelper = {
   },
 
   storeInOnlineQueue: function(verb, data, url) {
+    if(_.isString(data)) { data = JSON.parse(data); }
+    
     this.storeInQueue('onlineQueue', verb, data, url);
 
     if(this.app.objects_cached) {
@@ -114,16 +116,14 @@ karhu.CacheHelper = {
             var page = data.page || 1,
               per_page = data.per_page || karhu.config.per_page;
 
-            this.objectForPagination = {
+            success({
               current_page: page,
               total_pages: this.totalPages(values, per_page),
               total_entries: values.length,
               per_page: per_page,
               values: values.splice((page - 1) * per_page, per_page),
               url: '#' + url
-            }
-
-            success(this.objectForPagination.values);
+            });
           } else {
             success(values);
           }
