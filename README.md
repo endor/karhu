@@ -28,10 +28,11 @@
 
     GET /categories
     GET /categories/1
-    POST /categories
-    PUT /categories/1
+    POST /categories - expect created object back
+    PUT /categories/1 - expect updated object back
     DELETE /categories/1
-    
+
+
     Category {
       id: "1234",
       name: "Kategorie 1",
@@ -42,9 +43,10 @@
 
     GET /products
     GET /products/1
-    POST /products
-    PUT /products/1
+    POST /products - expect created object back
+    PUT /products/1 - expect updated object back
     DELETE /products/1
+
 
     Product {
       id: "5678",
@@ -59,7 +61,7 @@
 
 #### Request
     
-    GET /products?page=1&per_page=3
+    GET /products?page=1&per_page=5
     
 #### Response
 
@@ -70,3 +72,7 @@
       per_page: 5,
       values: [{product1}, {product2}, ...]
     }
+    
+### Sorting
+
+    GET /products?sort=description

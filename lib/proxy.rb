@@ -106,16 +106,8 @@ get /\/(.+)/ do |path|
   protected!
   content_type :json
   file = ROOT + "/features/fixtures/#{URI.decode(path).gsub(' ', '_')}.json"
-  results = File.exists?(file) ? JSON.parse(File.read(file)) : []
-  if params[:page]
-    paginated_results = results.paginate(:page => params[:page], :per_page => params[:per_page]) 
-    results = {
-      :current_page => paginated_results.current_page,
-      :total_pages => paginated_results.total_pages,
-      :total_entries => paginated_results.total_entries,
-      :per_page => (params[:per_page] || 30),
-      :values => paginated_results.to_a
-    }
-  end
+  results = File.exists?(file) ? JSON.parse(File.read(file)) : []  
+  results = sort(results, params[:sort]) if params[:sort]
+  results = paginate(results, params[:page], params[:per_page]) if params[:page]  
   results.to_json
 end
