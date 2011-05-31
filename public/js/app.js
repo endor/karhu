@@ -1,6 +1,5 @@
 karhu.app = $.sammy(function() {
   this.element_selector = 'body';
-  this.objects_cached = false;
 
   this.use(Sammy.Mustache);
   this.use(Sammy.NestedParams);
@@ -72,6 +71,7 @@ karhu.app = $.sammy(function() {
 });
 
 $(function() {
+  karhu.objectsCached = false;
   karhu.app.run('#/');
   karhu.app.trigger('init');
 });

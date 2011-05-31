@@ -34,7 +34,7 @@
             <a href="#/products/{{id}}/edit" class="button" title="Edit {{name}}">{{?edit}}</a>
             <form method="delete" action="#/products/{{id}}" class="delete_form">
               <input type="hidden" name="name" value="{{name}}" />
-              <input type="submit" value="{{?remove}}" />
+              <input type="submit" value="{{?remove}}" title="Delete {{name}}" />
             </form>
           {{/id}}
         </td>

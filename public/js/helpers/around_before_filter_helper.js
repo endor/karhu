@@ -36,6 +36,11 @@ karhu.AroundBeforeFilterHelper = {
     } else {
       karhu.token = this.store.get('token');
       karhu.user = this.store.get('user');
+      
+      if(karhu.token && !karhu.objectsCached) {
+        this.cacheObjects();
+      }
+      
       callback();
     }
   },

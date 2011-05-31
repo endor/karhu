@@ -25,14 +25,13 @@ karhu.CacheHelper = {
     objects = _.reject(objects, function(object) {
       return parseInt(object.id, 10) === parseInt(id, 10);
     });
-    
+
     this.store.set(match[1], objects);
   },
   
   retrieveObjectFromCachedList: function(url) {
-    var match = url.match(/(\/\w+)\/(\d+)/);
-    
-    var objects = this.store.get(match[1]);
+    var match = url.match(/(\/\w+)\/(\d+)/),
+      objects = this.store.get(match[1]);
     
     return _.find(objects, function(object) {
       return parseInt(object.id, 10) === parseInt(match[2], 10);
@@ -85,8 +84,8 @@ karhu.CacheHelper = {
 
   storeInOnlineQueue: function(verb, data, url) {
     this.storeInQueue('onlineQueue', verb, data, url);
-    
-    if(this.app.objects_cached) {
+
+    if(karhu.objectsCached) {
       this.runOnlineQueue();
     }
   },
@@ -174,7 +173,7 @@ karhu.CacheHelper = {
         context.store.set('/' + type, objects);
         objectTypesToCache -= 1;
         if(objectTypesToCache === 0) {
-          context.app.objects_cached = true;
+          karhu.objectsCached = true;
           context.runOnlineQueue();
         }        
       });
