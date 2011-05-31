@@ -37,7 +37,7 @@ karhu.AroundBeforeFilterHelper = {
       karhu.token = this.store.get('token');
       karhu.user = this.store.get('user');
       
-      if(karhu.token && !karhu.objectsCached) {
+      if(karhu.token && !this.app.objects_cached) {
         this.cacheObjects();
       }
       

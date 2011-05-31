@@ -85,7 +85,7 @@ karhu.CacheHelper = {
   storeInOnlineQueue: function(verb, data, url) {
     this.storeInQueue('onlineQueue', verb, data, url);
 
-    if(karhu.objectsCached) {
+    if(this.app.objects_cached) {
       this.runOnlineQueue();
     }
   },
@@ -173,7 +173,7 @@ karhu.CacheHelper = {
         context.store.set('/' + type, objects);
         objectTypesToCache -= 1;
         if(objectTypesToCache === 0) {
-          karhu.objectsCached = true;
+          context.app.objects_cached = true;
           context.runOnlineQueue();
         }        
       });

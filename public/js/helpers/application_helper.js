@@ -68,6 +68,13 @@ karhu.ApplicationHelper = {
     }
   },
   
+  validateForm: function() {
+    if(this.objectForValidation) {
+      var validations = this.objectForValidation.validations();
+      $('.main form').validate(this.translateValidationMessages(validations));
+    }
+  },
+  
   initializeKeyboardControl: function() {
     var usedKeyCodes = {
       '65': 'a', '67': 'c', '68': 'd', '69': 'e', '76': 'l', '80': 'p',

@@ -1,6 +1,7 @@
 karhu.app = $.sammy(function() {
   this.element_selector = 'body';
-
+  this.objects_cached = false;
+  
   this.use(Sammy.Mustache);
   this.use(Sammy.NestedParams);
   this.use(Sammy.JSON);  
@@ -32,18 +33,15 @@ karhu.app = $.sammy(function() {
 
     context.beautifyInputElements();
     context.adjustElementsToOnlineStatus();
-    if(context.objectForValidation) {
-      var validations = context.objectForValidation.validations();
-      $('.main form').validate(context.translateValidationMessages(validations));
-    }
+    context.validateForm();
     context.updatePagination(context.objectForPagination);
     context.displayHelp(content);
 
     return result;
   };
   
-  this.get('#/', function(context) {
-    context.redirect('#/products');
+  this.get('#/', function() {
+    this.redirect('#/products');
   });
   
   this.bind('init', function() {
@@ -71,7 +69,6 @@ karhu.app = $.sammy(function() {
 });
 
 $(function() {
-  karhu.objectsCached = false;
   karhu.app.run('#/');
   karhu.app.trigger('init');
 });
