@@ -3,14 +3,27 @@ karhu.Product = function(attributes, categories) {
     return parseInt(category.id, 10) === parseInt(attributes.category_id, 10);
   });
   
-  var product = {};
+  var product = attributes || {};
+
+  if(product.unit_price) {
+    if(_.isString(product.unit_price)) {
+      product.unit_price = $.global.parseFloat(product.unit_price.match(/[\d\.\,]+/)[0]);
+    }
+    var price = product.unit_price;
+    product.unit_price = $.global.format(product.unit_price, "n") + '€';
+  }
+  
+  product.toJSON = function() {
+    return _.extend(product, {unit_price: price});
+  };
+
   var regular_expressions = {
     en: {
-      unit_price: /^(\d{1,3}([,]\d{3})*|(\d+))([.]\d{2})?( )?\$$/,
+      unit_price: /^(\d{1,3}([,]\d{3})*|(\d+))([.]\d{2})?( )?€?$/,
       valid_to: /\d{2}\/\d{2}\/\d{4}/
     },
     de: {
-      unit_price: /^(\d{1,3}([.]\d{3})*|(\d+))([,]\d{2})?( )?€$/,
+      unit_price: /^(\d{1,3}([.]\d{3})*|(\d+))([,]\d{2})?( )?€?$/,
       valid_to: /\d{2}\.\d{2}\.\d{4}/
     }
   };
@@ -54,5 +67,5 @@ karhu.Product = function(attributes, categories) {
     };
   };
   
-  return _.extend(product, attributes, {category: category});
+  return _.extend(product, {category: category});
 };

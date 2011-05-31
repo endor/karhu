@@ -5,8 +5,8 @@ Feature: Workflow
 
   Scenario: when browser is closed while editing a product, when starting the app I should edit the same product again
     Given a category "Baeume" with the description "Grosse Pflanzen"
-      And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
-      And a product "Tanne" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And a product "Fichte" with the description "Nadelbaum" and the price "232.00€" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And a product "Tanne" with the description "Nadelbaum" and the price "232.00€" that is valid to "12/20/2027" and belongs to the category "Baeume"
       And I am logged in
     When I go to the start page
       And I follow "Products"
@@ -35,7 +35,7 @@ Feature: Workflow
       And I trigger a "change" event on the "product_name"
       And I fill in "Description" with "Fastest Mouse in Mexico"
       And I trigger a "change" event on the "product_description"
-      And I fill in "Price" with "222222$"
+      And I fill in "Price" with "222222€"
       And I trigger a "change" event on the "product_unit_price"
       And I fill in "Valid To" with "04/04/2020"
       And I trigger a "change" event on the "product_valid_to"
@@ -44,14 +44,14 @@ Feature: Workflow
       And the browser is closed and reopened with the start page
     Then the "Name" field should contain "Speedy"
       And the "Description" field should contain "Fastest Mouse in Mexico"
-      And the "Price" field should contain "222222$"
+      And the "Price" field should contain "222,222.00€"
       And the "Valid To" field should contain "04/04/2020"
       And "Maeuse" should be the selected "Category"
   
   Scenario: when browser is closed while editing a category, when starting the app I should edit the same category again
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a category "Weine" with the description "Getraenke"
-      And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And a product "Fichte" with the description "Nadelbaum" and the price "232.00€" that is valid to "12/20/2027" and belongs to the category "Baeume"
       And I am logged in
     When I go to the start page
       And I follow "Categories"
@@ -83,8 +83,8 @@ Feature: Workflow
   
   Scenario: see queue when offline
     Given a category "Baeume" with the description "Grosse Pflanzen"
-      And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
-      And a product "Tanne" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And a product "Fichte" with the description "Nadelbaum" and the price "232.00€" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And a product "Tanne" with the description "Nadelbaum" and the price "232.00€" that is valid to "12/20/2027" and belongs to the category "Baeume"
       And I am logged in
     When I go to the start page
     Then the "Queue" link should be hidden
@@ -99,7 +99,7 @@ Feature: Workflow
       And I follow "Add Product"
       And I fill in "Name" with "Kiefer"
       And I fill in "Description" with "Nadelbaum"
-      And I fill in "Price" with "227.25$"
+      And I fill in "Price" with "227.25€"
       And I fill in "Valid To" with "01/08/2029"
       And I select "Baeume" from "Category"
       And I press "Add Product"

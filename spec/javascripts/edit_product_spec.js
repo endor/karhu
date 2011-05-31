@@ -14,4 +14,31 @@ describe("EditProduct", function() {
     expect(view.categories[0].selected).toBe(true);
     expect(view.name).toEqual('Kiefer');
   });
+  
+  it("should format the price with german format if locale is german", function() {
+    var categories = [{id: 2, name: 'Baeume'}];
+
+    $.global.preferCulture('de');
+    var product = {id: 1, name: 'Fichte', category_id: 2, unit_price: 2000.57};
+    var view = new karhu.EditProduct(product, categories);
+    expect(view.unit_price).toEqual('2.000,57€');
+  });
+
+  it("should format the price with english format if locale is english", function() {
+    var categories = [{id: 2, name: 'Baeume'}];
+    
+    $.global.preferCulture('en');
+    var product = {id: 1, name: 'Fichte', category_id: 2, unit_price: 2000.57};
+    var view = new karhu.EditProduct(product, categories);
+    expect(view.unit_price).toEqual('2,000.57€');
+  });
+  
+  it("should handle strings for prices correctly", function() {
+    var categories = [{id: 2, name: 'Baeume'}];
+
+    $.global.preferCulture('en');
+    var product = {id: 1, name: 'Fichte', category_id: 2, unit_price: '2,000.57€'};
+    var view = new karhu.EditProduct(product, categories);
+    expect(view.unit_price).toEqual('2,000.57€');    
+  });
 });

@@ -33,12 +33,12 @@ Feature: Sort
 
   Scenario: sort products
     Given a category "Biere" with the description "Getraenke"
-      And a product "Becks" with the description "Deutschland" and the price "2.00$" that is valid to "12/20/2012" and belongs to the category "Biere"
-      And a product "Anchor Steam Beer" with the description "U.S.A." and the price "2.00$" that is valid to "12/20/2012" and belongs to the category "Biere"
-      And a product "Baltika Klassitscheskoye" with the description "Russland" and the price "2.00$" that is valid to "12/20/2012" and belongs to the category "Biere"
-      And a product "Belhaven St. Andrews Ale" with the description "Großbritannien" and the price "2.00$" that is valid to "12/20/2012" and belongs to the category "Biere"
-      And a product "Olvi" with the description "Finnland" and the price "2.00$" that is valid to "12/20/2012" and belongs to the category "Biere"
-      And a product "Bud Super Strong" with the description "Tschechien" and the price "2.00$" that is valid to "12/20/2012" and belongs to the category "Biere"
+      And a product "Becks" with the description "Deutschland" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "Biere"
+      And a product "Anchor Steam Beer" with the description "U.S.A." and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "Biere"
+      And a product "Baltika Klassitscheskoye" with the description "Russland" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "Biere"
+      And a product "Belhaven St. Andrews Ale" with the description "Großbritannien" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "Biere"
+      And a product "Olvi" with the description "Finnland" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "Biere"
+      And a product "Bud Super Strong" with the description "Tschechien" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "Biere"
       And I am logged in
     When I go to the start page
       And I follow "Products"

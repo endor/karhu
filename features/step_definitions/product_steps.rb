@@ -10,7 +10,7 @@ Given /a product "([^\"]+)" with the description "([^\"]+)"(?: and the price "([
  
   product = {
     :name => name, :description => description, :id => @products.length + 1,
-    :unit_price => price || "232.00$", :valid_to => valid_to || "12/20/2027", :category_id => category[:id]
+    :unit_price => price || "232.00€", :valid_to => valid_to || "12/20/2027", :category_id => category[:id]
   }
   @products.push(product)
   
@@ -26,6 +26,6 @@ end
 When /I fill in the product details for "([^\"]+)"/ do |name|
   When %Q{I fill in "Name" with "#{name}"}
     And 'I fill in "Description" with "Nadelbaum"'
-    And 'I fill in "Price" with "345.05$"'
+    And 'I fill in "Price" with "345.05€"'
     And 'I fill in "Valid To" with "04/04/2035"'
 end

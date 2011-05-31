@@ -25,7 +25,7 @@ karhu.locales.en = {
   update_category: 'Update Category',
   cannot_be_empty: 'cannot be empty',
   cannot_be_longer_than_100_characters: 'cannot be longer than 100 characters',
-  wrong_format_price: 'wrong format, example: 1,230.77$',
+  wrong_format_price: 'wrong format, example: 1,230.77€',
   wrong_format_date: 'wrong format, example: 05/31/2024',
   today_or_after: 'has to be today or after',
   login: 'Log in',

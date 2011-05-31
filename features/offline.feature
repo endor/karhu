@@ -5,7 +5,7 @@ Feature: Offline
 
   Scenario: create product when offline
     Given a category "Baeume" with the description "Grosse Pflanzen"
-      And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And a product "Fichte" with the description "Nadelbaum" and the price "232.00€" that is valid to "12/20/2027" and belongs to the category "Baeume"
       And I am logged in
     When I go to the start page
       And I follow "Products"
@@ -14,14 +14,14 @@ Feature: Offline
       And I follow "Add Product"
       And I fill in "Name" with "Tanne"
       And I fill in "Description" with "Nadelbaum"
-      And I fill in "Price" with "345.05$"
+      And I fill in "Price" with "345.05€"
       And I fill in "Valid To" with "04/04/2035"
       And I select "Baeume" from "Category"
       And I press "Add Product"
       And I follow "Add Product"
       And I fill in "Name" with "Kiefer"
       And I fill in "Description" with "Nadelbaum"
-      And I fill in "Price" with "227.25$"
+      And I fill in "Price" with "227.25€"
       And I fill in "Valid To" with "01/08/2029"
       And I select "Baeume" from "Category"
       And I press "Add Product"
@@ -34,8 +34,8 @@ Feature: Offline
 
   Scenario: edit product when offline
     Given a category "Baeume" with the description "Grosse Pflanzen"
-      And a product "Fichte" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
-      And a product "Tanne" with the description "Nadelbaum" and the price "232.00$" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And a product "Fichte" with the description "Nadelbaum" and the price "232.00€" that is valid to "12/20/2027" and belongs to the category "Baeume"
+      And a product "Tanne" with the description "Nadelbaum" and the price "232.00€" that is valid to "12/20/2027" and belongs to the category "Baeume"
       And I am logged in
     When I go to the start page
       And I follow "Products"

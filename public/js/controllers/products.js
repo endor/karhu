@@ -29,7 +29,7 @@ karhu.Products = function(app) {
   
   app.post('#/products', function(context) {
     context.store.clear('last_added_product');
-    context.ajax_post('/products', context.params.product, function() {
+    context.ajax_post('/products', new karhu.Product(context.params.product).toJSON(), function() {
       context.flash('product_successfully_created');
       context.redirect('#/products');      
     }, function() {
@@ -50,7 +50,7 @@ karhu.Products = function(app) {
   
   app.put('#/products/:id', function(context) {
     context.store.clear('last_edited_product');
-    context.ajax_put('/products/' + context.params.id, context.params.product, function() {
+    context.ajax_put('/products/' + context.params.id, new karhu.Product(context.params.product).toJSON(), function() {
       context.flash('product_successfully_updated');
       context.redirect('#/products');
     }, function() {
