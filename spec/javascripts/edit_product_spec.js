@@ -32,6 +32,24 @@ describe("EditProduct", function() {
     var view = new karhu.EditProduct(product, categories);
     expect(view.unit_price).toEqual('2,000.57€');
   });
+
+  it("should format the date with german format if locale is german", function() {
+    var categories = [{id: 2, name: 'Baeume'}];
+
+    $.global.preferCulture('de');
+    var product = {id: 1, name: 'Fichte', category_id: 2, valid_to: '12/10/2002'};
+    var view = new karhu.EditProduct(product, categories);
+    expect(view.valid_to).toEqual('10.12.2002');
+  });
+
+  it("should format the date with english format if locale is english", function() {
+    var categories = [{id: 2, name: 'Baeume'}];
+    
+    $.global.preferCulture('en');
+    var product = {id: 1, name: 'Fichte', category_id: 2, valid_to: '12/10/2002'};
+    var view = new karhu.EditProduct(product, categories);
+    expect(view.valid_to).toEqual('12/10/2002');
+  });
   
   it("should handle strings for prices correctly", function() {
     var categories = [{id: 2, name: 'Baeume'}];

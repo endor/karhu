@@ -13,8 +13,13 @@ karhu.Product = function(attributes, categories) {
     product.unit_price = $.global.format(product.unit_price, "n") + '€';
   }
   
+  if(product.valid_to) {
+    var date = $.global.parseDate(product.valid_to) || Date.parse(product.valid_to);
+    product.valid_to = $.global.format(date, "d");
+  }
+  
   product.toJSON = function() {
-    return _.extend(product, {unit_price: price});
+    return _.extend(product, {unit_price: price, valid_to: date.toString('MM/dd/yyyy')});
   };
 
   var regular_expressions = {

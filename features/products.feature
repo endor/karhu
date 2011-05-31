@@ -32,7 +32,7 @@ Feature: Products
     Then I should see "Tanne"
       And I should see "Nadelbaum"
       And I should see "345.05€"
-      And I should see "04/04/2035"
+      And I should see "4/4/2035"
       And I should see "Baeume"
       
   Scenario: create product allows adding a price without euro symbol
@@ -50,7 +50,7 @@ Feature: Products
     Then I should see "Tanne"
       And I should see "Nadelbaum"
       And I should see "345.05€"
-      And I should see "04/04/2035"
+      And I should see "4/4/2035"
       And I should see "Baeume"  
   
   Scenario: create product fails because of validation errors

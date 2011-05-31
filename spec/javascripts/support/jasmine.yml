@@ -18,6 +18,7 @@ src_files:
   - vendor/jquery/jquery.*.js
   - vendor/sammy/sammy.js
   - vendor/sammy/sammy.*.js
+  - vendor/date/date.js
   - js/root.js
   - config.js
   - js/controllers/*.js

@@ -20,5 +20,12 @@ karhu.EditProduct = function(product, categories, last_edited_product) {
   }
   product.unit_price = $.global.format(product.unit_price, "n") + '€';
 
+  console.log(product.valid_to)
+  if(product.valid_to) {
+    var date = $.global.parseDate(product.valid_to) || Date.parse(product.valid_to);
+    product.valid_to = $.global.format(date, "d");
+  }
+  console.log(product.valid_to)
+
   return _.extend(product, {categories: categories});
 }

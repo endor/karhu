@@ -45,7 +45,7 @@ Feature: Workflow
     Then the "Name" field should contain "Speedy"
       And the "Description" field should contain "Fastest Mouse in Mexico"
       And the "Price" field should contain "222,222.00€"
-      And the "Valid To" field should contain "04/04/2020"
+      And the "Valid To" field should contain "4/4/2020"
       And "Maeuse" should be the selected "Category"
   
   Scenario: when browser is closed while editing a category, when starting the app I should edit the same category again
