@@ -111,7 +111,7 @@ karhu.CacheHelper = {
           success(this.retrieveObjectFromCachedList(url));
         } else {
           var list = this.retrieveCachedList(url);
-          if(data.sort) { list = this.sortList(list, data.sort); }
+          if(data.sort) { list = this.sortList(list, data.sort, data.reverse); }
           if(data.page) { list = this.paginateList(list, url, data.page, data.per_page); }
           success(list);
         }

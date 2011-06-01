@@ -13,15 +13,19 @@
 <table class="categories_table">
   <thead>
     <tr>
-      <th><a href="#/categories?sort=name">{{?name}}</a></th>
-      <th><a href="#/categories?sort=description">{{?description}}</a></th>
+      <th class="name_column">
+        <a data-link="#/categories?sort=name" href="#/categories?sort=name">{{?name}}</a>
+      </th>
+      <th class="description_column">
+        <a data-link="#/categories?sort=description" href="#/categories?sort=description">{{?description}}</a>
+      </th>
       <th>{{?actions}}</th>
     </tr>
   </thead>
   {{#categories}}
     <tr>
-      <td>{{name}}</td>
-      <td>{{description}}</td>
+      <td class="name_column">{{name}}</td>
+      <td class="description_column">{{description}}</td>
       <td class="actions">
         {{#id}}
           <a href="#/categories/{{id}}/edit" class="button" title="Edit {{name}}">{{?edit}}</a>

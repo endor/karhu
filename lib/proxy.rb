@@ -108,6 +108,7 @@ get /\/(.+)/ do |path|
   file = ROOT + "/features/fixtures/#{URI.decode(path).gsub(' ', '_')}.json"
   results = File.exists?(file) ? JSON.parse(File.read(file)) : []  
   results = sort(results, params[:sort]) if params[:sort]
+  results.reverse! if params[:reverse]
   results = paginate(results, params[:page], params[:per_page]) if params[:page]  
   results.to_json
 end

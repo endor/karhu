@@ -28,6 +28,27 @@ Feature: Sort
       And I should not see "Tees"
       And I should not see "Kaffees"
   
+  @wip
+  Scenario: reverse sort categories
+    Given a category "Kaffees" with the description "HH"
+      And a category "Tees" with the description "GG"
+      And a category "Biere" with the description "FF"
+      And a category "Weine" with the description "EE"
+      And a category "Cognacs" with the description "DD"
+      And a category "Portweine" with the description "CC"
+      And a category "Grappas" with the description "BB"
+      And a category "Sherries" with the description "AA"
+      And I am logged in
+    When I go to the start page
+      And I follow "Categories"
+    When I follow "Description"
+      And I follow "Description"
+    Then I should see "Kaffees" before "Tees"
+      And I should see "Biere" before "Weine"
+      But I should not see "Portweine"
+      And I should not see "Grappas"
+      And I should not see "Sherries"
+  
   Scenario: keep sorting categories even when switching to the next page
     Given a category "Kaffees" with the description "HH"
       And a category "Tees" with the description "GG"
