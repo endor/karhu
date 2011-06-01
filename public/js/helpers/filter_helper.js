@@ -53,11 +53,5 @@ karhu.FilterHelper = {
     } else {
       callback();
     }
-  },
-  
-  saveLastLocation: function() {
-    if(!this.path.match(/pages/)) {
-      karhu.lastLocation = this.path.match(/(\#.+)/)[1];
-    }
   }
 };

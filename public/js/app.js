@@ -70,8 +70,6 @@ karhu.app = $.sammy(function() {
   this.around(event_context.initializeLocales);
   this.around(event_context.redirectToLogin);
   this.around(event_context.redirectToLastAccessedItem);
-  
-  this.after(event_context.saveLastLocation);
 });
 
 $(function() {
