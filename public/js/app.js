@@ -46,7 +46,7 @@ karhu.app = $.sammy(function() {
   
   this.bind('init', function() {
     this.cachePartials();
-    this.clearQueues();
+    this.clearStore();
     this.prepareCancelButtons();
     this.prepareInputFields();
     this.prepareLinks();

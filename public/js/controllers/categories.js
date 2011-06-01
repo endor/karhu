@@ -5,9 +5,7 @@ karhu.Categories = function(app) {
       per_page: karhu.config.per_page || 10
     };
     
-    if(context.params.sort) {
-      params.sort = context.params.sort;
-    }
+    context.handleSort(params, context.params, 'Categories');
 
     context.ajax_get('/categories', params, function(paginated_categories) {
       context.objectForPagination = _.extend({}, paginated_categories, {url: '#/categories'});      

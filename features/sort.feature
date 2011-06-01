@@ -27,7 +27,29 @@ Feature: Sort
       But I should not see "Biere"
       And I should not see "Tees"
       And I should not see "Kaffees"
-
+  
+  Scenario: keep sorting categories even when switching to the next page
+    Given a category "Kaffees" with the description "HH"
+      And a category "Tees" with the description "GG"
+      And a category "Biere" with the description "FF"
+        And a category "Weine" with the description "EE"
+        And a category "Cognacs" with the description "DD"
+        And a category "Portweine" with the description "CC"
+        And a category "Grappas" with the description "BB"
+        And a category "Sherries" with the description "AA"
+      And a category "Vodkas" with the description "II"
+      And a category "Whiskeys" with the description "JJ"
+      And a category "Obstler" with the description "KK"      
+      And I am logged in
+    When I go to the start page
+      And I follow "Categories"
+      And I follow "Description"
+    Then I should see "Sherries" before "Grappas"
+      And I should see "Portweine" before "Cognacs"
+    When I follow "2"
+    Then I should see "Biere" before "Tees"
+      And I should see "Kaffees" before "Vodkas"
+  
   Scenario: sort products by name and description
     Given a category "Biere" with the description "Getraenke"
       And a product "Becks" with the description "Deutschland" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "Biere"

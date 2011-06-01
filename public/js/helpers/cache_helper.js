@@ -122,10 +122,10 @@ karhu.CacheHelper = {
     }
   },
   
-  clearQueues: function() {
+  clearStore: function() {
     var context = this;
-    ['onlineQueue', 'offlineQueue'].forEach(function(queue_name) {
-      context.store.clear(queue_name);
+    ['onlineQueue', 'offlineQueue', 'sortCategories', 'sortProducts'].forEach(function(key) {
+      context.store.clear(key);
     });
   },
   
@@ -174,6 +174,15 @@ karhu.CacheHelper = {
     // }
   
     return list;
+  },
+  
+  handleSort: function(params, context_params, type) {
+    params.sort = context_params.sort || this.store.get('sort' + type);
+    if(params.sort) {
+      this.store.set('sort' + type, params.sort);
+    } else {
+      delete params.sort;
+    }
   }
 };
 
