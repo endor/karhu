@@ -17,7 +17,11 @@ module Helpers
 
   def sort(array, sort_by)
     array.sort_by do |object|
-      object[sort_by]
+      if sort_by == 'valid_to'
+        Date.parse(object['valid_to'])
+      else
+        object[sort_by]
+      end
     end
   end
   
