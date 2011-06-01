@@ -19,10 +19,12 @@ karhu.EditProduct = function(product, categories, last_edited_product) {
     }).first().value().selected = true;
   }
 
-  if(_.isString(product.unit_price)) {
-    product.unit_price = $.global.parseFloat(product.unit_price.match(/[\d\.\,]+/)[0]);
+  if(product.unit_price) {
+    if(_.isString(product.unit_price)) {
+      product.unit_price = $.global.parseFloat(product.unit_price.match(/[\d\.\,]+/)[0]);
+    }
+    product.unit_price = $.global.format(product.unit_price, "n") + '€';    
   }
-  product.unit_price = $.global.format(product.unit_price, "n") + '€';
 
   var date = $.global.parseDate(product.valid_to) || Date.parse(product.valid_to);
   product.valid_to = $.global.format(date, "d");
