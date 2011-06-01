@@ -8,6 +8,10 @@ karhu.EditProduct = function(product, categories, last_edited_product) {
     
     _.extend(product, data);
   }
+  
+  if(!product.valid_to) {
+    product.valid_to = (1).year().fromNow().toString('MM/dd/yyyy');
+  }
 
   if(product.category_id) {
     _(categories).chain().select(function(category) {
@@ -20,10 +24,12 @@ karhu.EditProduct = function(product, categories, last_edited_product) {
   }
   product.unit_price = $.global.format(product.unit_price, "n") + '€';
 
-  if(product.valid_to) {
-    var date = $.global.parseDate(product.valid_to) || Date.parse(product.valid_to);
-    product.valid_to = $.global.format(date, "d");
-  }
+  var date = $.global.parseDate(product.valid_to) || Date.parse(product.valid_to);
+  product.valid_to = $.global.format(date, "d");
+
+  categories = _.reject(categories, function(category) {
+    return !category.id;
+  });
 
   return _.extend(product, {categories: categories});
 }
