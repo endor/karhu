@@ -13,22 +13,22 @@
 <table class="products_table">
   <thead>
     <tr>
-      <th><a href="#/products?sort=name">{{?name}}</a></th>
-      <th><a href="#/products?sort=description">{{?description}}</a></th>
-      <th><a href="#/products?sort=unit_price">{{?price}}</a></th>
-      <th><a href="#/products?sort=valid_to">{{?valid_to}}</a></th>
-      <th><a href="#/products?sort=category">{{?category}}</a></th>
+      <th class="name_column"><a href="#/products?sort=name">{{?name}}</a></th>
+      <th class="description_column"><a href="#/products?sort=description">{{?description}}</a></th>
+      <th class="unit_price_column"><a href="#/products?sort=unit_price">{{?price}}</a></th>
+      <th class="valid_to_column"><a href="#/products?sort=valid_to">{{?valid_to}}</a></th>
+      <th class="category_column"><a href="#/products?sort=category">{{?category}}</a></th>
       <th>{{?actions}}</th>
     </tr>
   </thead>
   <tbody>
     {{#products}}
       <tr>
-        <td>{{name}}</td>
-        <td>{{description}}</td>
-        <td>{{unit_price}}</td>
-        <td>{{valid_to}}</td>
-        <td>{{#category}}{{name}}{{/category}}</td>
+        <td class="name_column">{{name}}</td>
+        <td class="description_column">{{description}}</td>
+        <td class="unit_price_column">{{unit_price}}</td>
+        <td class="valid_to_column">{{valid_to}}</td>
+        <td class="category_column">{{#category}}{{name}}{{/category}}</td>
         <td class="actions">
           {{#id}}
             <a href="#/products/{{id}}/edit" class="button" title="Edit {{name}}">{{?edit}}</a>

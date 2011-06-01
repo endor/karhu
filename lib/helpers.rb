@@ -1,3 +1,5 @@
+require 'date'
+
 module Helpers
   def cast_values_to_correct_types(params)
     new_params = {}

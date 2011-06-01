@@ -1,7 +1,7 @@
-describe("CacheHelper", function() {
+describe("SortHelper", function() {
   describe("sortList", function() {
     beforeEach(function() {
-      sortList = karhu.CacheHelper.sortList;
+      sortList = karhu.SortHelper.sortList;
     });
     
     it("should sort categories by name", function() {

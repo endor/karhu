@@ -173,6 +173,10 @@ table tbody tr:nth-child(2n+2) {
   background-color: #FFFDEF;
 }
 
+table .selected {
+  border: solid 1px #DFD9C3;
+}
+
 label {
   font-size: 18px;
 }

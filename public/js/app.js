@@ -14,6 +14,7 @@ karhu.app = $.sammy(function() {
   this.helpers(karhu.CustomValidatorsHelper);
   this.helpers(karhu.LocalesHelper);
   this.helpers(karhu.FilterHelper);
+  this.helpers(karhu.SortHelper);
   this.helpers({ store: karhu.config.store });
 
   karhu.Categories(this);
@@ -36,6 +37,7 @@ karhu.app = $.sammy(function() {
     context.beautifyInputElements();
     context.adjustElementsToOnlineStatus();
     context.validateForm();
+    context.markSortColumn();
     context.updatePagination(context.objectForPagination);
     context.displayHelp(content);
 
