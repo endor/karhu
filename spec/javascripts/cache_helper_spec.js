@@ -29,5 +29,18 @@ describe("CacheHelper", function() {
         {name: 'Margaux', description: 'Wein'}
       ]);
     });
+    
+    it("should sort products by valid to date", function() {
+      var products = [
+        {name: 'Veltins', valid_to: '08/04/2012'},
+        {name: 'Berliner', valid_to: '10/12/2011'},
+        {name: 'Becks', valid_to: '09/02/2013'}
+      ];
+      expect(sortList(products, 'valid_to')).toEqual([
+        {name: 'Berliner', valid_to: '10/12/2011'},
+        {name: 'Veltins', valid_to: '08/04/2012'},
+        {name: 'Becks', valid_to: '09/02/2013'}
+      ]);
+    });
   });
 });

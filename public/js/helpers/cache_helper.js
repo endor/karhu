@@ -149,6 +149,11 @@ karhu.CacheHelper = {
       var b_sort_by = b[sort_by].toUpperCase();
       return (a_sort_by < b_sort_by) ? -1 : (a_sort_by > b_sort_by) ? 1 : 0;
     };
+    if(sort_by === 'valid_to') {
+      sort_function = function(a, b) {
+        return Date.parse(a.valid_to).compareTo(Date.parse(b.valid_to));
+      }
+    }
     
     list.sort(sort_function);
   
