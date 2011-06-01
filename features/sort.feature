@@ -83,6 +83,27 @@ Feature: Sort
       And I should see "Anchor Steam Beer" before "Baltika Klassitscheskoye"
       But I should not see "Olvi"
   
-  # Scenario: sort products by category
+  Scenario: sort products by category
+    Given a category "BB" with the description "BB"
+      And a category "AA" with the description "AA"
+      And a category "CC" with the description "CC"
+      And a category "DD" with the description "DD"
+      And a category "EE" with the description "EE"
+      And a category "FF" with the description "FF"
+      And a product "11" with the description "11" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "FF"
+      And a product "22" with the description "22" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "BB"
+      And a product "33" with the description "33" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "DD"
+      And a product "44" with the description "44" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "CC"
+      And a product "55" with the description "55" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "AA"
+      And a product "66" with the description "66" and the price "2.00€" that is valid to "12/20/2012" and belongs to the category "EE"
+      And I am logged in
+    When I go to the start page
+      And I follow "Products"
+      And I follow "Category"
+    Then I should see "55" before "22"
+      And I should see "44" before "33"
+      And I should see "33" before "66"
+      But I should not see "11"
+  
   # Scenario: sort categories offline
   # Scenario: sort products offline

@@ -16,9 +16,17 @@ module Helpers
   end
 
   def sort(array, sort_by)
+    if sort_by == 'category'
+      file = ROOT + "/features/fixtures/categories.json"
+      categories = File.exists?(file) ? JSON.parse(File.read(file)) : []  
+    end
+    
     array.sort_by do |object|
       if sort_by == 'valid_to'
         Date.parse(object['valid_to'])
+      elsif sort_by == 'category'
+        category = categories.find{|c| c['id'] == object['category_id']}
+        category['name']
       else
         object[sort_by]
       end
