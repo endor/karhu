@@ -42,5 +42,27 @@ describe("CacheHelper", function() {
         {name: 'Becks', valid_to: '09/02/2013'}
       ]);
     });
+    
+    it("should sort products by category name", function() {
+      store = {
+        get: function() {
+          return [
+            {id: 1, name: 'Weine'},
+            {id: 2, name: 'Biere'},
+            {id: 3, name: 'Cognacs'}
+          ];
+        }
+      }
+      var products = [
+        {name: 'Hennessy', category_id: 3},
+        {name: 'Veltins', category_id: 2},
+        {name: 'Margaux', category_id: 1}
+      ];
+      expect(sortList(products, 'category')).toEqual([
+        {name: 'Veltins', category_id: 2},
+        {name: 'Hennessy', category_id: 3},
+        {name: 'Margaux', category_id: 1}
+      ]);      
+    });
   });
 });
