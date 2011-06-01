@@ -105,5 +105,32 @@ Feature: Sort
       And I should see "33" before "66"
       But I should not see "11"
   
-  # Scenario: sort categories offline
-  # Scenario: sort products offline
+  Scenario: sort categories offline
+    Given a category "Kaffees" with the description "HH"
+      And a category "Tees" with the description "GG"
+      And a category "Biere" with the description "FF"
+      And a category "Weine" with the description "EE"
+      And a category "Cognacs" with the description "DD"
+      And a category "Portweine" with the description "CC"
+      And a category "Grappas" with the description "BB"
+      And a category "Sherries" with the description "AA"
+      And I am logged in
+    When I go to the start page
+      And I follow "Categories"
+    Then I should see "Kaffees" before "Biere"
+      And I should see "Weine" before "Cognacs"
+      But I should not see "Portweine"
+    When I wait for 3s
+      And I get disconnected from the internet
+      And I follow "Name"
+    Then I should see "Biere" before "Kaffees"
+      And I should see "Grappas" before "Kaffees"
+      But I should not see "Sherries"
+      And I should not see "Tees"
+      And I should not see "Weine"
+    When I follow "Description"
+    Then I should see "Sherries" before "Grappas"
+      And I should see "Portweine" before "Cognacs"
+      But I should not see "Biere"
+      And I should not see "Tees"
+      And I should not see "Kaffees"

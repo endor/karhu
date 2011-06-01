@@ -50,7 +50,7 @@ karhu.CacheHelper = {
       switch(action.verb) {
         case 'post':
           context.addToCachedObjects(action);
-          break
+          break;
         case 'put':
           context.updateCachedObjects(action);
           break;
@@ -110,23 +110,10 @@ karhu.CacheHelper = {
         if(url.match(/\/\w+\/\d+/)) {
           success(this.retrieveObjectFromCachedList(url));
         } else {
-          var values = this.retrieveCachedList(url);
-
-          if(data.page) {
-            var page = data.page || 1,
-              per_page = data.per_page || karhu.config.per_page;
-
-            success({
-              current_page: page,
-              total_pages: this.totalPages(values, per_page),
-              total_entries: values.length,
-              per_page: per_page,
-              values: values.splice((page - 1) * per_page, per_page),
-              url: '#' + url
-            });
-          } else {
-            success(values);
-          }
+          var list = this.retrieveCachedList(url);
+          if(data.sort) { list = this.sortList(list, data.sort); }
+          if(data.page) { list = this.paginateList(list, url, data.page, data.per_page); }
+          success(list);
         }
         break;
       default:
@@ -142,8 +129,34 @@ karhu.CacheHelper = {
     });
   },
   
-  totalPages: function(entries, per_page) {
-    return Math.ceil(entries.length / per_page);
+  paginateList: function(list, url, page, per_page) {
+    page = page || 1;
+    per_page = per_page || karhu.config.per_page;
+
+    return {
+      current_page: page,
+      total_pages: Math.ceil(list.length / per_page),
+      total_entries: list.length,
+      per_page: per_page,
+      values: list.splice((page - 1) * per_page, per_page),
+      url: '#' + url
+    };
+  },
+  
+  sortList: function(list, sort_by) {
+    var sort_function = function(a, b) {
+      var a_sort_by = a[sort_by].toUpperCase();
+      var b_sort_by = b[sort_by].toUpperCase();
+      return (a_sort_by < b_sort_by) ? -1 : (a_sort_by > b_sort_by) ? 1 : 0;
+    };
+    
+    list.sort(sort_function);
+  
+    // if(reverse) {
+    //   list.reverse();
+    // }
+  
+    return list;
   }
 };
 
