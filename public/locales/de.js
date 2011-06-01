@@ -2,6 +2,7 @@ karhu.locales.de = {
   products: 'Produkte',
   categories: 'Kategorien',
   queue: 'Queue',
+  keyboard_shortcuts: 'Tastaturkürzel',
   logout: 'Ausloggen',
   header: 'Produkt-Stammdatenpflege als HTML5 Web App',
   title: 'Produkt-Stammdatenpflege als HTML5 Web App',
@@ -51,5 +52,14 @@ karhu.locales.de = {
   please_finnish_adding_your_product: 'Bitte bearbeite das Produkt zu Ende.',
   invalid_user_password_combination: 'Ungültige Benutzer/Passwort Kombination.',
   help: 'Hilfe',
-  help_text: 'Drücke auf ESC zum abbrechen und auf ENTER in einem Textfeld um das Formular abzuschicken.'
+  help_text: 'Drücke auf ESC zum abbrechen und auf ENTER in einem Textfeld um das Formular abzuschicken.',
+  add_product_or_category: 'Produkt oder Kategorie hinzufügen',
+  send_form: 'Formular absenden',
+  go_to_page: 'Zur Seite gehen',
+  left_arrow: 'linker Pfeil',
+  right_arrow: 'rechter Pfeil',
+  go_to_next_page: 'Zur nächsten Seite',
+  go_to_previous_page: 'Zur vorherigen Seite',
+  go_to_first_page: 'Zur ersten Seite',
+  go_to_last_page: 'Zur letzten Seite'
 };

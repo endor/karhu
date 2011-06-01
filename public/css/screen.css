@@ -256,22 +256,6 @@ ul.cached_actions_list li {
   margin: 0px;
 }
 
-/*
-#header nav li:first-letter {
-  text-decoration: underline !important;
-  color: white;
-}
-
-#header nav li.active:first-letter {
-  text-decoration: underline !important;
-  color: #459E00;
-}
-
-.underline:first-letter {
-  text-decoration: underline !important;
-}
-*/
-
 .main {
   position: relative;
 }
@@ -289,4 +273,39 @@ ul.cached_actions_list li {
   -webkit-border-radius: 6px; 
   -o-border-radius: 6px; 
   border-radius: 6px;
+}
+
+#facebox {
+  padding-bottom: 3em;
+  z-index: 999;
+}
+
+#facebox .info {
+  float: left;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: 1em;
+}
+
+#facebox .info li {
+  text-align: left;
+  margin-bottom: 0.5em;
+}
+
+#facebox .info span {
+  display: inline-block;
+  margin-right: 0.5em;
+  border: solid 1px #DFD9C3;
+  padding: 0.5em;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px; 
+  -o-border-radius: 6px; 
+  border-radius: 6px;
+  background-color: #F5F3E5;
+}
+
+#facebox .close {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
 }

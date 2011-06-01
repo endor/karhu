@@ -2,6 +2,7 @@ karhu.locales.en = {
   products: 'Products',
   categories: 'Categories',
   queue: 'Queue',
+  keyboard_shortcuts: 'Keyboard shortcuts',
   logout: 'Log out',
   header: 'Products data management as HTML5 Web App',
   title: 'Products data management as HTML5 Web App',
@@ -51,5 +52,14 @@ karhu.locales.en = {
   please_finnish_adding_your_product: 'Please finnish adding your product.',
   invalid_user_password_combination: 'Invalid user/password combination.',
   help: 'Help',
-  help_text: 'Press ESC to cancel and press ENTER on a non-textarea field to submit the form.'
+  help_text: 'Press ESC to cancel and press ENTER on a non-textarea field to submit the form.',
+  add_product_or_category: 'Add product or category',
+  send_form: 'Send form',
+  go_to_page: 'Go to page',
+  left_arrow: 'left arrow',
+  right_arrow: 'right arrow',
+  go_to_next_page: 'Go to next page',
+  go_to_previous_page: 'Go to previous page',
+  go_to_first_page: 'Go to first page',
+  go_to_last_page: 'Go to last page'
 };

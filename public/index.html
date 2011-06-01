@@ -34,6 +34,7 @@
       .script('./js/controllers/cached_actions.js')
       .script('./js/controllers/locales.js')
       .script('./js/controllers/session.js')
+      .script('./js/controllers/pages.js')
       .script('./js/models/product.js')
       .script('./js/models/category.js')
       .script('./js/models/session_validations.js')
@@ -43,10 +44,11 @@
       .script('./js/helpers/cache_helper.js')
       .script('./js/helpers/application_helper.js').wait()
       .script('./js/helpers/offline_helper.js')
+      .script('./js/helpers/keyboard_helper.js')
       .script('./js/helpers/access_last_item_helper.js')
       .script('./js/helpers/custom_validators_helper.js')
       .script('./js/helpers/locales_helper.js').wait()
-      .script('./js/helpers/around_before_filter_helper.js')
+      .script('./js/helpers/filter_helper.js')
       .script('./locales/de.js')
       .script('./locales/en.js').wait()
       .script('./js/app.js');
@@ -55,19 +57,24 @@
 
   <body>
     <ul id="languages">
+      <li class="hidden">
+        <a href="#/pages/keyboard_shortcuts" class="keyboard_shortcuts translate" data-translate-key="keyboard_shortcuts" data-key="k">
+          Keyboard shortcuts
+        </a>
+      </li>
       <li>
         <a href="#/locales/en" data-key="e">
-          <div class="underline">English</div>
+          English
         </a>
       </li>
       <li>
         <a href="#/locales/de" data-key="d">
-          <div class="underline">Deutsch</div>
+          Deutsch
         </a>
       </li>
       <li class="hidden">
-        <a href="#" class="logout" class="translate" data-translate-key="logout" data-key="l">
-          <div class="underline">Log out</div>
+        <a href="#" class="logout translate" data-translate-key="logout" data-key="l">
+          Log out
         </a>
       </li>
     </ul>

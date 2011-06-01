@@ -1,11 +1,11 @@
-karhu.AroundBeforeFilterHelper = {
+karhu.FilterHelper = {
   clearContextVariables: function(context) {
     context.objectForValidation = null;
   },
   
   markActiveMenuItem: function(context) {
     var type = context.path.match(/\#\/([^\/\?]+)/);
-    if(type) {
+    if(type && type[1] !== 'pages') {
       $('#header nav a, #header nav li').removeClass('active');
       $('#header nav .' + type[1]).addClass('active').parent().addClass('active');
     }
@@ -52,6 +52,12 @@ karhu.AroundBeforeFilterHelper = {
       this.accessLastItem(key, callback);
     } else {
       callback();
+    }
+  },
+  
+  saveLastLocation: function() {
+    if(!this.path.match(/pages/)) {
+      karhu.lastLocation = this.path.match(/(\#.+)/)[1];
     }
   }
 };

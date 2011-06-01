@@ -14,7 +14,9 @@ karhu.ApplicationHelper = {
       onClose: function() { $('body').trigger('datepickerClosed'); }
     });
     $('input, textarea').keydown(function(evt) {
-      evt.stopPropagation();
+      if(evt.keyCode !== 27 && !(evt.keyCode === 13 && evt.ctrlKey === true)) {
+        evt.stopPropagation();
+      }
     });
   },
   
@@ -33,9 +35,9 @@ karhu.ApplicationHelper = {
   
   showLinks: function() {
     if(karhu.token) {
-      $('.logout').parent().show();
+      $('.logout, .keyboard_shortcuts').parent().show();
     } else {
-      $('.logout').parent().hide();
+      $('.logout, .keyboard_shortcuts').parent().hide();
     }
   },
 
@@ -55,6 +57,7 @@ karhu.ApplicationHelper = {
       template = 'templates/shared/pagination_link.mustache';
 
     $pagination.html('');
+    karhu.pagination = paginated_objects;
 
     if(paginated_objects && paginated_objects.total_pages > 1) {
       for(var i = 1; i <= paginated_objects.total_pages; i += 1) {
@@ -73,20 +76,7 @@ karhu.ApplicationHelper = {
       var validations = this.objectForValidation.validations();
       $('.main form').validate(this.translateValidationMessages(validations));
     }
-  },
-  
-  initializeKeyboardControl: function() {
-    var usedKeyCodes = {
-      '65': 'a', '67': 'c', '68': 'd', '69': 'e', '76': 'l', '80': 'p',
-      '49': '1', '50': '2', '51': '3', '52': '4', '53': '5', '54': '6',
-      '55': '7', '56': '8', '57': '9', '27': 'esc'
-    };
-    $(document).keydown(function(evt) {
-      if(!evt.metaKey && !evt.ctrlKey) {
-        $('[data-key="' + usedKeyCodes[evt.keyCode] + '"]').click();
-      }
-    });
-  },
+  },  
   
   displayHelp: function(content) {
     if(content.match(/form/) && content.match(/(PUT|POST)/) && !content.match(/password/)) {
