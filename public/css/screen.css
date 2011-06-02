@@ -264,21 +264,6 @@ ul.cached_actions_list li {
   position: relative;
 }
 
-#help {
-  position: absolute;
-  top: 5em;
-  right: 0.5em;
-  padding: 1em;
-  border: solid 1px black;
-  min-height: 12em;
-  width: 20em;
-  border: solid 1px #DFD9C3;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px; 
-  -o-border-radius: 6px; 
-  border-radius: 6px;
-}
-
 #facebox {
   padding-bottom: 3em;
   z-index: 999;

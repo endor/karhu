@@ -28,7 +28,6 @@ Feature: Sort
       And I should not see "Tees"
       And I should not see "Kaffees"
   
-  @wip
   Scenario: reverse sort categories
     Given a category "Kaffees" with the description "HH"
       And a category "Tees" with the description "GG"

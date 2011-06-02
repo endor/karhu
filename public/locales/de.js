@@ -51,8 +51,6 @@ karhu.locales.de = {
   please_finnish_adding_your_category: 'Bitte bearbeite die Kategorie zu Ende.',
   please_finnish_adding_your_product: 'Bitte bearbeite das Produkt zu Ende.',
   invalid_user_password_combination: 'Ungültige Benutzer/Passwort Kombination.',
-  help: 'Hilfe',
-  help_text: 'Drücke auf ESC zum abbrechen und auf ENTER in einem Textfeld um das Formular abzuschicken.',
   add_product_or_category: 'Produkt oder Kategorie hinzufügen',
   send_form: 'Formular absenden',
   go_to_page: 'Zur Seite gehen',

@@ -51,8 +51,6 @@ karhu.locales.en = {
   please_finnish_adding_your_category: 'Please finnish adding your category.',
   please_finnish_adding_your_product: 'Please finnish adding your product.',
   invalid_user_password_combination: 'Invalid user/password combination.',
-  help: 'Help',
-  help_text: 'Press ESC to cancel and press ENTER on a non-textarea field to submit the form.',
   add_product_or_category: 'Add product or category',
   send_form: 'Send form',
   go_to_page: 'Go to page',

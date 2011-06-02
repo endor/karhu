@@ -39,7 +39,6 @@ karhu.app = $.sammy(function() {
     context.validateForm();
     context.markSortColumn();
     context.updatePagination(context.objectForPagination);
-    context.displayHelp(content);
 
     return result;
   };

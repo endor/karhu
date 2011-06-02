@@ -78,14 +78,6 @@ karhu.ApplicationHelper = {
     }
   },  
   
-  displayHelp: function(content) {
-    if(content.match(/form/) && content.match(/(PUT|POST)/) && !content.match(/password/)) {
-      this.render('templates/shared/form_help.mustache', {}, function(rendered_view) {        
-        $('.main').append(rendered_view);
-      });
-    }
-  },
-  
   randomUrl: function(url, verb) {
     return url + (verb === 'get' ? '?random=' + (new Date()).getTime() : '');
   }
