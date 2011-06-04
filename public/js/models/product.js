@@ -29,11 +29,11 @@ karhu.Product = function(attributes, categories) {
   var regular_expressions = {
     en: {
       unit_price: /^(\d{1,3}([,]\d{3})*|(\d+))([.]\d{2})?( )?€?$/,
-      valid_to: /\d{2}\/\d{2}\/\d{4}/
+      valid_to: /\d{1,2}\/\d{1,2}\/\d{4}/
     },
     de: {
       unit_price: /^(\d{1,3}([.]\d{3})*|(\d+))([,]\d{2})?( )?€?$/,
-      valid_to: /\d{2}\.\d{2}\.\d{4}/
+      valid_to: /\d{1,2}\.\d{1,2}\.\d{4}/
     }
   };
   
