@@ -13,7 +13,7 @@ karhu.app = $.sammy(function(app, context) {
   this.helpers(karhu.AccessLastItemHelper);
   this.helpers(karhu.CustomValidatorsHelper);
   this.helpers(karhu.LocalesHelper);
-  this.helpers(karhu.FilterHelper);
+  this.helpers(karhu.AppFilterHelper);
   this.helpers(karhu.SortHelper);
   this.helpers({ store: karhu.config.store });
 

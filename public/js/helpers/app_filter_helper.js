@@ -1,8 +1,4 @@
-//
-// TODO
-// rename to sammy filters
-//
-karhu.FilterHelper = {
+karhu.AppFilterHelper = {
   clearContextVariables: function(context) {
     context.objectForValidation = null;
   },
@@ -16,7 +12,6 @@ karhu.FilterHelper = {
   },
   
   redirectIfCanceled: function(context) {
-    console.log(context.params.cancel)
     if(context.params.cancel) {
       var toClear = ['last_added_product', 'last_edited_product', 'last_added_category', 'last_edited_category'];
       toClear.forEach(function(item) { context.store.clear(item); });      
