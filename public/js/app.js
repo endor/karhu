@@ -1,8 +1,8 @@
-karhu.app = $.sammy(function() {
+karhu.app = $.sammy(function(app, context) {
   this.element_selector = 'body';
   this.objects_cached = false;
   
-  this.use(Sammy.Mustache);
+  this.use(Sammy.Mustache, 'mustache');
   this.use(Sammy.NestedParams);
   this.use(Sammy.JSON);  
   
@@ -22,26 +22,16 @@ karhu.app = $.sammy(function() {
   karhu.CachedActions(this);
   karhu.Locales(this);
   karhu.Session(this);
-  karhu.Pages(this);
+
+  this.swap = function(content) { return $('.main').html(content); };
   
-  //
-  // NOTE: for this to work sammy needs to send the event context to swap
-  //
-  //   swap: function(contents) {
-  //     return this.app.swap(contents, this);
-  //   },
-  //
-  this.swap = function(content, context) {
-    var result = $('.main').html(content);
-
-    context.beautifyInputElements();
-    context.adjustElementsToOnlineStatus();
-    context.validateForm();
-    context.markSortColumn();
-    context.updatePagination(context.objectForPagination);
-
-    return result;
-  };
+  this.bind('changed', function() {
+    this.beautifyInputElements();
+    this.adjustElementsToOnlineStatus();
+    this.validateForm();
+    this.markSortColumn();
+    this.updatePagination();
+  });
   
   this.get('#/', function() {
     this.redirect('#/products');
@@ -58,17 +48,14 @@ karhu.app = $.sammy(function() {
     this.notifyOfOnlineOfflineStatus();
   });
   
-  
-  var event_context = this.context_prototype.prototype;
-  
-  this.before(event_context.clearContextVariables);
-  this.before(event_context.markActiveMenuItem);
-  this.before(event_context.showLinks);
-  this.before({only: {verb: ['post', 'put']}}, event_context.redirectIfCanceled);
+  this.before(context.clearContextVariables);
+  this.before(context.markActiveMenuItem);
+  this.before(context.showLinks);
+  this.before({only: {verb: ['post', 'put']}}, context.redirectIfCanceled);
 
-  this.around(event_context.initializeLocales);
-  this.around(event_context.redirectToLogin);
-  this.around(event_context.redirectToLastAccessedItem);
+  this.around(context.initializeLocales);
+  this.around(context.redirectToLogin);
+  this.around(context.redirectToLastAccessedItem);
 });
 
 $(function() {

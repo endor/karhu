@@ -1,3 +1,7 @@
+//
+// TODO
+// this has to be possible in a cleaner, nicer way
+//
 karhu.SortHelper = {  
   handleSort: function(params, context_params, type) {
     params.sort = context_params.sort || this.store.get('sort' + type);

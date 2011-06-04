@@ -52,9 +52,10 @@ karhu.ApplicationHelper = {
     xhr.setRequestHeader("X-Karhu-Authentication", 'user="' + karhu.user + '", token="' + karhu.token + '"');
   },
   
-  updatePagination: function(paginated_objects) {
+  updatePagination: function() {
     var $pagination = $('.controls .pagination'),
-      template = 'templates/shared/pagination_link.mustache';
+      template = 'templates/shared/pagination_link.mustache',
+      paginated_objects = this.objectForPagination;
 
     $pagination.html('');
     karhu.pagination = paginated_objects;
@@ -83,6 +84,13 @@ karhu.ApplicationHelper = {
   }
 };
 
+
+//
+// maybe create a backend class and instantiate once in app
+// backend.get()
+// backend.post()
+// etc.
+//
 (function() {
   ['get', 'post', 'delete', 'put'].forEach(function(verb) {
     karhu.ApplicationHelper['ajax_' + verb] = function(url, data, success, error) {

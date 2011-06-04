@@ -5,6 +5,10 @@ karhu.Product = function(attributes, categories) {
   
   var product = attributes || {};
 
+  //
+  // TODO
+  // maybe extract this into a function
+  //
   if(product.unit_price) {
     if(_.isString(product.unit_price)) {
       product.unit_price = $.global.parseFloat(product.unit_price.match(/[\d\.\,]+/)[0]);

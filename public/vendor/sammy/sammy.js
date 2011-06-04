@@ -450,6 +450,7 @@
           plugin_name = plugin || '';
       try {
         args.unshift(this);
+        args.push(this.context_prototype.prototype);
         if (typeof plugin == 'string') {
           plugin_name = 'Sammy.' + plugin;
           plugin = Sammy[plugin];

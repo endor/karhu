@@ -1,3 +1,7 @@
+//
+// TODO
+// this definitely needs to be cleaned up
+//
 karhu.EditProduct = function(product, categories, last_edited_product) {
   if(last_edited_product) {
     var data = {};

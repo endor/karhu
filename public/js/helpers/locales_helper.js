@@ -1,3 +1,7 @@
+//
+// TODO
+// maybe introduce an i18n "class"
+//
 karhu.LocalesHelper = {
   setLocale: function(locale) {
     karhu.locale = locale;

@@ -30,6 +30,11 @@ karhu.AccessLastItemHelper = {
     callback(lastAccessedItem);
   },
   
+  
+  //
+  // TODO
+  // this has to be possible in a nicer cleaner way
+  //
   accessLastItem: function(key, callback) {      
     var split_key = key.split('_');
     var action = split_key[1] === 'edited' ? 'edit' : 'new';

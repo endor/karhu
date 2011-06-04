@@ -10,7 +10,7 @@ karhu.Products = function(app) {
     context.ajax_get('/categories', {}, function(categories) {
       context.ajax_get('/products', params, function(paginated_products) {
         context.objectForPagination = _.extend({}, paginated_products, {url: '#/products'});      
-        products = paginated_products.values.map(function(product) { return new karhu.Product(product, categories); });
+        var products = paginated_products.values.map(function(product) { return new karhu.Product(product, categories); });
         context.partial('templates/products/index.mustache', {products: products});
       });
     });

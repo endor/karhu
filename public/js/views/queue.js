@@ -1,3 +1,7 @@
+//
+// TODO
+// this definitely needs to be cleaned up
+//
 karhu.Queue = function(queue, categories) {
   queue = queue || [];
   

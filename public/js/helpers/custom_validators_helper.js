@@ -1,3 +1,7 @@
+//
+// TODO
+// add tests for those
+//
 karhu.CustomValidatorsHelper = {
   initializeCustomValidators: function() {
     $.validator.addMethod("formatted", function(value, element) {
