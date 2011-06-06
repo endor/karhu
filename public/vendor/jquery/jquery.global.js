@@ -443,7 +443,7 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
             // to see given the portions of the date that are shown.
             patterns: {
                 // short date pattern
-                d: "M/d/yyyy",
+                d: "MM/dd/yyyy",
                 // long date pattern
                 D: "dddd, MMMM dd, yyyy",
                 // short time pattern

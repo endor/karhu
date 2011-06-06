@@ -1,43 +1,24 @@
 karhu.Product = function(attributes, categories) {
-  var category = _.find(categories, function(category) {
-    return parseInt(category.id, 10) === parseInt(attributes.category_id, 10);
-  });
+  _.extend(this, attributes);
   
-  var product = attributes || {};
+  attachCategory(this, categories);
+  formatPrice(this);
+  formatValidTo(this);
 
-  //
-  // TODO
-  // maybe extract this into a function
-  //
-  if(product.unit_price) {
-    if(_.isString(product.unit_price)) {
-      product.unit_price = $.global.parseFloat(product.unit_price.match(/[\d\.\,]+/)[0]);
-    }
-    var price = product.unit_price;
-    product.unit_price = $.global.format(product.unit_price, "n") + '€';
-  }
-  
-  if(product.valid_to) {
-    var date = $.global.parseDate(product.valid_to) || Date.parse(product.valid_to);
-    product.valid_to = $.global.format(date, "d");
-  }
-  
-  product.toJSON = function() {
-    return _.extend(product, {unit_price: price, valid_to: date.toString('MM/dd/yyyy')});
-  };
 
-  var regular_expressions = {
-    en: {
-      unit_price: /^(\d{1,3}([,]\d{3})*|(\d+))([.]\d{2})?( )?€?$/,
-      valid_to: /\d{1,2}\/\d{1,2}\/\d{4}/
-    },
-    de: {
-      unit_price: /^(\d{1,3}([.]\d{3})*|(\d+))([,]\d{2})?( )?€?$/,
-      valid_to: /\d{1,2}\.\d{1,2}\.\d{4}/
+  
+  this.toJSON = function() {
+    return {
+      unit_price: this.unit_price_unformatted,
+      valid_to: this.valid_to_unformatted.toString('MM/dd/yyyy'),
+      category_id: this.category_id,
+      id: this.id,
+      name: this.name,
+      description: this.description
     }
   };
-  
-  product.validations = function() {
+
+  this.validations = function() {
     return {
       rules: {
         'product[name]': {
@@ -47,11 +28,11 @@ karhu.Product = function(attributes, categories) {
         'product[description]': {required: true},
         'product[unit_price]': {
           required: true,
-          formatted: regular_expressions[karhu.locale].unit_price
+          formatted: regularExpression('unit_price')
         },
         'product[valid_to]': {
           required: true,
-          formatted: regular_expressions[karhu.locale].valid_to,
+          formatted: regularExpression('valid_to'),
           dateLargerThan: Date.today()
         }
       },
@@ -74,7 +55,43 @@ karhu.Product = function(attributes, categories) {
         }
       }
     };
-  };
+  };  
+
+
+
+  function formatPrice(product) {
+    if(product.unit_price) {
+      if(_.isString(product.unit_price)) {
+        product.unit_price = $.global.parseFloat(product.unit_price.match(/[\d\.\,]+/)[0]);
+      }
+      product.unit_price_unformatted = product.unit_price;
+      product.unit_price = $.global.format(product.unit_price, "n") + '€';
+    }
+  }
   
-  return _.extend(product, {category: category});
+  function formatValidTo(product) {
+    if(product.valid_to) {
+      product.valid_to_unformatted = $.global.parseDate(product.valid_to) || Date.parse(product.valid_to);
+      product.valid_to = $.global.format(product.valid_to_unformatted, "d");
+    }
+  }
+
+  function attachCategory(product, categories) {
+    product.category = _.find(categories, function(category) {
+      return parseInt(category.id, 10) === parseInt(product.category_id, 10);
+    });
+  }
+
+  function regularExpression(field) {
+    return {
+      en: {
+        unit_price: /^(\d{1,3}([,]\d{3})*|(\d+))([.]\d{2})?( )?€?$/,
+        valid_to: /\d{1,2}\/\d{1,2}\/\d{4}/
+      },
+      de: {
+        unit_price: /^(\d{1,3}([.]\d{3})*|(\d+))([,]\d{2})?( )?€?$/,
+        valid_to: /\d{1,2}\.\d{1,2}\.\d{4}/
+      }
+    }[karhu.locale][field];
+  }
 };

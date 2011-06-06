@@ -1,4 +1,11 @@
 karhu.Categories = function(app) {
+  //
+  // TODO:
+  // think if it makes sense to rather write something like
+  // karhu.Category.all({page: 1, sort: 'name'}, function(categories) {
+  //   context.partial('index.mustache', {categories: categories});
+  // })
+  //
   app.get('#/categories', function(context) {
     var params = {
       page: context.params.page || 1,
