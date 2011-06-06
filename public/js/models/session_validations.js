@@ -1,7 +1,5 @@
 karhu.SessionValidations = function() {
-  var session = {};
-  
-  session.validations = function() {
+  this.validations = function() {
     return {
       rules: {
         'session[user]': {
@@ -21,6 +19,4 @@ karhu.SessionValidations = function() {
       }
     };
   };
-  
-  return session;
 };

@@ -1,48 +1,8 @@
 karhu.CachedLists = function(store) {
   this.store = store;
-
-  this.initialize = function() {
-    var context = this, list;
-    ['products', 'categories'].forEach(function(type) {
-      list = context.store.get('/' + type) || [];
-      context.store.set('/' + type, list);
-    });
-  };
   
-  this.initialize();
+  initialize(this);
   
-  this.splitURL = function() {
-    var url = this.url.match(/(\/\w+)\/(\d+)/);
-    return {path: url[1], id: parseInt(url[2], 10)};
-  };
-  
-  this.addToList = function() {
-    var list = this.store.get(this.url);
-    list.push(this.data);
-    this.store.set(this.url, list);
-  };
-  
-  this.updateList = function() {
-    var url = this.splitURL(),
-      list = this.store.get(url.path);
-
-    _.extend(_.find(list, function(object) {
-      return parseInt(object.id, 10) === url.id;
-    }), this.data);
-
-    this.store.set(url.path, list);
-  };
-  
-  this.removeFromList = function() {
-    var url = this.splitURL(),
-      list = this.store.get(url.path);
-
-    list = _.reject(list, function(object) {
-      return parseInt(object.id, 10) === url.id;
-    });
-
-    this.store.set(url.path, list);
-  };
   
   this.process = function(action) {
     this.data = action.data;
@@ -50,18 +10,87 @@ karhu.CachedLists = function(store) {
 
     switch(action.verb) {
       case 'post':
-        this.addToList();
+        addToList(this.store, this.url, this.data);
         break;
       case 'put':
-        this.updateList();
+        updateList(this.store, this.url, this.data);
         break;
       case 'delete':
-        this.removeFromList();
+        removeFromList(this.store, this.url);
         break;
     }    
   };
   
-  var _paginate = function(list, url, page, per_page) {
+  this.retrieve = function(action, helpers) {
+    this.url = action.url;
+    this.data = action.data;
+    
+    if(this.url.match(/\/\w+\/\d+/)) {
+      return retrieveObject(this.store, this.url);
+    } else {
+      var list = retrieveList(this.store, this.url);
+      if(this.data.sort) { list = _sort(list, this.data.sort, this.data.reverse, this.store); }
+      if(this.data.page) { list = _paginate(list, this.url, this.data.page, this.data.per_page); }
+      return list;
+    }
+  };  
+  
+  
+  function retrieveObject(store, url) {
+    var url = splitURL(url),
+      list = store.get(url.path);
+    
+    return _.find(list, function(object) {
+      return parseInt(object.id, 10) === url.id;
+    });    
+  }
+
+  function retrieveList(store, url) {
+    return store.get(url);
+  }
+  
+  function addToList(store, url, data) {
+    var list = store.get(url);
+    list.push(data);
+    store.set(url, list);
+  }
+  
+  function updateList(store, url, data) {
+    var url = splitURL(url),
+      list = store.get(url.path);
+
+    _.extend(_.find(list, function(object) {
+      return parseInt(object.id, 10) === url.id;
+    }), data);
+
+    store.set(url.path, list);
+  }
+  
+  function removeFromList(store, url) {
+    var url = splitURL(url),
+      list = store.get(url.path);
+
+    list = _.reject(list, function(object) {
+      return parseInt(object.id, 10) === url.id;
+    });
+
+    store.set(url.path, list);
+  }
+
+  function splitURL(url) {
+    var splitted_url = url.match(/(\/\w+)\/(\d+)/);
+    return {path: splitted_url[1], id: parseInt(splitted_url[2], 10)};
+  }
+  
+  function initialize(context) {
+    var list;
+    ['products', 'categories'].forEach(function(type) {
+      list = context.store.get('/' + type) || [];
+      context.store.set('/' + type, list);
+    });    
+  }
+  
+  function _paginate(list, url, page, per_page) {
     page = page || 1;
     per_page = per_page || karhu.config.per_page;
 
@@ -73,9 +102,9 @@ karhu.CachedLists = function(store) {
       values: list.splice((page - 1) * per_page, per_page),
       url: '#' + url
     };
-  };
+  }
   
-  var _sort = function(list, sort_by, reverse, store) {
+  function _sort(list, sort_by, reverse, store) {
     var sort_function = function(a, b) {
       var a_sort_by = a[sort_by].toUpperCase();
       var b_sort_by = b[sort_by].toUpperCase();
@@ -85,7 +114,7 @@ karhu.CachedLists = function(store) {
     if(sort_by === 'valid_to') {
       sort_function = function(a, b) {
         return Date.parse(a.valid_to).compareTo(Date.parse(b.valid_to));
-      }
+      };
     }
     
     if(sort_by === 'category') {
@@ -96,7 +125,7 @@ karhu.CachedLists = function(store) {
         var a_sort_by = a_category.name.toUpperCase();
         var b_sort_by = b_category.name.toUpperCase();
         return (a_sort_by < b_sort_by) ? -1 : (a_sort_by > b_sort_by) ? 1 : 0;
-      }
+      };
     }
     
     list.sort(sort_function);
@@ -106,32 +135,5 @@ karhu.CachedLists = function(store) {
     }
   
     return list;
-  };
-  
-  this.retrieve = function(action, helpers) {
-    this.url = action.url;
-    this.data = action.data;
-    
-    if(this.url.match(/\/\w+\/\d+/)) {
-      return this.retrieveObject();
-    } else {
-      var list = this.retrieveList();
-      if(this.data.sort) { list = _sort(list, this.data.sort, this.data.reverse, this.store); }
-      if(this.data.page) { list = _paginate(list, this.url, this.data.page, this.data.per_page); }
-      return list;
-    }
-  };
-  
-  this.retrieveObject = function() {
-    var url = this.splitURL(),
-      list = this.store.get(url.path);
-    
-    return _.find(list, function(object) {
-      return parseInt(object.id, 10) === url.id;
-    });    
-  };
-  
-  this.retrieveList = function() {
-    return this.store.get(this.url);
-  };  
+  }
 };

@@ -1,14 +1,14 @@
 karhu.Category = function() {
-  var category = {};
-  
-  category.validations = function() {
+  this.validations = function() {
     return {
       rules: {
         'category[name]': {
           required: true,
           maxlength: 100
         },
-        'category[description]': {required: true}
+        'category[description]': {
+          required: true
+        }
       },
       messages: {
         'category[name]': {
@@ -21,6 +21,4 @@ karhu.Category = function() {
       }
     };
   };
-  
-  return category;
 };
