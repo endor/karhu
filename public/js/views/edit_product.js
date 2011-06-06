@@ -1,41 +1,28 @@
-//
-// TODO
-// this definitely needs to be cleaned up
-//
-karhu.EditProduct = function(product, categories, last_edited_product) {
-  if(last_edited_product) {
-    var data = {};
-    
-    _.each(last_edited_product.data, function(val, key) {
-      if(val !== "") { data[key] = val; }
-    });
-    
-    _.extend(product, data);
-  }
-  
-  if(!product.valid_to) {
-    product.valid_to = (1).year().fromNow().toString('MM/dd/yyyy');
-  }
+karhu.EditProduct = function(attributes, categories, last_edited_product) {
+  _.extend(attributes, (last_edited_product || {}).data);
+  _.extend(this, attributes);
 
-  if(product.category_id) {
+  attributes.valid_to = attributes.valid_to || defaultValidTo();
+
+  if(this.category_id) {
+    var category_id = this.category_id;
     _(categories).chain().select(function(category) {
-      return parseInt(category.id, 10) === parseInt(product.category_id, 10);
+      return parseInt(category.id, 10) === parseInt(category_id, 10);
     }).first().value().selected = true;
   }
 
-  if(product.unit_price) {
-    if(_.isString(product.unit_price)) {
-      product.unit_price = $.global.parseFloat(product.unit_price.match(/[\d\.\,]+/)[0]);
-    }
-    product.unit_price = $.global.format(product.unit_price, "n") + '€';    
+  var product = new karhu.Product(attributes);
+  this.unit_price = product.unit_price;
+  this.valid_to = product.valid_to;
+  this.categories = categoriesWithId(categories);
+
+  function categoriesWithId(categories) {
+    return _.reject(categories, function(category) {
+      return !category.id;
+    });
   }
-
-  var date = $.global.parseDate(product.valid_to) || Date.parse(product.valid_to);
-  product.valid_to = $.global.format(date, "d");
-
-  categories = _.reject(categories, function(category) {
-    return !category.id;
-  });
-
-  return _.extend(product, {categories: categories});
-}
+  
+  function defaultValidTo() {
+    return (1).year().fromNow().toString('MM/dd/yyyy');
+  }
+};
