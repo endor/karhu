@@ -41,17 +41,6 @@ karhu.ApplicationHelper = {
     }
   },
 
-  authenticate: function(xhr) {
-    var token = '';
-    if(karhu.token) {
-      token = karhu.token;
-    } else if(karhu.user && karhu.password) {
-      token = SHA256(karhu.user + karhu.password);
-    }
-    karhu.token = token;
-    xhr.setRequestHeader("X-Karhu-Authentication", 'user="' + karhu.user + '", token="' + karhu.token + '"');
-  },
-  
   updatePagination: function() {
     var $pagination = $('.controls .pagination'),
       template = 'templates/shared/pagination_link.mustache',
@@ -77,53 +66,26 @@ karhu.ApplicationHelper = {
       var validations = this.objectForValidation.validations();
       $('.main form').validate(this.translateValidationMessages(validations));
     }
-  },  
+  },
   
-  randomUrl: function(url, verb) {
-    return url + (verb === 'get' ? '?random=' + (new Date()).getTime() : '');
+  backend: function() {
+    this._backend = this._backend || new karhu.Backend(this);
+    return this._backend;
+  },
+  
+  get: function(url, data, success, error) {
+    this.backend().get(url, data, success, error);
+  },
+  
+  post: function(url, data, success, error) {
+    this.backend().post(url, data, success, error);
+  },
+  
+  put: function(url, data, success, error) {
+    this.backend().put(url, data, success, error);
+  },
+  
+  del: function(url, data, success, error) {
+    this.backend().del(url, data, success, error);
   }
 };
-
-
-//
-// TODO: maybe create a backend class and instantiate once in app
-// backend.get()
-// backend.post()
-// etc.
-//
-(function() {
-  ['get', 'post', 'delete', 'put'].forEach(function(verb) {
-    karhu.ApplicationHelper['ajax_' + verb] = function(url, data, success, error) {
-      var context = this;
-      
-      if(karhu.offline) {
-        context.storeInOfflineQueue(verb, data, url, success);
-        context.checkForOnlineStatus();
-      } else {
-        $.ajax({
-          url: context.randomUrl(url, verb),
-          data: data,
-          type: verb,
-          beforeSend: function(xhr) {
-            context.authenticate(xhr);
-          },
-          success: function(result) {
-            if(verb !== 'get') {
-              context.storeInOnlineQueue(verb, result, url);              
-            }            
-            success(result);
-          },
-          error: (function() {
-            return function(xhr, errorMessage, tmp) {
-              if(xhr.status === 0 && xhr.readyState === 0) {
-                context.stateChangedToOffline();
-                context.storeInOfflineQueue(verb, data, url, success);
-              }
-              if(error) { error.call(context); }
-            };
-          })()
-        });
-      }
-    };
-  });
-})();

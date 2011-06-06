@@ -14,7 +14,7 @@ karhu.Categories = function(app) {
     
     context.handleSort(params, context.params, 'Categories');
 
-    context.ajax_get('/categories', params, function(paginated_categories) {
+    context.get('/categories', params, function(paginated_categories) {
       context.objectForPagination = _.extend({}, paginated_categories, {url: '#/categories'});      
       context.partial('templates/categories/index.mustache', {categories: paginated_categories.values});
     });
@@ -29,7 +29,7 @@ karhu.Categories = function(app) {
   
   app.post('#/categories', function(context) {
     context.store.clear('last_added_category');
-    context.ajax_post('/categories', context.params.category, function() {
+    context.post('/categories', context.params.category, function() {
       context.flash('category_successfully_created');
       context.redirect('#/categories');
     }, function() {
@@ -39,7 +39,7 @@ karhu.Categories = function(app) {
 
   app.get('#/categories/:id/edit', function(context) {
     context.handleLastAccess(context.params, 'last_edited_category', function(last_edited_category) {
-      context.ajax_get('/categories/' + context.params.id, {}, function(category) {
+      context.get('/categories/' + context.params.id, {}, function(category) {
         context.objectForValidation = new karhu.Category();
         context.partial('templates/categories/edit.mustache', new karhu.EditCategory(category, last_edited_category));
       });
@@ -48,7 +48,7 @@ karhu.Categories = function(app) {
   
   app.put('#/categories/:id', function(context) {
     context.store.clear('last_edited_category');
-    context.ajax_put('/categories/' + context.params.id, context.params.category, function() {
+    context.put('/categories/' + context.params.id, context.params.category, function() {
       context.flash('category_successfully_updated');
       context.redirect('#/categories');
     }, function() {
@@ -57,7 +57,7 @@ karhu.Categories = function(app) {
   });
     
   app.del('#/categories/:id', function(context) {
-    context.ajax_delete('/categories/' + context.params.id, {}, function() {
+    context.del('/categories/' + context.params.id, {}, function() {
       context.flash('category_successfully_deleted');
       context.redirect('#/categories');      
     }, function() {

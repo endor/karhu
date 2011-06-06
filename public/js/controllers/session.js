@@ -8,7 +8,7 @@ karhu.Session = function(app) {
     karhu.user = context.params.session.user;
     karhu.password = context.params.session.password;
     
-    context.ajax_get('/categories', {}, function() {
+    context.get('/categories', {}, function() {
       delete karhu.password;
       context.store.set('token', karhu.token);
       context.store.set('user', karhu.user);

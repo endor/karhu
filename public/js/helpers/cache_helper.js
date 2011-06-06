@@ -12,10 +12,12 @@ karhu.CacheHelper = {
   
   runOfflineQueue: function() {
     var queue = this.store.get('offlineQueue') || [],
-      context = this;
+      context = this, verb;
 
     queue.forEach(function(action) {
-      context['ajax_' + action.verb].call(context, action.url, action.data, function() {});
+      verb = action.verb;
+      if(verb === 'delete') { verb = 'del'; }
+      context[verb].call(context, action.url, action.data, function() {});
     });
 
     this.store.clear('offlineQueue');
@@ -84,7 +86,7 @@ karhu.CacheHelper = {
       context = this;
 
     objectTypes.forEach(function(type) {
-      context.ajax_get('/' + type, {}, function(objects) {
+      context.get('/' + type, {}, function(objects) {
         context.store.set('/' + type, objects);
         objectTypesToCache -= 1;
         if(objectTypesToCache === 0) {

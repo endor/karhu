@@ -49,9 +49,10 @@ karhu.OfflineHelper = {
   
   checkForOnlineStatus: function() {
     var context = this;
+
     $.ajax({
       url: '/test',
-      beforeSend: function(xhr) { context.authenticate(xhr); },
+      beforeSend: function(xhr) { context.backend().authenticate(xhr); },
       success: function() { context.stateChangedToOnline(); },
       error: function() {}
     });
