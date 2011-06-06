@@ -1,11 +1,7 @@
-//
-// TODO
-// add tests for those
-//
 karhu.CustomValidatorsHelper = {
   initializeCustomValidators: function() {
     $.validator.addMethod("formatted", function(value, element) {
-      return value.match(this.settings.rules[$(element).attr('name')].formatted);
+      return !!value.match(this.settings.rules[$(element).attr('name')].formatted);
     });
     
     $.validator.addMethod("dateLargerThan", function(value, element) {

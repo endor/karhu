@@ -86,7 +86,7 @@ karhu.ApplicationHelper = {
 
 
 //
-// maybe create a backend class and instantiate once in app
+// TODO: maybe create a backend class and instantiate once in app
 // backend.get()
 // backend.post()
 // etc.
