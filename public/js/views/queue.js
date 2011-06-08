@@ -1,5 +1,44 @@
-karhu.Queue = function(queue_name, store) {
+karhu.Queue = function(queue_name, store, context) {
   this.cached_actions = store.get(queue_name + 'Queue') || [];
+
+  this.store = function(verb, data, url, success) {
+    if(_.isString(data)) { data = JSON.parse(data); }
+    storeInStore(this.cached_actions, verb, data, url);
+
+    if(queue_name === 'online') {
+      if(context.app.objects_cached) { this.run(); }
+    }
+    
+    if(queue_name === 'offline') {
+      var action, cachedLists, result;
+      
+      action = {data: data, url: url, verb: verb};
+      cachedLists = new karhu.CachedLists(store);
+
+      if(verb !== 'get') {
+        cachedLists.process(action);
+        success();
+      } else {
+        result = cachedLists.retrieve(action, context);
+        success(result);
+      }
+    }    
+  };
+  
+  this.run = function() {
+    var callback;
+    
+    if(queue_name === 'offline') {
+      callback = function(action) { makeRequest(action); };
+    } else {
+      var cachedLists = new karhu.CachedLists(store);
+      callback = function(action) { cachedLists.process(action); };
+    }
+
+    this.cached_actions.forEach(callback);
+
+    store.clear(queue_name + 'Queue');
+  };
 
   this.render = function(categories) {
     this.cached_actions.forEach(function(action) {      
@@ -8,7 +47,7 @@ karhu.Queue = function(queue_name, store) {
     });
 
     return {cached_actions: this.cached_actions};
-  };  
+  };
   
   
   function makeReadable(attr) {
@@ -45,5 +84,16 @@ karhu.Queue = function(queue_name, store) {
       return parseInt(category.id, 10) === parseInt(category_id, 10);
     }).name;    
   }
+
+  function makeRequest(action) {
+    if(action.verb === 'delete') { action.verb = 'del'; }
+    context[action.verb].call(context, action.url, action.data, function() {});
+  }
   
+  function storeInStore(cached_actions, verb, data, url) {
+    if(verb !== 'get') {
+      cached_actions.push({verb: verb, data: data, url: url});
+      store.set(queue_name + 'Queue', cached_actions);
+    }    
+  }
 };

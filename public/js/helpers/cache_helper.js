@@ -1,59 +1,22 @@
 karhu.CacheHelper = {
   runOnlineQueue: function() {
-    var queue = this.store.get('onlineQueue') || [],
-      cachedLists = new karhu.CachedLists(this.store);
-
-    queue.forEach(function(action) {
-      cachedLists.process(action);
-    });
-    
-    this.store.clear('onlineQueue');
+    var queue = new karhu.Queue('online', this.store, this);
+    queue.run();
   },
   
   runOfflineQueue: function() {
-    var queue = this.store.get('offlineQueue') || [],
-      context = this, verb;
-
-    queue.forEach(function(action) {
-      verb = action.verb;
-      if(verb === 'delete') { verb = 'del'; }
-      context[verb].call(context, action.url, action.data, function() {});
-    });
-
-    this.store.clear('offlineQueue');
-  },
-
-  storeInQueue: function(queue_name, verb, data, url) {
-    if(verb !== 'get') {
-      var queue = this.store.get(queue_name) || [];
-      queue.push({verb: verb, data: data, url: url});
-      this.store.set(queue_name, queue);
-    }
+    var queue = new karhu.Queue('offline', this.store, this);
+    queue.run();
   },
 
   storeInOnlineQueue: function(verb, data, url) {
-    if(_.isString(data)) { data = JSON.parse(data); }
-    
-    this.storeInQueue('onlineQueue', verb, data, url);
-
-    if(this.app.objects_cached) {
-      this.runOnlineQueue();
-    }
+    var queue = new karhu.Queue('online', this.store, this);
+    queue.store(verb, data, url);
   },
   
   storeInOfflineQueue: function(verb, data, url, success) {
-    this.storeInQueue('offlineQueue', verb, data, url);
-
-    var action = {data: data, url: url, verb: verb};
-    var cachedLists = new karhu.CachedLists(this.store);
-
-    if(verb !== 'get') {
-      cachedLists.process(action);
-      success();
-    } else {
-      var result = cachedLists.retrieve(action, this);
-      success(result);
-    }
+    var queue = new karhu.Queue('offline', this.store, this);
+    queue.store(verb, data, url, success);
   },
   
   clearStore: function() {
