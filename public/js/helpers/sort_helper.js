@@ -1,8 +1,4 @@
-//
-// TODO
-// this has to be possible in a cleaner, nicer way
-//
-karhu.SortHelper = {  
+karhu.SortHelper = {
   handleSort: function(params, context_params, type) {
     params.sort = context_params.sort || this.store.get('sort' + type);
     params.reverse = context_params.reverse || this.store.get('reverse' + type);
@@ -39,7 +35,7 @@ karhu.SortHelper = {
     }
     
     if(!this.reverse) {
-      var link = $('th.' + this.sort + '_column a');
+      link = $('th.' + this.sort + '_column a');
       link.attr('href', link.attr('href') + '&reverse=true').addClass('reverse');      
     }
   }
