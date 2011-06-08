@@ -6,13 +6,9 @@ karhu.ApplicationHelper = {
   
   beautifyInputElements: function() {
     $('input:submit, a.button').button();
-    $('.datepicker').datepicker({
-      changeMonth: true,
-      changeYear: true,
-      minDate: Date.today(),
-      defaultDate: (1).year().fromNow(),
+    $('.datepicker').datepicker(_.extend(karhu.config.datepicker, {
       onClose: function() { $('body').trigger('datepickerClosed'); }
-    });
+    }));
     $('input, textarea').keydown(function(evt) {
       if(evt.keyCode !== 27 && !(evt.keyCode === 13 && evt.ctrlKey === true)) {
         evt.stopPropagation();
@@ -41,7 +37,7 @@ karhu.ApplicationHelper = {
     }
   },
 
-  updatePagination: function() {
+  updatePaginationLinks: function() {
     var $pagination = $('.controls .pagination'),
       template = 'templates/shared/pagination_link.mustache',
       paginated_objects = this.objectForPagination;
@@ -69,23 +65,14 @@ karhu.ApplicationHelper = {
   },
   
   backend: function() {
-    this._backend = this._backend || new karhu.Backend(this);
-    return this._backend;
-  },
-  
-  get: function(url, data, success, error) {
-    this.backend().get(url, data, success, error);
-  },
-  
-  post: function(url, data, success, error) {
-    this.backend().post(url, data, success, error);
-  },
-  
-  put: function(url, data, success, error) {
-    this.backend().put(url, data, success, error);
-  },
-  
-  del: function(url, data, success, error) {
-    this.backend().del(url, data, success, error);
+    return (this.backend._backend = this.backend._backend || new karhu.Backend(this));
   }
 };
+
+(function(helper) {
+  ['get', 'post', 'put', 'del'].forEach(function(verb) {
+    helper[verb] = function() {
+      this.backend()[verb].apply(this, arguments);
+    };
+  });
+})(karhu.ApplicationHelper);

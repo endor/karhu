@@ -30,7 +30,7 @@ karhu.app = $.sammy(function(app, context) {
     this.adjustElementsToOnlineStatus();
     this.validateForm();
     this.markSortColumn();
-    this.updatePagination();
+    this.updatePaginationLinks();
   });
   
   this.get('#/', function() {
