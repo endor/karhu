@@ -53,7 +53,7 @@ karhu.Queue = function(queue_name, store, context) {
   function makeReadable(attr) {
     if(attr === "category_id") { attr = "category"; }
     if(attr === "unit_price") { attr = "price"; }
-    return $.global.localize("karhu")[attr];
+    return karhu.i18n.translate(attr);
   }
   
   function addHumanReadableSummary(action) {

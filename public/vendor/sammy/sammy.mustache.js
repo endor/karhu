@@ -163,7 +163,7 @@ if (!window.Mustache) {
           case "!": // ignore comments
             return "";
           case "?": // translate key
-            return $.global.localize("karhu")[name];
+            return karhu.i18n.translate(name);
           case "=": // set new delimiters, rebuild the replace regexp
             that.set_delimiters(name);
             regex = new_regex();

@@ -34,15 +34,6 @@ karhu.AppFilterHelper = {
     }
   },
   
-  initializeLocales: function(callback) {
-    ['en', 'de'].forEach(function(locale) {
-      $.global.localize("karhu", locale, karhu.locales[locale] || {});
-    });
-    var locale = this.store.get('locale') || 'en';
-    this.setLocale(locale);
-    callback();
-  },
-  
   redirectToLogin: function(callback) {
     if(!this.store.get('token') && !this.path.match(/\#\/session/)) {
       this.redirect('#/session/new');

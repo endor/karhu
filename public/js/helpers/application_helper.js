@@ -1,6 +1,6 @@
 karhu.ApplicationHelper = {
   flash: function(message) {
-    message = $.global.localize("karhu")[message] || message;
+    message = karhu.i18n.translate(message);
     $('#flash').html(message).show().delay(4000).fadeOut('slow');
   },
   
@@ -60,7 +60,7 @@ karhu.ApplicationHelper = {
   validateForm: function() {
     if(this.objectForValidation) {
       var validations = this.objectForValidation.validations();
-      $('.main form').validate(this.translateValidationMessages(validations));
+      $('.main form').validate(karhu.i18n.translateValidationMessages(validations));
     }
   },
   

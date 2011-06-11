@@ -1,5 +1,5 @@
 describe("Queue", function() {
-  beforeEach(function() {
+  beforeEach(function() {    
     ['en', 'de'].forEach(function(locale) {
       $.global.localize("karhu", locale, karhu.locales[locale] || {});
     });
@@ -12,6 +12,12 @@ describe("Queue", function() {
       
       set: function(data) {
         store.data = data;
+      }
+    }
+    
+    karhu.i18n = {
+      translate: function(str) {
+        return $.global.localize("karhu")[str];
       }
     }
   });

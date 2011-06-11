@@ -54,12 +54,12 @@ karhu.app = $.sammy(function(app, context) {
   this.before(context.showLinks);
   this.before({only: {verb: ['post', 'put']}}, context.redirectIfCanceled);
 
-  this.around(context.initializeLocales);
   this.around(context.redirectToLogin);
-  this.around(context.redirectToLastAccessedItem);
+  this.around(context.redirectToLastAccessedItem);  
 });
 
 $(function() {
+  karhu.i18n = new karhu.I18n(karhu.config.store);
   karhu.app.run('#/');
   karhu.app.trigger('init');
 });

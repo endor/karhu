@@ -16,7 +16,7 @@ karhu.Session = function(app) {
       context.redirect('#/products');
     }, function() {
       var validator = $('.main form').validate(),
-        message = $.global.localize("karhu")['invalid_user_password_combination'];
+        message = karhu.i18n.translate('invalid_user_password_combination');
       validator.showErrors({'session[password]': message});
     });    
   });

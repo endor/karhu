@@ -20,7 +20,6 @@ src_files:
   - vendor/sammy/sammy.*.js
   - vendor/date/date.js
   - js/root.js
-  - config.js
   - js/controllers/*.js
   - js/models/*.js
   - js/helpers/*.js
