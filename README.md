@@ -70,3 +70,7 @@
 ### Sorting
 
     GET /products?sort=description
+    
+### Filtering
+
+    GET /products?filter=Strawberry
