@@ -226,6 +226,25 @@ ul.cached_actions_list li {
   display: none;
 }
 
+.search {
+  position: absolute;
+  top: 18.5em;
+  left: 14em;
+  border: solid 1px #DFD9C3;
+  padding: 0.4em;
+  padding-left: 1em;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px; 
+  -o-border-radius: 6px; 
+  border-radius: 6px;
+  height: 2em;
+  z-index: 200;
+}
+
+.search input {
+  width: 20em;
+}
+
 .controls {
   position: absolute;
   width: 50%;

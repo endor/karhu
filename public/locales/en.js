@@ -59,5 +59,7 @@ karhu.locales.en = {
   go_to_next_page: 'Go to next page',
   go_to_previous_page: 'Go to previous page',
   go_to_first_page: 'Go to first page',
-  go_to_last_page: 'Go to last page'
+  go_to_last_page: 'Go to last page',
+  search: 'Search:',
+  pages: 'Pages:'
 };

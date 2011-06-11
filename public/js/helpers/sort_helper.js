@@ -1,4 +1,16 @@
 karhu.SortHelper = {
+  handleFilter: function(params, context_params) {
+    params.filter = context_params.search || this.store.get('filter');
+    console.log(params.filter)
+    if(params.filter && context_params.search !== "") {
+      this.store.set('filter', params.filter);
+      $('.search input').val(params.filter);
+    } else {
+      delete params.filter;
+      this.store.clear('filter');
+    }
+  },
+  
   handleSort: function(params, context_params, type) {
     params.sort = context_params.sort || this.store.get('sort' + type);
     params.reverse = context_params.reverse || this.store.get('reverse' + type);

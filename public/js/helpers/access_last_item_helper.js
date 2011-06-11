@@ -12,6 +12,10 @@ karhu.AccessLastItemHelper = {
       object.data[$this.attr('name').match(/\[([^\]]+)\]/)[1]] = $this.val();
       context.store.set(item, object);
     });
+
+    $('.search input').keyup(function(evt) {
+      $(this).parent().submit();
+    });
   },
 
   handleLastAccess: function(params, item, callback) {

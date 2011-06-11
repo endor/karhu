@@ -11,6 +11,19 @@ karhu.AppFilterHelper = {
     }
   },
   
+  changeSearchField: function(context) {
+    var $search = $('.search');
+    if(context.path.match(/\#\/products([^\/]+)?$/)) {
+      $search.show();
+      $search.find('form').attr('action', '#/products');
+    } else if(context.path.match(/\#\/categories([^\/]+)?$/)) {
+      $search.show();
+      $search.find('form').attr('action', '#/categories');      
+    } else {
+      $search.hide();
+    }
+  },
+  
   redirectIfCanceled: function(context) {
     if(context.params.cancel) {
       var toClear = ['last_added_product', 'last_edited_product', 'last_added_category', 'last_edited_category'];

@@ -5,6 +5,7 @@ karhu.Products = function(app) {
       per_page: karhu.config.per_page || 10
     };
     
+    context.handleFilter(params, context.params);
     context.handleSort(params, context.params, 'Products');
     
     context.get('/categories', {}, function(categories) {

@@ -12,6 +12,7 @@ karhu.Categories = function(app) {
       per_page: karhu.config.per_page || 10
     };
     
+    context.handleFilter(params, context.params);
     context.handleSort(params, context.params, 'Categories');
 
     context.get('/categories', params, function(paginated_categories) {

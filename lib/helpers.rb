@@ -35,6 +35,14 @@ module Helpers
     end
   end
   
+  def filter(array, filter_by)
+    array.select do |object|
+      object.select{|key, value|
+        value.to_s.upcase.match(/#{filter_by.upcase}/)
+      }.size > 0
+    end
+  end
+  
   def paginate(array, page, per_page)
     paginated_results = array.paginate(:page => page, :per_page => per_page)
     {

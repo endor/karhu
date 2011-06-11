@@ -50,6 +50,7 @@ karhu.app = $.sammy(function(app, context) {
   
   this.before(context.clearContextVariables);
   this.before(context.markActiveMenuItem);
+  this.before(context.changeSearchField);
   this.before(context.showLinks);
   this.before({only: {verb: ['post', 'put']}}, context.redirectIfCanceled);
 

@@ -59,5 +59,7 @@ karhu.locales.de = {
   go_to_next_page: 'Zur nächsten Seite',
   go_to_previous_page: 'Zur vorherigen Seite',
   go_to_first_page: 'Zur ersten Seite',
-  go_to_last_page: 'Zur letzten Seite'
+  go_to_last_page: 'Zur letzten Seite',
+  search: 'Suchen:',
+  pages: 'Seiten:'
 };
