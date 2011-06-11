@@ -29,8 +29,9 @@ karhu.CachedLists = function(store) {
       return retrieveObject(this.store, this.url);
     } else {
       var list = retrieveList(this.store, this.url);
-      if(this.data.sort) { list = _sort(list, this.data.sort, this.data.reverse, this.store); }
-      if(this.data.page) { list = _paginate(list, this.url, this.data.page, this.data.per_page); }
+      if(this.data.sort)   { list = _sort(list, this.data.sort, this.data.reverse, this.store); }
+      if(this.data.filter) { list = _filter(list, this.data.filter); }
+      if(this.data.page)   { list = _paginate(list, this.url, this.data.page, this.data.per_page); }
       return list;
     }
   };  
@@ -135,5 +136,17 @@ karhu.CachedLists = function(store) {
     }
   
     return list;
+  }
+  
+  function _filter(list, filter_by) {
+    return _.select(list, function(element) {
+      return _.select(element, function(value, key) {
+        if(_.isString(value)) {
+          return value.toUpperCase().match(filter_by.toUpperCase());
+        } else {
+          return false;
+        }
+      }).length > 0;
+    });
   }
 };

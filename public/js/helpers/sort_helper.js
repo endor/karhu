@@ -1,7 +1,6 @@
 karhu.SortHelper = {
   handleFilter: function(params, context_params) {
     params.filter = context_params.search || this.store.get('filter');
-    console.log(params.filter)
     if(params.filter && context_params.search !== "") {
       this.store.set('filter', params.filter);
       $('.search input').val(params.filter);
