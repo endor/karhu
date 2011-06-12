@@ -1,22 +1,9 @@
-karhu.Backend = function(context) {
+(function() {
 
-  this.get = function(url, data, success, error) {
-    sendRequest('get', url, data, success, error);
-  };
-  
-  this.post = function(url, data, success, error) {
-    sendRequest('post', url, data, success, error);
-  };
-  
-  this.del = function(url, data, success, error) {
-    sendRequest('delete', url, data, success, error);    
-  };
-  
-  this.put = function(url, data, success, error) {
-    sendRequest('put', url, data, success, error);
-  };
-  
-  this.authenticate = function(xhr) {
+  function authenticate(xhr) {
+    karhu.user = 'user';
+    karhu.password = 'password';
+    
     var token = '';
     if(karhu.token) {
       token = karhu.token;
@@ -26,40 +13,41 @@ karhu.Backend = function(context) {
     karhu.token = token;
     xhr.setRequestHeader("X-Karhu-Authentication", 'user="' + karhu.user + '", token="' + karhu.token + '"');
   };
-  
-  var authenticate = this.authenticate;
-  
-  function sendRequest(verb, url, data, success, error) {
-    if(karhu.offline) {
-      context.storeInOfflineQueue(verb, data, url, success);
-      context.checkForOnlineStatus();
-    } else {
-      $.ajax({
-        url: randomUrl(url, verb),
-        data: data,
-        type: verb,
-        beforeSend: function(xhr) {
-          authenticate(xhr);
-        },
-        success: function(result) {
-          if(verb !== 'get') {
-            context.storeInOnlineQueue(verb, result, url);              
-          }            
-          success(result);
-        },
-        error: function(xhr, errorMessage, tmp) {
-          if(xhr.status === 0 && xhr.readyState === 0) {
-            context.stateChangedToOffline();
-            context.storeInOfflineQueue(verb, data, url, success);
-          }
-          if(error) { error.call(context); }
-        }
-      });
-    }    
-  }  
-  
+
   function randomUrl(url, verb) {
     return url + (verb === 'get' ? '?random=' + (new Date()).getTime() : '');
   }
   
-};
+  var getUrl = function(object) {
+    if (!(object && object.url)) throw new Error("A 'url' property or function must be specified");
+    return _.isFunction(object.url) ? object.url() : object.url;
+  };
+  
+  var methodMap = {
+    'create': 'POST',
+    'update': 'PUT',
+    'delete': 'DELETE',
+    'read'  : 'GET'
+  };
+
+  Backbone.sync = function(method, model, success, error) {
+    var type = methodMap[method];
+    var modelJSON = (method === 'create' || method === 'update') ?
+                    JSON.stringify(model.toJSON()) : null;
+
+    var params = {
+      url:          randomUrl(getUrl(model), type),
+      type:         type,
+      contentType:  'application/json',
+      data:         modelJSON,
+      dataType:     'json',
+      processData:  false,
+      success:      success,
+      error:        error,
+      beforeSend:   function(xhr) { authenticate(xhr); }
+    };
+
+    $.ajax(params);
+  };
+  
+})();
