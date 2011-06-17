@@ -1,8 +1,9 @@
 karhu.AppFilterHelper = {
-  updateContextVariables: function(context) {
-    context.objectForValidation = null;
-    karhu.backend = context.backend();
-    karhu.store = context.store;
+  updateContextVariables: function(callback) {
+    this.objectForValidation = null;
+    karhu.backend = new karhu.Backend(this);
+    karhu.store = this.store;
+    callback();
   },
   
   markActiveMenuItem: function(context) {

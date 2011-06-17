@@ -61,17 +61,5 @@ karhu.ApplicationHelper = {
       var validations = this.objectForValidation.validations();
       $('.main form').validate(karhu.i18n.translateValidationMessages(validations));
     }
-  },
-  
-  backend: function() {
-    return (this.backend._backend = this.backend._backend || new karhu.Backend(this));
   }
 };
-
-(function(helper) {
-  ['get', 'post', 'put', 'del'].forEach(function(verb) {
-    helper[verb] = function() {
-      this.backend()[verb].apply(this, arguments);
-    };
-  });
-})(karhu.ApplicationHelper);

@@ -52,7 +52,7 @@ karhu.OfflineHelper = {
 
     $.ajax({
       url: '/test',
-      beforeSend: function(xhr) { context.backend().authenticate(xhr); },
+      beforeSend: function(xhr) { karhu.backend.authenticate(xhr); },
       success: function() { context.stateChangedToOnline(); },
       error: function() {}
     });

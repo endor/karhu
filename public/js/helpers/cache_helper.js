@@ -49,7 +49,7 @@ karhu.CacheHelper = {
       context = this;
 
     objectTypes.forEach(function(type) {
-      context.get('/' + type, {}, function(objects) {
+      karhu.backend.get('/' + type, {}, function(objects) {
         context.store.set('/' + type, objects);
         objectTypesToCache -= 1;
         if(objectTypesToCache === 0) {

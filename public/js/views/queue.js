@@ -87,7 +87,7 @@ karhu.Queue = function(queue_name, store, context) {
 
   function makeRequest(action) {
     if(action.verb === 'delete') { action.verb = 'del'; }
-    context[action.verb].call(context, action.url, action.data, function() {});
+    karhu.backend[action.verb].call(karhu.backend, action.url, action.data, function() {});
   }
   
   function storeInStore(cached_actions, verb, data, url) {
