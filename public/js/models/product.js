@@ -1,4 +1,6 @@
 karhu.Product = function(attributes, categories) {
+  this.url = '/products';
+  
   _.extend(this, attributes);
   
   attachCategory(this, categories);
@@ -105,6 +107,10 @@ karhu.Product.all = function(params, callback) {
       callback(products);
     });
   });
+};
+
+karhu.Product.find = function(id, success, error) {
+  karhu.backend.get('/products/' + id, {}, success, error);
 };
 
 karhu.Product.prototype = new karhu.Base();

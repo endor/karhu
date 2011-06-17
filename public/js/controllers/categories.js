@@ -14,17 +14,19 @@ karhu.Categories = function(app) {
   
   app.post('#/categories', function(context) {
     context.store.clear('last_added_category');
-    context.post('/categories', context.params.category, function() {
+    
+    var category = new karhu.Category(context.params.category);
+    category.save(function() {
       context.flash('category_successfully_created');
       context.redirect('#/categories');
     }, function() {
-      context.flash('not_able_to_create_category');
-    });
+      context.flash('not_able_to_create_category');      
+    });    
   });
 
   app.get('#/categories/:id/edit', function(context) {
     context.handleLastAccess(context.params, 'last_edited_category', function(last_edited_category) {
-      context.get('/categories/' + context.params.id, {}, function(category) {
+      karhu.Category.find(context.params.id, function(category) {
         context.objectForValidation = new karhu.Category();
         context.partial('templates/categories/edit.mustache', new karhu.EditCategory(category, last_edited_category));
       });
@@ -33,7 +35,9 @@ karhu.Categories = function(app) {
   
   app.put('#/categories/:id', function(context) {
     context.store.clear('last_edited_category');
-    context.put('/categories/' + context.params.id, context.params.category, function() {
+    
+    var category = new karhu.Category(context.params.category);
+    category.save(function() {
       context.flash('category_successfully_updated');
       context.redirect('#/categories');
     }, function() {
@@ -42,7 +46,8 @@ karhu.Categories = function(app) {
   });
     
   app.del('#/categories/:id', function(context) {
-    context.del('/categories/' + context.params.id, {}, function() {
+    var category = new karhu.Category({id: context.params.id});
+    category.destroy(function() {
       context.flash('category_successfully_deleted');
       context.redirect('#/categories');      
     }, function() {

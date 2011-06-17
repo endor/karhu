@@ -76,6 +76,8 @@ Before showing you how the products controller works and displays all the produc
           And I should see "Birch"
 
 
+Once there are headless browsers like [Phantomjs](http://www.phantomjs.org/) available as Capybara drivers, it probably makes sense to use those instead of Selenium because they are a lot faster.
+
 For unit testing there are a lot of different possibilities. I used to work with jspec, since it is similar to rspec which I have used before, but that has been deprecated in favor of jasmine now, so that is what I am using. It works quite well and brings a `rake` task that allows it to easily run together with the acceptance tests. One of the unit tests for the example application looks like this:
 
     describe("Product", function() {
@@ -162,6 +164,34 @@ In the above case, we do not need an extra view object because the logic of rend
 
 
 We just iterate over all the products and render the attributes of each, including the category name we attached beforehand.
+
+
+## Moving model specific controller code into the model
+
+It's a matter of taste how much responsibility a controller has and how much one wants to transfer to the models. If I want to write the above code in a more model-centric fashion, I could do something like this:
+
+
+### Controller
+
+    karhu.Products = function(app) {
+      app.get('#/products', function(context) {
+        karhu.Product.all(function(products) {
+          context.partial('templates/products/index.mustache', {products: products});
+        });
+      });
+    };
+
+
+### Model
+
+    karhu.Product.all = function(callback) {
+      karhu.backend.get('/categories', {}, function(categories) {
+        karhu.backend.get('/products', function(products) {
+          products = products.map(function(product) { return new karhu.Product(product, categories); });
+          callback(products);
+        });
+      });
+    };
 
 
 ## Standard tasks and difficulties

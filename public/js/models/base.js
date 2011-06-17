@@ -1,4 +1,16 @@
 karhu.Base = function() {
+  this.save = function(success, error) {
+    if(this.id) {
+      karhu.backend.put(this.url + '/' + this.id, this.toJSON(), success, error);
+    } else {
+      karhu.backend.post(this.url, this.toJSON(), success, error);
+    }
+  };
+  
+  this.destroy = function(success, error) {
+    karhu.backend.del(this.url + '/' + this.id, {}, success, error);
+  };
+  
   this.buildQueryParams = function(params, name) {
     var result = {
       page: params.page || 1,

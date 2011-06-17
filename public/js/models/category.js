@@ -1,4 +1,8 @@
-karhu.Category = function() {
+karhu.Category = function(attributes) {
+  this.url = '/categories';
+
+  _.extend(this, attributes);
+
   this.validations = function() {
     return {
       rules: {
@@ -21,6 +25,14 @@ karhu.Category = function() {
       }
     };
   };
+  
+  this.toJSON = function() {
+    return {
+      id: this.id,
+      name: this.name,
+      description: this.description
+    }
+  };
 };
 
 karhu.Category.all = function(params, callback) {
@@ -30,6 +42,10 @@ karhu.Category.all = function(params, callback) {
     karhu.objectForPagination = _.extend({}, paginated_categories, {url: '#/categories'});
     callback(paginated_categories.values);
   });
+};
+
+karhu.Category.find = function(id, success, error) {
+  karhu.backend.get('/categories/' + id, {}, success, error);
 };
 
 karhu.Category.prototype = new karhu.Base();
