@@ -49,7 +49,7 @@ karhu.app = $.sammy(function(app, context) {
     this.notifyOfOnlineOfflineStatus();
   });
   
-  this.before(context.clearContextVariables);
+  this.before(context.updateContextVariables);
   this.before(context.markActiveMenuItem);
   this.before(context.changeSearchField);
   this.before(context.showLinks);

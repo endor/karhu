@@ -286,3 +286,8 @@ The code of the example application can be found on [codeplex](). Other starting
 # TODO
 * I/you vs. we
 * Present tense vs. past tense
+
+
+## Author
+
+Frank Prößdorf <<fp@notjusthosting.com>> ([http://fp.njh6.de](http://fp.njh6.de))

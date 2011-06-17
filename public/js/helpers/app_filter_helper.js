@@ -1,5 +1,5 @@
 karhu.AppFilterHelper = {
-  clearContextVariables: function(context) {
+  updateContextVariables: function(context) {
     context.objectForValidation = null;
     karhu.backend = context.backend();
     karhu.store = context.store;

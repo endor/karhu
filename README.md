@@ -1,9 +1,12 @@
 # Produkt-Stammdatenpflege als HTML5 Web App
 
+
 ## Running the App
 
-  * The easiest way to run the app is currently to start `ruby lib/proxy.rb`.
-  
+The easiest way to run the app is currently to start:
+
+    ruby lib/proxy.rb
+
   
 ## Testing
 
@@ -74,3 +77,9 @@
 ### Filtering
 
     GET /products?filter=Strawberry
+
+
+
+## Author
+
+Frank Prößdorf <<fp@notjusthosting.com>> ([http://fp.njh6.de](http://fp.njh6.de))
