@@ -20,7 +20,7 @@ karhu.I18n = function(store) {
         return result;
       }, {});
       
-      return result;      
+      return result;
     }, {});
     
     return validations;

@@ -4,8 +4,6 @@ karhu.Product = function(attributes, categories) {
   attachCategory(this, categories);
   formatPrice(this);
   formatValidTo(this);
-
-
   
   this.toJSON = function() {
     return {
@@ -95,3 +93,18 @@ karhu.Product = function(attributes, categories) {
     }[karhu.locale][field];
   }
 };
+
+
+karhu.Product.all = function(params, callback) {
+  params = this.prototype.buildQueryParams(params, 'Products');
+
+  karhu.backend.get('/categories', {}, function(categories) {
+    karhu.backend.get('/products', params, function(paginated_products) {
+      karhu.objectForPagination = _.extend({}, paginated_products, {url: '#/products'});
+      products = paginated_products.values.map(function(product) { return new karhu.Product(product, categories); });
+      callback(products);
+    });
+  });
+};
+
+karhu.Product.prototype = new karhu.Base();

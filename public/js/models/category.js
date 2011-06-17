@@ -22,3 +22,14 @@ karhu.Category = function() {
     };
   };
 };
+
+karhu.Category.all = function(params, callback) {
+  params = this.prototype.buildQueryParams(params, 'Categories');
+
+  karhu.backend.get('/categories', params, function(paginated_categories) {
+    karhu.objectForPagination = _.extend({}, paginated_categories, {url: '#/categories'});
+    callback(paginated_categories.values);
+  });
+};
+
+karhu.Category.prototype = new karhu.Base();

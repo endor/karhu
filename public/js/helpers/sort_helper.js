@@ -1,43 +1,8 @@
 karhu.SortHelper = {
-  handleFilter: function(params, context_params) {
-    params.filter = context_params.search || this.store.get('filter');
-    if(params.filter && context_params.search !== "") {
-      this.store.set('filter', params.filter);
-      $('.search input').val(params.filter);
-    } else {
-      delete params.filter;
-      this.store.clear('filter');
-    }
-  },
-  
-  handleSort: function(params, context_params, type) {
-    params.sort = context_params.sort || this.store.get('sort' + type);
-    params.reverse = context_params.reverse || this.store.get('reverse' + type);
-
-    if((context_params.sort && !context_params.reverse) || !params.reverse) {
-      this.store.clear('reverse' + type);
-      delete params.reverse;
-      this.reverse = false;
-    }
-
-    if(params.sort) {
-      this.sort = params.sort;
-      this.store.set('sort' + type, params.sort);
-
-      if(params.reverse) {
-        this.reverse = true;
-        this.store.set('reverse' + type, true);
-        params.reverse = true;        
-      }
-    } else {
-      delete params.sort;
-    }
-  },
-  
   markSortColumn: function() {
     $('th, td').removeClass('selected');
-    if(this.sort) {
-      $('.' + this.sort + '_column').addClass('selected');
+    if(karhu.sort) {
+      $('.' + karhu.sort + '_column').addClass('selected');
     }
 
     var link = $('a.reverse');
@@ -45,8 +10,8 @@ karhu.SortHelper = {
       link.attr('href', link.attr('data-link')).removeClass('reverse');
     }
     
-    if(!this.reverse) {
-      link = $('th.' + this.sort + '_column a');
+    if(!karhu.reverse) {
+      link = $('th.' + karhu.sort + '_column a');
       link.attr('href', link.attr('href') + '&reverse=true').addClass('reverse');      
     }
   }

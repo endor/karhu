@@ -40,10 +40,9 @@ karhu.ApplicationHelper = {
   updatePaginationLinks: function() {
     var $pagination = $('.controls .pagination'),
       template = 'templates/shared/pagination_link.mustache',
-      paginated_objects = this.objectForPagination;
+      paginated_objects = karhu.objectForPagination;
 
     $pagination.html('');
-    karhu.pagination = paginated_objects;
 
     if(paginated_objects && paginated_objects.total_pages > 1) {
       for(var i = 1; i <= paginated_objects.total_pages; i += 1) {

@@ -1,16 +1,7 @@
 karhu.Categories = function(app) {
   app.get('#/categories', function(context) {
-    var params = {
-      page: context.params.page || 1,
-      per_page: karhu.config.per_page || 10
-    };
-    
-    context.handleFilter(params, context.params);
-    context.handleSort(params, context.params, 'Categories');
-
-    context.get('/categories', params, function(paginated_categories) {
-      context.objectForPagination = _.extend({}, paginated_categories, {url: '#/categories'});      
-      context.partial('templates/categories/index.mustache', {categories: paginated_categories.values});
+    karhu.Category.all(context.params, function(categories) {
+      context.partial('templates/categories/index.mustache', {categories: categories});
     });
   });
   

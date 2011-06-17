@@ -1,20 +1,20 @@
 karhu.KeyboardHelper = {
   actionOnKeydown: function(keycode, ctrlkey) {
     if(keycode === 39 && ctrlkey) {
-      if(karhu.pagination && karhu.pagination.current_page < karhu.pagination.total_pages) {
-        $('.pagination [data-key="' + (karhu.pagination.current_page + 1) + '"]').click();
+      if(karhu.objectForPagination && karhu.objectForPagination.current_page < karhu.objectForPagination.total_pages) {
+        $('.pagination [data-key="' + (karhu.objectForPagination.current_page + 1) + '"]').click();
       }
     } else if(keycode === 37 && ctrlkey) {
-      if(karhu.pagination && karhu.pagination.current_page > 1) {
-        $('.pagination [data-key="' + (karhu.pagination.current_page - 1) + '"]').click();
+      if(karhu.objectForPagination && karhu.objectForPagination.current_page > 1) {
+        $('.pagination [data-key="' + (karhu.objectForPagination.current_page - 1) + '"]').click();
       }
     } else if(keycode === 36 && ctrlkey) {
-      if(karhu.pagination) {
+      if(karhu.objectForPagination) {
         $('.pagination [data-key="1"]').click();
       }
     } else if(keycode === 35 && ctrlkey) {
-      if(karhu.pagination) {
-        $('.pagination [data-key="' + karhu.pagination.total_pages + '"]').click();
+      if(karhu.objectForPagination) {
+        $('.pagination [data-key="' + karhu.objectForPagination.total_pages + '"]').click();
       }      
     } else {
       return false;
