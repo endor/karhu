@@ -22,6 +22,7 @@ karhu.app = $.sammy(function(app, context) {
   karhu.CachedActions(this);
   karhu.Locales(this);
   karhu.Session(this);
+  karhu.Pages(this);
 
   this.swap = function(content) { return $('.main').html(content); };
   
