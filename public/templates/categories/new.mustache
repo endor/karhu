@@ -2,17 +2,17 @@
 
 <form method="POST" action="#/categories">
   <p>
-    <label for="category_name">{{?name}}</label>
-    <input type="text" name="category[name]" id="category_name" class="text store_change" value="{{name}}" />
+    <label for="name">{{?name}}</label>
+    <input type="text" name="name" id="name" class="text store_change" value="{{name}}" />
   </p>
 
   <p>
-    <label for="category_description">{{?description}}</label>
-    <textarea name="category[description]" id="category_description" class="store_change">{{description}}</textarea>
+    <label for="description">{{?description}}</label>
+    <textarea name="description" id="description" class="store_change">{{description}}</textarea>
   </p>
   
   <p>
-    <input type="submit" value="{{?add_category}}" class="underline" data-key="enter" data-ctrl-key="true" />
+    <input type="submit" value="{{?add_category}}" class="underline add" data-key="enter" data-ctrl-key="true" />
     <input type="submit" value="{{?cancel}}" class="cancel" data-key="esc" />
   </p>
 </form>

@@ -16,10 +16,9 @@ $(function() {
     },
     
     renderViewWithCollection: function(models, collection) {
-      var view = new karhu.MainView({className: models, collection: collection});
       collection.fetch({
-        success: function() { view.render(); }
-      });      
+        success: function() { new karhu.MainView({className: models, collection: collection}); }
+      });
     },
     
     index: function() {
@@ -28,6 +27,8 @@ $(function() {
   
   karhu.Categories = new karhu.CategoryCollection();
   karhu.Products = new karhu.ProductCollection();
+  
+  new karhu.I18n(store);
   
   new karhu.Application();
   Backbone.history.start();

@@ -149,7 +149,7 @@ var Mustache = function() {
       var that = this;
 
       var new_regex = function() {
-        return new RegExp(that.otag + "(=|!|>|\\{|%)?([^\\/#\\^]+?)\\1?" +
+        return new RegExp(that.otag + "(=|!|\\?|>|\\{|%)?([^\\/#\\^]+?)\\1?" +
           that.ctag + "+", "g");
       };
 
@@ -158,6 +158,8 @@ var Mustache = function() {
         switch(operator) {
         case "!": // ignore comments
           return "";
+        case "?":
+          return $.global.localize("karhu")[name] || name;
         case "=": // set new delimiters, rebuild the replace regexp
           that.set_delimiters(name);
           regex = new_regex();
