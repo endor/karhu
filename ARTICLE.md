@@ -1,15 +1,15 @@
 # Writing a business oriented web application using HTML5 local storage
 
-A lot of people still consider JavaScript a "toy language", despite the fact that it has got much attention lately and there is quite a number of high quality libraries and frameworks available to help create applications ready for production. This article will follow the creation of a basic business oriented application and will show one of several possible ways to do that. The application is meant as a starting point for digging deeper into the existing options and maybe even for experiencing how much fun coding quality JavaScript can be. 
+A lot of people still consider JavaScript a "toy language", despite the fact that it has received much attention lately and there are quite a number of high quality libraries and frameworks available for creating production-ready applications. This article will follow the creation of a basic business oriented application. The application is meant as a starting point for digging deeper into the existing options and to experience how much fun coding quality JavaScript can be. 
 
-The basic application that was developed alongside this article catalogues products and divides them into categories. Those categories as well as the products can be created, updated and deleted. In addition to this typical CRUD approach, there are other standard tasks that were to be handled: internationalization, validation of input and controlling the application via the keyboard. The last and one of the most important aspects of the app is that it is supposed to use HTML5 local storage in order to allow offline editing. 
+The basic application that was developed alongside this article catalogues products and divides them into categories. Those categories as well as the products can be created, updated and deleted. In addition to this typical CRUD approach, there are other standard tasks that will be handled: internationalization, validation of input and controlling the application via the keyboard. One of the most important aspects of the app is that it will use HTML5 local storage in order to allow offline editing.
 
 
 ## How to start
 
-So how does one go about writing a business oriented JavaScript application? One well established way is by using a Model-View-Controller structure. This has been successfully employed in frameworks like Ruby on Rails or Django. It allows for a strict structure and the separation of different parts of the application like view and business logic, which is especially important with JavaScript since it is really easy to write mixed-up code, doing everything in one place. I often have to remind myself not to do that and to try and write clean, readable and reusable code. There are several frameworks allowing for a MVC structure. Some of the most notable ones are [Backbone.js](http://documentcloud.github.com/backbone), [Eyeballs.js](https://github.com/paulca/eyeballs.js) and [Sammy.js](http://sammyjs.org).
+So how does one go about writing a business oriented JavaScript application? One well established way is by using a Model-View-Controller structure. This has been successfully employed in frameworks like Ruby on Rails or Django. It allows for a strict structure and the separation of the concerns of the application like view and business logic. This is especially important with JavaScript as it is really easy to write confusing code, doing everything in one place. I often have to remind myself not to do that and to try and write clean, readable and reusable code. There are several frameworks built for a MVC structure. Some of the most notable ones are [Backbone.js](http://documentcloud.github.com/backbone), [Eyeballs.js](https://github.com/paulca/eyeballs.js) and [Sammy.js](http://sammyjs.org).
 
-For this example app I used Sammy.js, mostly because I already know it but also because it is small, well written and tested and does all the things I need to get started. It does not provide you with a given MVC structure but it allows you to easily build that upon its basis. The only dependency it currently has is [jQuery](http://jquery.com) and that is a library I personally use for DOM manipulation anyway. The directory structure I started with looks like this:
+For this example application I used Sammy.js, primarily because I already know it but also because it is small, well written, tested, and does all the things I need to get started. It does not provide you with an implicit MVC structure but it allows you to easily build upon its base. The only dependency it currently has is [jQuery](http://jquery.com) and that is a library I personally use for DOM manipulation anyway. The directory structure I started with looks like this:
 
     - public
       - js
@@ -26,12 +26,12 @@ For this example app I used Sammy.js, mostly because I already know it but also 
             jquery.js
 
 
-In templates I put all the template files that may be rendered through the JavaScript code and the JavaScript code relevant for rendering those templates is in views.
+In `templates` I put all the template files that may be rendered through the JavaScript code and in `views` all the JavaScript code relevant for rendering those templates.
 
 
 ## The application file
 
-The actual Sammy.js application is created in `app.js` where also the controllers are loaded and their routes are initialized. I tend to namespace all the variables (controllers, models, etc.) I create, and chose to call this namespace karhu.
+The actual Sammy.js application is created in `app.js` - here the controllers are loaded and their routes are initialized. I tend to namespace all the variables (controllers, models, etc.) I create. In this case I chose to call this namespace karhu.
 
     karhu.app = $.sammy(function() {
       this.element_selector = '#main';
@@ -51,12 +51,12 @@ The actual Sammy.js application is created in `app.js` where also the controller
     });
 
 
-What you start with is the loading of plugins such as [Mustache](https://github.com/janl/mustache.js) which is a template rendering engine. Then you initialize helpers (`karhu.ApplicationHelper`) and controllers (`karhu.Products`). Once the app is defined and all the DOM elements are loaded, you can run the sammy app and let it go to the first route which is the index of all products.
+First we start loading plugins such as [Mustache](https://github.com/janl/mustache.js) which is a template rendering engine. Then we initialize helpers (`karhu.ApplicationHelper`) and controllers (`karhu.Products`). Once the app is defined and all the DOM elements are loaded, you can run the sammy app and direct it to the initial route which is the index of all products.
 
 
 ## Writing tests
 
-Before showing you how the products controller works and displays all the products I want to briefly go into how the quality of JavaScript applications can be greatly increased - through testing. I go about developing the example application step by step and before every major step I first write an acceptance test to ensure that the code is actually working and everything I have developed before is also still functioning correctly. If there are more complex parts of code, I write unit tests for those and try to cover most of the cases that can happen when running the code. For acceptance tests one of the easiest and most readable ways is using [Capybara](https://github.com/jnicklas/capybara) with Selenium. The first scenario for testing if I can see a list of products looks like this:
+Before showing you how the products controller works and displays all the products I want to briefly go into how the quality of JavaScript applications can be greatly increased through testing. As I went about developing the example application before every major step I first wrote an acceptance test to ensure that the code is actually working. This also prevents regressions, guaranteeing everything I wrote before is also still functioning correctly. For more complex code, I write unit tests and try to cover most of the cases that can happen when running the code. For writing acceptance tests one of the easiest and most readable ways is using [Capybara](https://github.com/jnicklas/capybara) with Selenium. In the first scenario we can test if we can see a list of products:
 
     Feature: Products
       In order to know which products I have
@@ -76,9 +76,9 @@ Before showing you how the products controller works and displays all the produc
           And I should see "Birch"
 
 
-Once there are headless browsers like [Phantomjs](http://www.phantomjs.org/) available as Capybara drivers, it probably makes sense to use those instead of Selenium because they are a lot faster.
+Once headless browsers like [Phantomjs](http://www.phantomjs.org/) are available as Capybara drivers, it will probably make sense to use those instead of Selenium as they are a lot faster.
 
-For unit testing there are a lot of different possibilities. I used to work with jspec, since it is similar to rspec which I have used before, but that has been deprecated in favor of jasmine now, so that is what I am using. It works quite well and brings a `rake` task that allows it to easily run together with the acceptance tests. One of the unit tests for the example application looks like this:
+For unit testing there are a lot of different possibilities. I used to work with jspec, since it is similar to Ruby's rspec which I have used before. Recently that has been deprecated in favor of jasmine, so I've used that here. It works quite well and brings a `rake` task that allows it to easily run alongside the acceptance tests. One of the unit tests for the example application looks like this:
 
     describe("Product", function() {
       describe("attachCategory", function() {
@@ -108,14 +108,14 @@ Once I finish the scenario I start with the controller, which is very simple whe
     };
 
 
-At the moment there is only one route defined, which is a GET on the `#/products` route. The appended callback will be run once the location hash in the URL changes to `/products`. So if you append the route to your URL similar to this: `http://localhost:4567/index.html#/products`, the attached callback will be run. The same will happen when the application is just started, because we defined in our `app.js` that the first redirect is to that same route.
+At the moment there is only one route defined, which is a GET on the `#/products` route. The callback will be run once the location hash in the URL changes to `/products`. So if you append the route to your URL (like `http://localhost:4567/index.html#/products`) the attached callback will be executed. The same will happen when the application is just started, because we defined in our `app.js` that the initial path points to the same route.
 
-Inside the route we retrieve the categories and products via helpers that just do a basic AJAX GET request to our backend. Once we have retrieved this data we map it to JavaScript objects and then render those objects inside the `index.mustache` template, which will display them in the `<div id="main">` HTML tag, because this element was defined in the `app.js` file.
+Inside the route we retrieve the categories and products via helpers that just do a basic AJAX GET request to our backend. Once we have retrieved this data we map it to JavaScript objects and then render those objects inside the `index.mustache` template. This will render them in the `<div id="main">` HTML tag, which was defined as the root `element_selector` in the `app.js` file.
 
 
 ## Defining models
   
-First we need to map the data to JavaScript objects so we can associate the products with the category they belong to and can render the name of the category alongside the product, which looks like this:
+We need to map the data to JavaScript objects so we can associate the products with the category they belong to and can render the name of the category alongside the product, which looks like this:
   
     karhu.Product = function(attributes, categories) {
       _.extend(this, attributes);
@@ -130,12 +130,12 @@ First we need to map the data to JavaScript objects so we can associate the prod
     };
 
 
-We extend the object with all the attributes of the product and then we attach the category of the product to the object. The `attachCategory` is a private function so the behavior is encapsulated. Important to notice in this code is the use of the underscore functions which are provided by the [Underscore.js](http://documentcloud.github.com/underscore/) library. Most of the behavior defined in that library is related to enumerables and allows one to write easy to read, concise code.
+We extend the object with all the attributes of the product and then we attach the category of the product to the object. `attachCategory` is kept inside the closure to make it a private function. Important to note in this code is the use of the underscore functions which are provided by [Underscore.js](http://documentcloud.github.com/underscore/). Underscore defines helpers for enumerables and helps one to write easy to read, concise code.
 
 
 ## Rendering templates
 
-In the above case, we do not need an extra view object because the logic of rendering is very basic - it is just the objects of the products we created. The logic-free mustache template that will be rendered looks like this:
+In the above case, we do not need an additional view layer object because the rendering logic is very basic - it is just iterating over the objects of the products we created and displaying the attributes of each, including the category name we attached beforehand. The logic-free mustache template that will be rendered looks like this:
 
     <h2>Products</h2>
 
@@ -163,13 +163,9 @@ In the above case, we do not need an extra view object because the logic of rend
     </table>
 
 
-We just iterate over all the products and render the attributes of each, including the category name we attached beforehand.
-
-
 ## Moving model specific controller code into the model
 
-It's a matter of taste how much responsibility a controller has and how much one wants to transfer to the models. If I want to write the above code in a more model-centric fashion, I could do something like this:
-
+It is a matter of taste how much responsibility a controller is given and how much can be refactored into model code. If I want to write the above code in a more model-centric fashion, I could do something like this:
 
 ### Controller
 
@@ -201,7 +197,7 @@ There are several tasks that are very common to web development and will be recu
 
 ### Authentication
 
-Most applications, just like our example application, want security by making the user log in before allowing the usage of the application. Since HTTP is stateless, we need to resend the authentication with every request, so we need to save some kind of a token when first logging in and then use that for everything thereafter. The way I chose to do that was to save a token in the locale storage once the user had logged in successfully and send that token as a header attached to the XMLHttpRequest. The code to do this looks similar to the following. It is stashed in a backend model which is used by the helpers I mentioned earlier:
+Most applications, including ours, add basic security by making the user log in before using the application. Since HTTP is stateless, we need to resend the authentication with every request. We can accomplish this by saving a token when first logging in and then using that for every request thereafter. The way I chose to do that was to save a token in local storage once the user had logged in successfully and send that token as a header attached to the XMLHttpRequest. The code to do this looks similar to the following. It is stashed in a backend model which is used by the helpers I mentioned earlier:
 
     this.get = function(url, data, success, error) {
       sendRequest('get', url, data, success, error);
@@ -232,12 +228,12 @@ Most applications, just like our example application, want security by making th
       });
     }
     
-One possibility is that we already have a token, the other is that the user just logged in and there is a user(name) and a password available. Either way I attach the token or user/password combination as a header and if the request is successful, I know that the user is authenticated successfully. Otherwise the backend will just return an error. This approach was relatively straight forward to implement and I did not really encounter any issues except that I had all the code in helpers before putting it in a separate model which led to relatively complex, unreadable code. Abstracting the requests into a backend model is quite common, as, for example, seen in the Backbone.js library where it is practised even more profoundly. The authentication code is unique for this example application though and always depends on the backend and what it expects the frontend to send.
+One case is that we already have a token, the other is that the user just logged in and there is a user(name) and a password available. Either way we attach the token or user/password combination as a header and if the request is successful, we know that the user is authenticated successfully. Otherwise the backend will just return an error. This approach was relatively straight forward to implement and the only issue I encountered was that the code became a little complex and unreadable. To fix this I refactored the helpers in to separate model. Abstracting the requests into a backend model is quite common, as, for example, seen in the Backbone.js library where it is a core part of the library. Authentication code is often unique per-application and always depends on the backend and what it expects the frontend to send.
 
 
 ### I18n
 
-A very common library for internationalizing JavaScript applications which is based on jQuery is [jquery.global.js](http://github.com/jquery/jquery-global). It provides us with methods to format numbers and dates and enables us to translate strings once we have loaded a dictionary for the current locale. Once we have loaded this dictionary, which is a simple JavaScript object with keys and translated values, the only thing we need to pay attention to is formatting numbers and dates in all places in the application. A sensible place to do that is in the models before rendering the objects to the templates, so in the product model it would look something like this:
+A very common library for internationalization in JavaScript applications is [jquery.global.js](http://github.com/jquery/jquery-global). It provides us with methods to format numbers and dates and enables us to translate strings using a dictionary for the current locale. Once we have loaded this dictionary, which is a simple JavaScript object with keys and translated values, the only thing we need to pay attention to is formatting numbers and dates. A sensible place to do that is in the models before rendering the objects to the templates, in the product model it would look something like this:
 
     var valid_to = Date.parse(product.valid_to);
     product.valid_to = $.global.format(valid_to, "d");
@@ -245,7 +241,7 @@ A very common library for internationalizing JavaScript applications which is ba
 
 ### Validation
 
-When developing in JavaScript, we have the opportunity to inform the user right away if the provided input is invalid, so it makes sense to use that opportunity and validate the data before it is sent to the backend. This does not mean that it is not necessary to validate the data in the backend as well since there might be requests that are not using the frontend. Again, there is a common jQuery library for validations which is [jquery.validate.js](http://bassistance.de/jquery-plugins/jquery-plugin-validation/). The library will use a set of rules on a form and show errors on the appropriate input fields if the content does not match the provided rules. It makes sense to structure those validation rules into the models we already have, so every model has a `validations` function which returns the rules. This is again similar to Backbone.js but different from Eyeballs.js where the validations work in a more Rails-like fashion. Here is how the validations for our category model could look:
+One of the benefits of developing in JavaScript is we have the opportunity to give the user real-time feedback. It makes sense to use this potential to validate the data before it is sent to the backend. Note that it is still necessary to validate the data in the backend as well since there might be requests that are not using the frontend. There is a common jQuery library for validations, [jquery.validate.js](http://bassistance.de/jquery-plugins/jquery-plugin-validation/). The library uses a set of rules on a form and shows errors on the appropriate input fields if the content does not match the provided rules. It makes sense to structure those validation rules into the models we already have, so every model has a `validations` function which returns the rules. This is similar to Backbone.js but different from Eyeballs.js where the validations work in a more Rails-like fashion. Here is how the validations for our category model could look:
 
     karhu.Category = function() {
       this.validations = function() {
@@ -263,20 +259,20 @@ When developing in JavaScript, we have the opportunity to inform the user right 
 
 ### Caching objects for offline editing
 
-This is the most central and complex part of the application. All objects need to be cached beforehand so that in case we are offline they can be correctly sorted, paginated and filtered. There needs to be a queue for all actions being done before the objects are cached, so that those actions can be applied to the objects once they are cached. Then there needs to be a second queue that is filled once we actually are offline, so that when we are back online, everything that was done offline can be patched through to the backend.
+This is the most central and complex part of the application. All objects need to be cached ahead of time so that once we are offline they can be correctly sorted, paginated and filtered. There needs to be a queue for all actions being done before the objects are cached, so that those actions can be applied to the objects as soon as they are cached. There also needs to be a second queue that is filled once we actually are offline, so that when we are back online, everything that was done offline can be patched through to the backend.
 
-There are several issues that need to be addressed outside of the already complicated caching and queuing process. One, for example, is that when an object is created when offline, it cannot be updated or deleted without further code because it does not have an id. I worked around that for now by simply disallowing those actions for objects created while offline. Another issue was that categories created while offline cannot be used for creating products; here again the reason being that they do not have an id yet. I simply do not display those categories in the list of available categories for creating a product. Some of those problems might be solved by working with temporary ids and by rearranging the offline queue.
+There are several issues that need to be addressed outside of the already complicated caching and queuing process. For example, when an object is created when offline, it cannot be updated or deleted without further code because it does not have an id. I worked around that for now by simply disallowing those actions for objects created while offline. Another issue was that categories created while offline cannot be used for creating products; here again the reason being that they do not have an id yet. I simply do not display those categories in the list of available categories for creating a product. Some of those problems might be solved by working with temporary ids and by rearranging the offline queue.
 
-In addition, the available partials definitely need to be cached. This can either be done through a cache manifest as defined in HTML5 if the targeted browser group supports it, or simply through loading the partials and putting them into the local storage. This is quite simple with Sammy.js and looks something like this:
+In addition, the available partials and template need to be cached. This can either be done through a cache manifest as defined in HTML5 if the targeted browser group supports it, or simply through loading the partials and putting them into local storage. This is quite simple with Sammy.js and looks something like this:
 
     context.load('templates/products/index.mustache', {cache: true});
 
 
 ## Conclusion
 
-All of the requirements for the example application were implemented. With enough time one could also handle the issues mentioned above. Tasks like authentication, internationalization and handling business logic need to be done independent of the frameworks and libraries, which are really just a starting point.
+At this point, all of the requirements for the example application were implemented. With enough time one could also handle the issues mentioned above. Tasks like authentication, internationalization and handling business logic need to be coded independent of the frameworks and libraries, which are really just a starting point.
 
-If you always test the code of the application and try to pay attention to structure cleanly separating different parts of the application, writing JavaScript applications ready for production that can continue to evolve is in my opinion possible and a goal well worth investing in. Getting started is easy, however it is important to keep checking for a clean code base and refactoring if necessary. If these requirements are met, JavaScript gives you the opportunity to write very elegant applications and solutions.
+If you always write tests and pay attention to the structure of the application, writing JavaScript production-ready applications that can continue to evolve is, in my opinion, possible and a goal well worth investing in. Getting started is easy, however, it is important to keep checking for a clean code base and refactoring if necessary. If these requirements are met, JavaScript gives you the opportunity to write very elegant and maintainable applications.
 
 The code of the example application can be found on [codeplex](). Other starting points for getting a better understanding of the subject are the documentations of the aforementioned libraries and frameworks, other example applications and, of course, JavaScript books.
 
