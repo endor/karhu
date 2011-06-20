@@ -3,27 +3,27 @@
 <form method="POST" action="#/products">
   <p>
     <label for="name">{{?name}}</label>
-    <input type="text" name="product[name]" id="name" class="text store_change" value="{{name}}" />
+    <input type="text" name="name" id="name" class="text store_change" value="{{name}}" />
   </p>
 
   <p>
     <label for="description">{{?description}}</label>
-    <textarea name="product[description]" id="description" class="store_change">{{description}}</textarea>
+    <textarea name="description" id="description" class="store_change">{{description}}</textarea>
   </p>
   
   <p>
     <label for="unit_price">{{?price}}</label>
-    <input type="text" name="product[unit_price]" id="unit_price" class="text store_change" value="{{unit_price}}" />
+    <input type="text" name="unit_price" id="unit_price" class="text store_change" value="{{unit_price}}" />
   </p>
 
   <p class="text">
     <label for="valid_to">{{?valid_to}}</label>
-    <input type="text" name="product[valid_to]" id="valid_to" class="datepicker store_change" value="{{valid_to}}" />
+    <input type="text" name="valid_to" id="valid_to" class="datepicker store_change" value="{{valid_to}}" />
   </p>
 
   <p>
     <label for="category_id">{{?category}}</label>
-    <select id="category_id" name="product[category_id]" class="store_change">
+    <select id="category_id" name="category_id" class="store_change">
       <option value="null">{{?no_category_selected}}</option>
       {{#categories}}
         <option value="{{id}}" {{#selected}} selected="selected"{{/selected}}>{{name}}</option>
