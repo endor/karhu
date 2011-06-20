@@ -1,4 +1,7 @@
 karhu.ProductCollection = Backbone.Collection.extend({
   model: karhu.Product,
-  url: '/products'
+  url: '/products',
+  toTemplate: function() {
+    return this.map(function(model){ return model.toTemplate(); });
+  }  
 });

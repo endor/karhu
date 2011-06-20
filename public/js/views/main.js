@@ -21,8 +21,8 @@ karhu.MainView = Backbone.View.extend({
   
   data: function() {
     return {
-      categories: karhu.Categories.toJSON(),
-      products: karhu.Products.toJSON()
+      categories: karhu.Categories.toTemplate(),
+      products: karhu.Products.toTemplate()
     };
   }
 });
