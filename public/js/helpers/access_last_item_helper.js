@@ -13,8 +13,19 @@ karhu.AccessLastItemHelper = {
       context.store.set(item, object);
     });
 
+    $('.search input').click(function() {
+      var input = $(this);
+      if(input.val() === '') {
+        input.parent().submit();
+      }
+    });
+
     $('.search input').keyup(function(evt) {
-      $(this).parent().submit();
+      if(karhu.searchTimeout) { clearTimeout(karhu.searchTimeout); }
+      karhu.searchTimeout = setTimeout(function(form) {
+        form.submit();
+        delete karhu.searchTimeout;
+      }, 200, $(this).parent());
     });
   },
 
