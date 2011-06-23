@@ -12,7 +12,7 @@ Capybara.register_driver :firefox_custom do |app|
   require 'selenium/webdriver'
   profile_path = File.dirname(__FILE__) + "/prototype_profile"
   profile = Selenium::WebDriver::Firefox::Profile.new(profile_path)
-  driver = Capybara::Driver::Selenium.new(app, :profile => profile)
+  driver = Capybara::Selenium::Driver.new(app, :profile => profile)
   driver
 end
 

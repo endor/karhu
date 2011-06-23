@@ -17,14 +17,19 @@ karhu.MainView = Backbone.View.extend({
     $.get(this.template(), function(template) {
       context.el.html(Mustache.to_html(template, data));
     });
+    window.location.href = '#/' + this.className;
     return this;
   },
   
   removeItem: function(evt) {
     evt.preventDefault();
     
-    console.log(evt)
-    this.collection.remove(this.collection.get());
+    var id = $(evt.target).attr('data-id'),
+      collection = this.collection;
+
+    collection.get(id).destroy({success: function(model, response) {
+      collection.remove(model);      
+    }});
   },
   
   template: function() {
