@@ -18,6 +18,10 @@ The easiest way to run the app is currently to start:
   * Note: testapp.rb is the ruby backend used for the acceptance tests.
 
 
+## Architecture
+
+The app is built upon [Sammy.js](http://sammyjs.org) and the `master` branch is the most current and productive one. There is however a `backbone_js` branch which implements some of the functionality with [Backbone.js](http://documentcloud.github.com/backbone).
+
 
 ## API
 
