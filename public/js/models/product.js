@@ -92,7 +92,7 @@ karhu.Product = function(attributes, categories) {
         unit_price: /^(\d{1,3}([.]\d{3})*|(\d+))([,]\d{2})?( )?€?$/,
         valid_to: /\d{1,2}\.\d{1,2}\.\d{4}/
       }
-    }[karhu.locale][field];
+    }[karhu.i18n.currentLocale()][field];
   }
 };
 

@@ -5,12 +5,16 @@ karhu.I18n = function(store) {
   
   var translate = this.translate;
   
+  this.currentLocale = function() {
+    return this.locale;
+  };
+
   this.setLocale = function(locale) {
-    karhu.locale = locale;
-    store.set('locale', locale);
-    $.global.preferCulture(locale);
+    this.locale = locale;
+    store.set('locale', this.locale);
+    $.global.preferCulture(this.locale);
     translateStaticElements();
-    $.datepicker.setDefaults($.datepicker.regional[karhu.locale]);
+    $.datepicker.setDefaults($.datepicker.regional[this.locale]);
   };
   
   this.translateValidationMessages = function(validations) {
