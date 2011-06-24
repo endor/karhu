@@ -23,7 +23,11 @@ karhu.Product = Backbone.Model.extend({
   parsedUnitPrice: function() {
     var unit_price = this.get('unit_price');
     if(unit_price && _.isString(unit_price)) {
-      return $.global.parseFloat(unit_price.match(/[\d\.\,]+/)[0]);
+      if(unit_price.match(/\d+\.\d{2}/)) {
+        return parseFloat(unit_price, 10);
+      } else {
+        return $.global.parseFloat(unit_price.match(/[\d\.\,]+/)[0]);
+      }
     } else {
       return unit_price;
     }
@@ -58,15 +62,19 @@ karhu.Product = Backbone.Model.extend({
       errors['name'] = karhu.i18n.translate('cannot_be_longer_than_100_characters');
     }
     if(attrs['unit_price'] && !attrs.unit_price.match(this._regularExpression('unit_price'))) {
-      errors['unit_price'] = karhu.i18n.translate('wrong_format_price');
+      if(!(attrs.id && attrs.unit_price.match(/[\d]+\.\d{2}/))) {
+        errors['unit_price'] = karhu.i18n.translate('wrong_format_price');
+      }
     }
     if(attrs['valid_to'] && !attrs.valid_to.match(this._regularExpression('valid_to'))) {
-      errors['valid_to'] = karhu.i18n.translate('wrong_format_date');
+      if(!(attrs.id && attrs.valid_to.match(/\d{2}\/\d{2}\/\d{4}/))) {
+        errors['valid_to'] = karhu.i18n.translate('wrong_format_date');
+      }
     }
     if(attrs.valid_to && !(Date.today().clearTime().compareTo(Date.parse(attrs.valid_to)) < 0)) {
       errors['valid_to'] = karhu.i18n.translate('today_or_after');
     }
-    
+
     if(!_.isEmpty(errors)) { return errors; }
   },
   

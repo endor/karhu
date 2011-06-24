@@ -1,7 +1,6 @@
 describe("CachedLists", function() {
   beforeEach(function() {
-    store = new Sammy.Store({name: 'karhu_test', type: ['local', 'cookie']});
-    store.clearAll();
+    store.clear();
     cachedLists = new karhu.CachedLists(store);
   });
 

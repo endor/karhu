@@ -21,10 +21,12 @@ $(function() {
     
     renderViewWithCollection: function(type, collection) {
       collection.fetch({
-        success: function() { new karhu.MainView({className: type, collection: collection}); }
+        success: function() { karhu.views.main = new karhu.MainView({className: type, collection: collection}); }
       });
     }
   });
+  
+  karhu.views.top = new karhu.TopView();
   
   new karhu.Application();
   Backbone.history.start();

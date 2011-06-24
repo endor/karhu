@@ -1,3 +1,4 @@
 karhu = {
-  locales: {}
+  locales: {},
+  views: {}
 };

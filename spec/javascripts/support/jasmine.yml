@@ -18,6 +18,7 @@ src_files:
   - vendor/jquery/jquery.*.js
   - vendor/backbone/backbone.js
   - vendor/date/date.js
+  - vendor/store/store.js
   - js/root.js
   - js/controllers/*.js
   - js/models/*.js
