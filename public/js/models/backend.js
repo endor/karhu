@@ -6,7 +6,7 @@
     'read'  : 'GET'
   };
 
-  Backbone.sync = function(method, model, success, error) {
+  Backbone.sync = function(method, model, options) {
     var type = methodMap[method];
     var modelJSON = (method === 'create' || method === 'update') ?
                     model.toJSON() : null;
@@ -17,8 +17,8 @@
       data:         modelJSON,
       dataType:     'json',
       processData:  true,
-      success:      success,
-      error:        error
+      success:      options.success,
+      error:        options.error || function() {}
     };
 
     $.ajax(params);

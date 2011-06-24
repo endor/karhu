@@ -10,4 +10,4 @@ karhu.Collections = {
 };
 
 
-new karhu.I18n(store);
+karhu.i18n = new karhu.I18n(store);

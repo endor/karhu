@@ -20,11 +20,11 @@ karhu.EditView = Backbone.View.extend({
   addItem: function(evt) {
     evt.preventDefault();
 
-    var data = {};
-    this.el.find('input:text, textarea').each(function(idx, element) {
-      data[$(element).attr('name')] = $(element).val();
-    });
-    this.collection.create(data);
+    var data = this._collectFormData();
+
+    if(!this.collection.create(data)) {
+      this._showErrorsFor(data);
+    }
   },
   
   template: function() {
@@ -36,6 +36,21 @@ karhu.EditView = Backbone.View.extend({
       categories: karhu.Categories.toJSON(),
       products: karhu.Products.toJSON()
     };
+  },
+  
+  _collectFormData: function() {
+    var data = {};
+    this.el.find('input:text, textarea, select').each(function(idx, element) {
+      data[$(element).attr('name')] = $(element).val();
+    });
+    return data;
+  },
+  
+  _showErrorsFor: function(data) {
+    var model = new this.collection.model(),
+      validator = this.el.find('form').validate();
+
+    validator.showErrors(model.validate(data));
   }
 });
 

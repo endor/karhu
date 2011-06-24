@@ -1,6 +1,6 @@
 $(function() {
 
-  karhu.Application = Backbone.Controller.extend({
+  karhu.Application = Backbone.Router.extend({
     routes: {
       "/categories": "categories",
       "/products": "products",

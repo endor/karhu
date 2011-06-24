@@ -43,4 +43,3 @@ karhu.MainView = Backbone.View.extend({
     };
   }
 });
-

@@ -25,7 +25,7 @@ karhu.I18n = function(store) {
     
     return validations;
   };
-  
+
   ['en', 'de'].forEach(function(locale) {
     $.global.localize("karhu", locale, karhu.locales[locale] || {});
   });
