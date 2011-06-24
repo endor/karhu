@@ -16,8 +16,7 @@ src_files:
   - vendor/jquery/jquery.global.js
   - vendor/jquery/jquery.validate.js
   - vendor/jquery/jquery.*.js
-  - vendor/sammy/sammy.js
-  - vendor/sammy/sammy.*.js
+  - vendor/backbone/backbone.js
   - vendor/date/date.js
   - js/root.js
   - js/controllers/*.js
