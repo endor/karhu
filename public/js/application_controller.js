@@ -4,11 +4,21 @@ $(function() {
     routes: {
       "/categories": "categories",
       "/products": "products",
-      "/:type/new": "newItem"
+      "/:type/new": "newItem",
+      "/:type/:id/edit": "editItem"
     },
     
     newItem: function(type) {
-      new karhu.EditView({className: type, collection: karhu.Collections[type]});
+      karhu.views.newItem.className = type;
+      karhu.views.newItem.collection = karhu.Collections[type];
+      karhu.views.newItem.render();
+    },
+    
+    editItem: function(type, id) {
+      karhu.views.edit.className = type;
+      karhu.views.edit.collection = karhu.Collections[type];
+      karhu.views.edit.model = karhu.Collections[type].get(id);
+      karhu.views.edit.render();
     },
 
     categories: function() {
@@ -27,6 +37,8 @@ $(function() {
   });
   
   karhu.views.top = new karhu.TopView();
+  karhu.views.newItem = new karhu.NewView();
+  karhu.views.edit = new karhu.EditView();
   
   new karhu.Application();
   Backbone.history.start();

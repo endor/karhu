@@ -15,5 +15,15 @@ karhu.Category = Backbone.Model.extend({
       errors['name'] = karhu.i18n.translate('cannot_be_longer_than_100_characters');
     }
     if(!_.isEmpty(errors)) { return errors; }
+  },
+  
+  url: function() {
+    var id = this.get('id');
+    
+    if(id) {
+      return '/categories/' + id;
+    } else {
+      return '/categories';
+    }
   }
 });

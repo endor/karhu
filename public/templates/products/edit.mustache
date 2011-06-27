@@ -1,38 +1,40 @@
 <h2>{{?edit_product}}</h2>
 
-<form method="PUT" action="#/products/{{id}}">
-  <p>
-    <label for="product_name">{{?name}}</label>
-    <input type="text" name="product[name]" id="product_name" value="{{name}}" class="text store_change" />
-  </p>
+{{#object}}
+  <form method="PUT" action="#/products/{{id}}">
+    <p>
+      <label for="name">{{?name}}</label>
+      <input type="text" name="name" id="name" value="{{name}}" class="text store_change" />
+    </p>
 
-  <p>
-    <label for="product_description">{{?description}}</label>
-    <textarea name="product[description]" id="product_description" class="store_change">{{description}}</textarea>
-  </p>
+    <p>
+      <label for="description">{{?description}}</label>
+      <textarea name="description" id="description" class="store_change">{{description}}</textarea>
+    </p>
   
-  <p>
-    <label for="product_unit_price">{{?price}}</label>
-    <input type="text" name="product[unit_price]" id="product_unit_price" value="{{unit_price}}" class="text store_change" />
-  </p>
+    <p>
+      <label for="unit_price">{{?price}}</label>
+      <input type="text" name="unit_price" id="unit_price" value="{{unit_price}}" class="text store_change" />
+    </p>
 
-  <p class="text">
-    <label for="product_valid_to">{{?valid_to}}</label>
-    <input type="text" name="product[valid_to]" id="product_valid_to" value="{{valid_to}}" class="datepicker store_change" />
-  </p>
+    <p class="text">
+      <label for="valid_to">{{?valid_to}}</label>
+      <input type="text" name="valid_to" id="valid_to" value="{{valid_to}}" class="datepicker store_change" />
+    </p>
 
-  <p>
-    <label for="product_category_id">{{?category}}</label>
-    <select id="product_category_id" name="product[category_id]" class="store_change">
-      <option value="null">{{?no_category_selected}}</option>
-      {{#categories}}
-        <option value="{{id}}" {{#selected}} selected="selected"{{/selected}}>{{name}}</option>
-      {{/categories}}
-    </select>
-  </p>  
+    <p>
+      <label for="category_id">{{?category}}</label>
+      <select id="category_id" name="category_id" class="store_change">
+        <option value="null">{{?no_category_selected}}</option>
+        {{#categories}}
+          <option value="{{id}}" {{#selected}} selected="selected"{{/selected}}>{{name}}</option>
+        {{/categories}}
+      </select>
+    </p>  
   
-  <p>
-    <input type="submit" value="{{?update_product}}" data-key="enter" data-ctrl-key="true" />
-    <input type="submit" value="{{?cancel}}" class="cancel" data-key="esc" />
-  </p>
-</form>
+    <p>
+      <input type="submit" value="{{?update_product}}" data-key="enter" data-ctrl-key="true" class="update" />
+      <input type="submit" value="{{?cancel}}" class="cancel" data-key="esc" />
+    </p>
+  </form>
+{{/object}}

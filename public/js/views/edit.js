@@ -2,55 +2,34 @@ karhu.EditView = Backbone.View.extend({
   el: $('.main'),
 
   events: {
-    "click .add": "addItem"
+    "click .update": "updateItem"
   },
   
   initialize: function() {
-    _.bindAll(this, 'render', 'addItem', 'template', 'data');
-    this.render();
+    _.bindAll(this, 'render', 'updateItem', 'template', 'data');
   },
   
-  render: function() {
-    var context = this, data = this.data();
-    $.get(this.template(), function(template) {
-      context.el.html(Mustache.to_html(template, data));
-    });    
-  },
-  
-  addItem: function(evt) {
+  updateItem: function(evt) {
     evt.preventDefault();
 
     var data = this._collectFormData();
 
-    if(!this.collection.create(data)) {
+    if(!this.model.set(data)) {
       this._showErrorsFor(data);
+    } else {
+      this.model.save();
     }
   },
   
   template: function() {
-    return 'templates/' + this.className + '/new.mustache';
+    return 'templates/' + this.className + '/edit.mustache';
   },
   
   data: function() {
     return {
       categories: karhu.Categories.toJSON(),
-      products: karhu.Products.toJSON()
+      products: karhu.Products.toJSON(),
+      object: this.model.toJSON()
     };
-  },
-  
-  _collectFormData: function() {
-    var data = {};
-    this.el.find('input:text, textarea, select').each(function(idx, element) {
-      data[$(element).attr('name')] = $(element).val();
-    });
-    return data;
-  },
-  
-  _showErrorsFor: function(data) {
-    var model = new this.collection.model(),
-      validator = this.el.find('form').validate();
-
-    validator.showErrors(model.validate(data));
   }
 });
-

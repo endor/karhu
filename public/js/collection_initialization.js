@@ -9,5 +9,4 @@ karhu.Collections = {
   products: karhu.Products
 };
 
-
 karhu.i18n = new karhu.I18n(store);

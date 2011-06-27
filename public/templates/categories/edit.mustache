@@ -1,18 +1,20 @@
 <h2>{{?edit_category}}</h2>
 
-<form method="PUT" action="#/categories/{{id}}">
-  <p>
-    <label for="category_name">{{?name}}</label>
-    <input type="text" name="category[name]" id="category_name" value="{{name}}" class="text store_change" />
-  </p>
+{{#object}}
+  <form method="PUT" action="#/categories/{{id}}">
+    <p>
+      <label for="name">{{?name}}</label>
+      <input type="text" name="name" id="name" value="{{name}}" class="text store_change" />
+    </p>
 
-  <p>
-    <label for="category_description">{{?description}}</label>
-    <textarea name="category[description]" id="category_description" class="store_change">{{description}}</textarea>
-  </p>
+    <p>
+      <label for="description">{{?description}}</label>
+      <textarea name="description" id="description" class="store_change">{{description}}</textarea>
+    </p>
   
-  <p>
-    <input type="submit" value="{{?update_category}}" data-key="enter" data-ctrl-key="true" />
-    <input type="submit" value="{{?cancel}}" class="cancel" data-key="esc" />
-  </p>
-</form>
+    <p>
+      <input type="submit" value="{{?update_category}}" data-key="enter" data-ctrl-key="true" class="update" />
+      <input type="submit" value="{{?cancel}}" class="cancel" data-key="esc" />
+    </p>
+  </form>
+{{/object}}
