@@ -138,7 +138,7 @@ Feature: Products
     When I go to the start page
       And I follow "Products"
       And I follow "edit"
-    # Then "Baeume" should be the selected "Category"
+    Then "Baeume" should be the selected "Category"
     When I fill in "Description" with "Gruen"
       And I press "Update Product"
     Then I should see "Fichte"

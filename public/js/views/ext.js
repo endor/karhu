@@ -17,5 +17,7 @@ Backbone.View.prototype.render = function() {
   var context = this, data = this.data();
   $.get(this.template(), function(template) {
     context.el.html(Mustache.to_html(template, data));
+    if(context.afterRender) { context.afterRender(); }
   });
+  return this;
 }

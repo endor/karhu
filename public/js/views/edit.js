@@ -9,6 +9,12 @@ karhu.EditView = Backbone.View.extend({
     _.bindAll(this, 'render', 'updateItem', 'template', 'data');
   },
   
+  afterRender: function() {
+    if(this.className === 'products') {
+      this.$('#category_id [value="' + this.model.get('category_id') + '"]').attr('selected', 'selected');
+    }
+  },
+  
   updateItem: function(evt) {
     evt.preventDefault();
 
@@ -29,7 +35,7 @@ karhu.EditView = Backbone.View.extend({
     return {
       categories: karhu.Categories.toJSON(),
       products: karhu.Products.toJSON(),
-      object: this.model.toJSON()
+      object: this.model.toTemplate()
     };
   }
 });
