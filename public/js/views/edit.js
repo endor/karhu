@@ -2,11 +2,12 @@ karhu.EditView = Backbone.View.extend({
   el: $('.main'),
 
   events: {
-    "click .update": "updateItem"
+    "click .update": "updateItem",
+    "click .cancel": "cancel"
   },
   
   initialize: function() {
-    _.bindAll(this, 'render', 'updateItem', 'template', 'data');
+    _.bindAll(this, 'render', 'updateItem', 'template', 'data', 'cancel');
   },
   
   afterRender: function() {
@@ -25,6 +26,11 @@ karhu.EditView = Backbone.View.extend({
     } else {
       this.model.save();
     }
+  },
+  
+  cancel: function(evt) {
+    evt.preventDefault();
+    karhu.views.main.render();
   },
   
   template: function() {

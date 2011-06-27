@@ -31,7 +31,9 @@ $(function() {
     
     renderViewWithCollection: function(type, collection) {
       collection.fetch({
-        success: function() { karhu.views.main = new karhu.MainView({className: type, collection: collection}); }
+        success: function() {
+          karhu.views.main = new karhu.MainView({className: type, collection: collection});
+        }
       });
     }
   });

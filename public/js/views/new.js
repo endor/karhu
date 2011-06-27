@@ -2,11 +2,12 @@ karhu.NewView = Backbone.View.extend({
   el: $('.main'),
 
   events: {
-    "click .add": "addItem"
+    "click .add": "addItem",
+    "click .cancel": "cancel"
   },
   
   initialize: function() {
-    _.bindAll(this, 'render', 'addItem', 'template', 'data');
+    _.bindAll(this, 'render', 'addItem', 'template', 'data', 'cancel');
   },
   
   addItem: function(evt) {
@@ -17,6 +18,11 @@ karhu.NewView = Backbone.View.extend({
     if(!this.collection.create(data)) {
       this._showErrorsFor(data);
     }
+  },
+  
+  cancel: function(evt) {
+    evt.preventDefault();
+    karhu.views.main.render();
   },
   
   template: function() {

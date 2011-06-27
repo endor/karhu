@@ -20,4 +20,4 @@ Backbone.View.prototype.render = function() {
     if(context.afterRender) { context.afterRender(); }
   });
   return this;
-}
+};
