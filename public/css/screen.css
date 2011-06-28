@@ -145,6 +145,8 @@ html {
 
 .actions {
   min-width: 180px;
+  vertical-align: middle;
+  overflow:hidden;
 }
 
 .actions .button {
@@ -152,12 +154,12 @@ html {
   color:rgb(0,0,0);
   font: 14px/1.5 futura-pt;
   font-weight:700;
-  display:inline-block;
   cursor:pointer;
   margin-left: 24px;
+  float:left;
 }
 .actions .button:hover span,
-.actions input.button:hover {
+.actions input.theButton:hover {
   border-bottom: 2px solid #000;
 }
 .actions .button:after {
@@ -166,10 +168,12 @@ html {
   width:28px;
   height:28px;
   position:relative;
-  display:inline-block;
   font-size: 18px;
   text-align:center;
-  left:4px;
+  display:inline-block;
+}
+.actions a.button:after {
+  left:5px;
 }
 .actions .button:hover:after {
   background-color:rgb(255,102,102);
@@ -181,26 +185,18 @@ html {
   content: "—";
 }
 
-
-
 .actions form {
-  display:inline-block;
-  padding:0 !important;
+  padding-top: 10px;
 }
 input.theButton {
   color:rgb(0,0,0);
   font: 14px/1.5 futura-pt;
   font-weight:700;
-  display:inline-block;
   cursor:pointer;
   background-color:transparent;
   margin:0;
   line-height:1.5;
   float:none;
-}
-input.button:before {
-  content:"blala";
-  color:red;
 }
 
 
