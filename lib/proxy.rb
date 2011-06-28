@@ -21,7 +21,7 @@ get '/test' do
 end
 
 get('/config.js') do
-  File.read(ROOT + '/config/test.js')
+  File.read(ROOT + '/config/default.js')
 end
 
 helpers do
