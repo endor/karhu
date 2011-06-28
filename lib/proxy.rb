@@ -5,8 +5,8 @@ require 'sinatra'
 require 'json'
 require 'uri'
 require 'will_paginate'
-require "/Users/hanneskunstreich/apps/karhu/lib/authentication"
-require "/Users/hanneskunstreich/apps/karhu/lib/helpers"
+require ROOT + "/lib/authentication"
+require ROOT + "/lib/helpers"
 
 set :static, true
 set :public, File.join(ROOT, 'public')
@@ -21,7 +21,7 @@ get '/test' do
 end
 
 get('/config.js') do
-  File.read(ROOT + '/config/test.js')
+  File.read(ROOT + '/config/default.js')
 end
 
 helpers do
