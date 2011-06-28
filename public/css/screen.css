@@ -160,7 +160,7 @@ html {
 }
 .actions .button:hover span,
 .actions input.theButton:hover {
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid rgb(0,0,0);
 }
 .actions .button:after {
   background-color: rgba(255,102,102,0.5);
@@ -393,6 +393,7 @@ table th {
 }
 th.action_column {
   text-align:right;
+  font-weight:400;
 }
 table th a {
   position:relative;
@@ -400,7 +401,7 @@ table th a {
   color:inherit;
   text-transform:inherit;
   font-weight:inherit;
-  font-style:inherit;
+  font-style:inherit;  
 }
 table th a:after {
   content:"";

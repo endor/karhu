@@ -10,31 +10,33 @@
   </ul>
 </nav>
 
-<table class="categories_table">
-  <thead>
-    <tr>
-      <th class="name_column">
-        <a data-link="#/categories?sort=name" href="#/categories?sort=name">{{?name}}</a>
-      </th>
-      <th class="description_column">
-        <a data-link="#/categories?sort=description" href="#/categories?sort=description">{{?description}}</a>
-      </th>
-      <th>{{?actions}}</th>
-    </tr>
-  </thead>
-  {{#categories}}
-    <tr>
-      <td class="name_column">{{name}}</td>
-      <td class="description_column">{{description}}</td>
-      <td class="actions">
-        {{#id}}
-          <a href="#/categories/{{id}}/edit" class="button actionEdit" title="Edit {{name}}">{{?edit}}</a>
-          <form method="delete" action="#/categories/{{id}}" class="button actionDel delete_form">
-            <input type="hidden" name="name" value="{{name}}" />
-            <input class="theButton" type="submit" value="{{?remove}}" title="Delete {{name}}" />
-          </form>
-        {{/id}}
-      </td>
-    </tr>
-  {{/categories}}  
-</table>
+<div class="container line centered">
+  <table class="tableView categories_table">
+    <thead>
+      <tr>
+        <th class="name_column">
+          <a data-link="#/categories?sort=name" href="#/categories?sort=name">{{?name}}</a>
+        </th>
+        <th class="description_column">
+          <a data-link="#/categories?sort=description" href="#/categories?sort=description">{{?description}}</a>
+        </th>
+        <th class="action_column">{{?actions}}</th>
+      </tr>
+    </thead>
+    {{#categories}}
+      <tr>
+        <td class="name_column">{{name}}</td>
+        <td class="description_column">{{description}}</td>
+        <td class="actions">
+          {{#id}}
+            <a href="#/categories/{{id}}/edit" class="button actionEdit" title="Edit {{name}}"><span>{{?edit}}</span></a>
+            <form method="delete" action="#/categories/{{id}}" class="button actionDel delete_form">
+              <input type="hidden" name="name" value="{{name}}" />
+              <input class="theButton" type="submit" value="{{?remove}}" title="Delete {{name}}" />
+            </form>
+          {{/id}}
+        </td>
+      </tr>
+    {{/categories}}  
+  </table>
+</div>

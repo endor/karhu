@@ -1,5 +1,6 @@
 <h2 class="marker">{{?products}}</h2>
 
+
 <nav class="product_nav hidden">
   <ul>
     <li>
@@ -9,36 +10,40 @@
     </li>
   </ul>
 </nav>
+<!-- closing .main container -->
+</div>
 
-<table class="products_table">
-  <thead>
-    <tr>
-      <th class="name_column"><a href="#/products?sort=name">{{?name}}</a></th>
-      <th class="description_column"><a href="#/products?sort=description">{{?description}}</a></th>
-      <th class="unit_price_column"><a href="#/products?sort=unit_price">{{?price}}</a></th>
-      <th class="valid_to_column"><a href="#/products?sort=valid_to">{{?valid_to}}</a></th>
-      <th class="category_column"><a href="#/products?sort=category">{{?category}}</a></th>
-      <th class="action_column">{{?actions}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#products}}
+<div class="container line centered">
+  <table class="tableView products_table">
+    <thead>
       <tr>
-        <td class="name_column">{{name}}</td>
-        <td class="description_column">{{description}}</td>
-        <td class="unit_price_column">{{unit_price}}</td>
-        <td class="valid_to_column">{{valid_to}}</td>
-        <td class="category_column">{{#category}}{{name}}{{/category}}</td>
-        <td class="actions">
-          {{#id}}
-            <a href="#/products/{{id}}/edit" class="button actionEdit" title="Edit {{name}}">{{?edit}}</a>
-            <form method="delete" action="#/products/{{id}}" class="button actionDel delete_form">
-              <input type="hidden" name="name" value="{{name}}" />
-              <input class="theButton" type="submit" value="{{?remove}}" title="Delete {{name}}" />
-            </form>
-          {{/id}}
-        </td>
+        <th class="name_column"><a href="#/products?sort=name">{{?name}}</a></th>
+        <th class="description_column"><a href="#/products?sort=description">{{?description}}</a></th>
+        <th class="unit_price_column"><a href="#/products?sort=unit_price">{{?price}}</a></th>
+        <th class="valid_to_column"><a href="#/products?sort=valid_to">{{?valid_to}}</a></th>
+        <th class="category_column"><a href="#/products?sort=category">{{?category}}</a></th>
+        <th class="action_column">{{?actions}}</th>
       </tr>
-    {{/products}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#products}}
+        <tr>
+          <td class="name_column">{{name}}</td>
+          <td class="description_column">{{description}}</td>
+          <td class="unit_price_column">{{unit_price}}</td>
+          <td class="valid_to_column">{{valid_to}}</td>
+          <td class="category_column">{{#category}}{{name}}{{/category}}</td>
+          <td class="actions">
+            {{#id}}
+              <a href="#/products/{{id}}/edit" class="button actionEdit" title="Edit {{name}}"><span>{{?edit}}</span></a>
+              <form method="delete" action="#/products/{{id}}" class="button actionDel delete_form">
+                <input type="hidden" name="name" value="{{name}}" />
+                <input class="theButton" type="submit" value="{{?remove}}" title="Delete {{name}}" />
+              </form>
+            {{/id}}
+          </td>
+        </tr>
+      {{/products}}
+    </tbody>
+  </table>
+</div>
