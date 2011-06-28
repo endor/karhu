@@ -31,16 +31,20 @@
       .script('./js/models/i18n.js')
       .script('./js/models/backend.js')
       .script('./js/models/category.js')
-      .script('./js/models/categories.js')
       .script('./js/models/product.js')
-      .script('./js/models/products.js')
+      .script('./js/models/session.js')
+      .script('./js/collections/categories.js')
+      .script('./js/collections/products.js')
       .script('./js/views/ext.js')
       .script('./js/views/main.js')
       .script('./js/views/top.js')
+      .script('./js/views/session.js')
       .script('./js/views/new.js')
       .script('./js/views/edit.js').wait()
-      .script('./js/collection_initialization.js').wait()
-      .script('./js/application_controller.js');
+      .script('./js/init.js').wait()
+      .script('./js/collections/init.js').wait()
+      .script('./js/views/init.js').wait()
+      .script('./js/app.js');
 		</script>
   </head>
 

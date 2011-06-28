@@ -6,7 +6,7 @@ Feature: Categories
   Scenario: list categories
     Given a category "Baeume" with the description "Grosse Pflanzen"
       And a category "Boote" with the description "Dinger die im Wasser schwimmen"
-      # And I am logged in
+      And I am logged in
     When I go to the start page
       And I follow "Categories"
     Then I should see "Baeume"
@@ -15,7 +15,7 @@ Feature: Categories
       And I should see "Dinger die im Wasser schwimmen"
   
   Scenario: create category
-    # Given I am logged in
+    Given I am logged in
     When I go to the start page
       And I follow "Categories"
       And I follow "Add Category"
@@ -32,7 +32,7 @@ Feature: Categories
       And I should see "Gebacken"
   
   Scenario: create category fails because of validation errors
-    # Given I am logged in
+    Given I am logged in
     When I go to the start page
       And I follow "Categories"
       And I follow "Add Category"
@@ -45,7 +45,7 @@ Feature: Categories
   
   Scenario: delete category
     Given a category "Baeume" with the description "Grosse Pflanzen"
-      # And I am logged in
+      And I am logged in
     When I go to the start page
       And I follow "Categories"
     Then I should see "Baeume" within ".categories_table"
@@ -54,7 +54,7 @@ Feature: Categories
   
   Scenario: edit category
     Given a category "Musik" with the description "Toene"
-      # And I am logged in
+      And I am logged in
     When I go to the start page
       And I follow "Categories"
       And I follow "edit"

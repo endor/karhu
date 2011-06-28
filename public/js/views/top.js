@@ -2,7 +2,8 @@ karhu.TopView = Backbone.View.extend({
   el: $('#languages'),
 
   events: {
-    "click .language": "switchLanguage"
+    "click .language": "switchLanguage",
+    "click .logout": "logout"
   },
   
   initialize: function() {
@@ -15,5 +16,13 @@ karhu.TopView = Backbone.View.extend({
     var locale = $(evt.target).attr('data-language');
     karhu.i18n.setLocale(locale);
     karhu.views.main.render();
+  },
+  
+  logout: function(evt) {
+    evt.preventDefault();
+    
+    var session = new karhu.Session();
+    session.destroy();
+    window.location.href = '#/session/new';
   }
 });

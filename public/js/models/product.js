@@ -5,6 +5,16 @@ karhu.Product = Backbone.Model.extend({
       valid_to: this._englishValidTo()
     });
   },
+  
+  url: function() {
+    var id = this.get('id');
+    
+    if(id) {
+      return '/products/' + id;
+    } else {
+      return '/products';
+    }
+  },
 
   toTemplate: function() {
     var category = this.category() || {toJSON: function() {}};

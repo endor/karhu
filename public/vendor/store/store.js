@@ -25,7 +25,7 @@ var store = (function(){
 		doc = win.document,
 		localStorageName = 'localStorage',
 		globalStorageName = 'globalStorage',
-		namespace = '__storejs__',
+		namespace = 'karhu',
 		storage
 
 	api.disabled = false

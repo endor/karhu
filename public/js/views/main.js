@@ -7,10 +7,12 @@ karhu.MainView = Backbone.View.extend({
   
   initialize: function() {
     _.bindAll(this, 'render', 'template', 'data', 'removeItem');
-    this.collection.bind('add', this.render);
-    this.collection.bind('remove', this.render);
-    this.collection.bind('change', this.render);
-    this.render();
+  },
+  
+  bind: function(collection) {
+    collection.bind('add', this.render);
+    collection.bind('remove', this.render);
+    collection.bind('change', this.render);
   },
   
   afterRender: function() {

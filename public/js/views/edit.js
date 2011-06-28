@@ -28,11 +28,6 @@ karhu.EditView = Backbone.View.extend({
     }
   },
   
-  cancel: function(evt) {
-    evt.preventDefault();
-    karhu.views.main.render();
-  },
-  
   template: function() {
     return 'templates/' + this.className + '/edit.mustache';
   },
