@@ -1,8 +1,9 @@
 karhu.Products = function(app) {
   app.get('#/products', function(context) {
     karhu.Product.all(context.params, function(products) {
-      context.partial('templates/products/index.mustache', {products: products});
+      context.render('templates/products/index.mustache', {products: products}).replace('.tableView');
       context.renderAddButton('products', 'product', 'category');
+      context.clearMain();
     });
   });
   

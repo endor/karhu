@@ -71,5 +71,9 @@ karhu.ApplicationHelper = {
   
   clearAddButton: function() {
     $('.addAction').html('');
+  },
+  
+  clearMain: function() {
+    $('.main').html('');
   }
 };
