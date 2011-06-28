@@ -28,10 +28,10 @@
       <td class="description_column">{{description}}</td>
       <td class="actions">
         {{#id}}
-          <a href="#/categories/{{id}}/edit" class="button" title="Edit {{name}}">{{?edit}}</a>
+          <a href="#/categories/{{id}}/edit" class="button actionEdit" title="Edit {{name}}">{{?edit}}</a>
           <form method="delete" action="#/categories/{{id}}" class="delete_form">
             <input type="hidden" name="name" value="{{name}}" />
-            <input type="submit" value="{{?remove}}" title="Delete {{name}}" />
+            <input class="button actionDel" type="submit" value="{{?remove}}" title="Delete {{name}}" />
           </form>
         {{/id}}
       </td>

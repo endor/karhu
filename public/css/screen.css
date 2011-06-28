@@ -34,7 +34,7 @@ html {
 }
 .modHeader nav {
   float:left;
-  margin: 148px 0 0 218px;
+  margin: 144px 0 4px 218px;
 }
 .modHeader nav a {
   font-family: futura-pt,sans-serif;
@@ -88,7 +88,6 @@ html {
 
 .main label {
   float:left;
-  width: 150px;
   font-family: futura-pt,sans-serif;
   font-weight: 700;
   text-transform:lowercase;
@@ -96,14 +95,21 @@ html {
 }
 .main input {
   float:left;
-  width:679px;
-  border-bottom: 1px solid rgb(0,0,0);
-  padding: 6px;
 }
+
+.login_form label {
+  width: 150px;
+}
+.login_form input {
+  width:679px;
+  padding: 6px;
+  border-bottom: 1px solid rgb(0,0,0);
+}
+
 .main p {
   overflow: hidden;
 }
-.main input.ui-button {
+.login_form input.ui-button {
   float:right;
   width:auto;
   margin:0;
@@ -113,7 +119,7 @@ html {
   height: 28px;
   background-color:rgb(0,0,0);
 }
-.main input.ui-button:hover {
+.login_form input.ui-button:hover {
   cursor:pointer;
 }
 
@@ -137,7 +143,65 @@ html {
   left:-46px;
 }
 
+.actions {
+  min-width: 180px;
+}
 
+.actions .button {
+  position:relative;
+  color:rgb(0,0,0);
+  font: 14px/1.5 futura-pt;
+  font-weight:700;
+  display:inline-block;
+  cursor:pointer;
+  margin-left: 24px;
+}
+.actions .button:hover span,
+.actions input.button:hover {
+  border-bottom: 2px solid #000;
+}
+.actions .button:after {
+  background-color: rgba(255,102,102,0.5);
+  color:rgb(255,255,255);
+  width:28px;
+  height:28px;
+  position:relative;
+  display:inline-block;
+  font-size: 18px;
+  text-align:center;
+  left:4px;
+}
+.actions .button:hover:after {
+  background-color:rgb(255,102,102);
+}
+.button.actionEdit:after {
+  content: "/";
+}
+.button.actionDel:after {
+  content: "—";
+}
+
+
+
+.actions form {
+  display:inline-block;
+  padding:0 !important;
+}
+input.theButton {
+  color:rgb(0,0,0);
+  font: 14px/1.5 futura-pt;
+  font-weight:700;
+  display:inline-block;
+  cursor:pointer;
+  background-color:transparent;
+  margin:0;
+  line-height:1.5;
+  float:none;
+}
+input.button:before {
+  content:"blala";
+  color:red;
+}
 
 
 a {
@@ -282,7 +346,7 @@ table tr {
   border-bottom: solid 1px #DDDDDD;
 }
 
-table .actions span {
+/*table .actions span {
   float: left;
   display: inline !important;
 }
@@ -301,7 +365,7 @@ table .actions form {
 
 table .actions {
   text-align: right;
-}
+}*/
 
 /*table tbody tr:nth-child(2n+2) {
   background-color: #FFFDEF;
@@ -326,7 +390,7 @@ table th {
   border-bottom: 1px solid rgb(218,218,218);
   background-color:rgb(255,255,255);
   color: rgb(0,0,0);
-  font-size: 14px;
+  font-size: 12px;
   text-transform:lowercase;
   font-weight: 700;
   font-style:normal !important;

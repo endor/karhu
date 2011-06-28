@@ -31,10 +31,11 @@
         <td class="category_column">{{#category}}{{name}}{{/category}}</td>
         <td class="actions">
           {{#id}}
-            <a href="#/products/{{id}}/edit" class="button" title="Edit {{name}}">{{?edit}}</a>
-            <form method="delete" action="#/products/{{id}}" class="delete_form">
+            <a href="#/products/{{id}}/edit" class="button actionEdit" title="Edit {{name}}">{{?edit}}</a>
+            <a href="" class="button actionDel"><span>del</span></a>
+            <form method="delete" action="#/products/{{id}}" class="button actionDel delete_form">
               <input type="hidden" name="name" value="{{name}}" />
-              <input type="submit" value="{{?remove}}" title="Delete {{name}}" />
+              <input class="theButton" type="submit" value="{{?remove}}" title="Delete {{name}}" />
             </form>
           {{/id}}
         </td>
