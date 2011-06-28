@@ -5,8 +5,8 @@ require 'sinatra'
 require 'json'
 require 'uri'
 require 'will_paginate'
-require "/Users/hanneskunstreich/apps/karhu/lib/authentication"
-require "/Users/hanneskunstreich/apps/karhu/lib/helpers"
+require ROOT + "/lib/authentication"
+require ROOT + "/lib/helpers"
 
 set :static, true
 set :public, File.join(ROOT, 'public')
