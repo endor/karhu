@@ -101,7 +101,12 @@
   	<div class="headerBottomBg">
   	  <div class="whiteBg">
   	    <div class="line centered">
-    	    <div class="mod modMainNav bd">            
+    	    <div class="mod modMainNav bd">      
+    	      
+    	      <div class="addAction product/category">
+    	       <!-- add product/category -->
+    	      </div>
+    	            
     	      <nav>
               <ul>
                 <li>
@@ -130,35 +135,43 @@
   	</div>
   	
   	<div class="notices line redBordered">
-  	  
   	  <div id="flash">
-  	  </div>
-  	  <div class="main centered">
+  	    
   	  </div>
   	  
+  	  <div class="actionContainer">
+  	    <!-- suche -->
+  	    <div class="search">
+  	        <div class="search hidden">
+              <form method="GET" action="#/products">
+                <span class="translate" data-translate-key="search">Search:</span>
+                <input type="search" name="search" />
+              </form>
+            </div>
+            <div class="controls hidden">
+              <div class="pages translate" data-translate-key="pages">Pages:</div>
+              <ul class="pagination">
+              </ul>
+            </div>
+            <form method="DELETE" action="#/session" class="hidden" id="logout_form"></form>
+          </div>
+        </div>
+  	    
 
-  	
-
-
-
-    <div id="container">
-      
-      <div class="search hidden">
-        <form method="GET" action="#/products">
-          <span class="translate" data-translate-key="search">Search:</span>
-          <input type="search" name="search" />
-        </form>
-      </div>
-
-      <div class="controls hidden">
-        <div class="pages translate" data-translate-key="pages">Pages:</div>
-        <ul class="pagination">
-        </ul>
-      </div>
-
-
-      
-      <form method="DELETE" action="#/session" class="hidden" id="logout_form"></form>
+  	    
+  	  </div>
+  	  
+  	  
+  	  
+  	  <div class="main centered">
+        <!-- altes main -->
+  	  </div>
+  	  
+  	    	  
+    </div>
+    
+    <div class="tableView">
+      <!-- anzeige der tabelle -->
     </div>
 
 </body>  
