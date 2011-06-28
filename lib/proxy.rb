@@ -68,6 +68,7 @@ end
 put /\/(.+)/ do |path|
   handle_put_delete_and_post(path, request.env, params, 'put') do
     type, id = path.split('/')
+    params.delete('id')
     
     plural_file = File.join(fixtures_path, type + ".json")
     objects = JSON.parse(File.read(plural_file)) rescue []
