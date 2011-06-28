@@ -88,4 +88,11 @@ The app is built upon [Sammy.js](http://sammyjs.org) and the `master` branch is 
 
 ## Author
 
-Frank Prößdorf <<fp@notjusthosting.com>> ([http://fp.njh6.de](http://fp.njh6.de))
+  * Frank Prößdorf <<fp@notjusthosting.com>> ([http://fp.njh6.de](http://fp.njh6.de))
+
+
+## Contributions
+
+Thank you!
+
+  * Hannes Kunstreich <> () for the Design
