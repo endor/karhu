@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.ui.css" />
     <link rel="stylesheet" type="text/css" href="css/screen.css" />
 		
+		<script type="text/javascript" src="http://use.typekit.com/ftl8zef.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		
 		<script type="text/javascript" src="vendor/lab/lab.js"></script>
 		<script type="text/javascript">
 		  $LAB
@@ -59,56 +62,76 @@
 		</script>
   </head>
 
-  <body>
-    <ul id="languages">
-      <li class="hidden">
-        <a href="#/pages/keyboard_shortcuts" class="keyboard_shortcuts translate" data-translate-key="keyboard_shortcuts" data-key="k">
-          Keyboard shortcuts
-        </a>
-      </li>
-      <li>
-        <a href="#/locales/en" data-key="e">
-          English
-        </a>
-      </li>
-      <li>
-        <a href="#/locales/de" data-key="d">
-          Deutsch
-        </a>
-      </li>
-      <li class="hidden">
-        <a href="#" class="logout translate" data-translate-key="logout" data-key="l">
-          Log out
-        </a>
-      </li>
-    </ul>
+<body>
+	  
+	  <div class="modHeaderBg">
+  	  <div class="line centered ">
+  	    <header class="mod modHeader">
+  	      <h1 class="logo">
+  	        <a href="/">Karhu</a>
+  	      </h1>
+  	      <nav class="clear">
+    	      <ul class="" id="languages">
+              <li class="hidden">
+                <a href="#/pages/keyboard_shortcuts" class="keyboard_shortcuts translate" data-translate-key="keyboard_shortcuts" data-key="k">
+                  Keyboard shortcuts
+                </a>
+              </li>
+              <li>
+                <a href="#/locales/en" data-key="e">
+                  English
+                </a>
+              </li>
+              <li>
+                <a href="#/locales/de" data-key="d">
+                  Deutsch
+                </a>
+              </li>
+              <li class="hidden">
+                <a href="#" class="logout translate" data-translate-key="logout" data-key="l">
+                  Log out
+                </a>
+              </li>
+            </ul>
+          </nav>
+  	    </header>
+  	    
+  	  </div>
+  	</div>
+  	
+  	<div class="headerBottomBg">
+  	  <div class="whiteBg">
+  	    <div class="line centered">
+    	    <div class="mod modMainNav bd">
+    	      <nav>
+              <ul>
+                <li>
+                  <a href="#/cached-actions" class="cached-actions translate" data-translate-key="queue" data-key="q">
+                    Queue
+                  </a>
+                </li>
+                <li>
+                  <a href="#/categories" class="categories translate" data-translate-key="categories" data-key="c">
+                    Categories
+                  </a>
+                </li>
+                <li>
+                  <a href="#/products" class="products translate" data-translate-key="products" data-key="p">
+                    Products
+                  </a>
+                </li>
+              </ul>
+            </nav>
+    	    </div>
+    	  </div>
+    	</div>
+  	</div>
+	  
+	  
+
 
     <div id="container">
       <div id="header">
-        <a href="#/">
-          <h1 class="translate" data-translate-key="header">Products data management as HTML5 Web App</h1>
-        </a>
-
-        <nav>
-          <ul>
-            <li>
-              <a href="#/products" class="products translate" data-translate-key="products" data-key="p">
-                Products
-              </a>
-            </li>
-            <li>
-              <a href="#/categories" class="categories translate" data-translate-key="categories" data-key="c">
-                Categories
-              </a>
-            </li>
-            <li>
-              <a href="#/cached-actions" class="cached-actions translate" data-translate-key="queue" data-key="q">
-                Queue
-              </a>
-            </li>
-          </ul>
-        </nav>
-
         <div id="flash"></div>
       </div>
       
@@ -129,5 +152,6 @@
       
       <form method="DELETE" action="#/session" class="hidden" id="logout_form"></form>
     </div>
-  </body>  
+
+</body>  
 </html>

@@ -1,3 +1,87 @@
+/*
+
+oocss modules
+
+*/
+
+body {
+  background: url(/images/tile2.gif) repeat 0 0;
+}
+.whiteBg {
+  border-top: 1px solid rgb(218,218,218);
+  border-bottom: 1px solid rgb(218,218,218)
+}
+.modHeaderBg {
+  background: url(/images/tile1.gif) repeat 0 0;
+}
+.modHeader h1 {
+  color:transparent;
+  font-size:0px;
+  position:relative;
+  float:left;
+}
+.modHeader h1 a {
+  background: url(/images/logo.png) no-repeat 0 0;
+  height: 186px;
+  width: 186px;
+  display:block;
+  position:absolute;
+  top: 100px;
+}
+.headerBottomBg {
+  background: url(/images/headerBottomBg.png) repeat-x 0 top;
+  padding-top: 36px;
+}
+.modHeader nav {
+  float:left;
+  margin: 194px 0 8px 204px;
+}
+.modHeader nav a {
+  font-family: futura-pt,sans-serif;
+  color: rgba(255,255,255,1);
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.33);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.modHeader nav a:hover {
+  border-bottom: 2px solid rgb(255,102,102);
+}
+.modMainNav {
+  padding: 24px 0;
+}
+.modMainNav li {
+  float:right;
+  margin-left: 36px;
+}
+.modMainNav a {
+  font-family: futura-pt,sans-serif;
+  color: rgb(0,0,0);
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 36px;
+  display:block;
+}
+
+
+
+/* 
+
+typo modules 
+
+*/
+.grotesk {
+  font-family: futura-pt,sans-serif;
+}
+.white {
+  color: #fff;
+  text-shadow: 1px 1px 1px ;
+}
+
+
+
+
+
+
 a {
   color: #9F9983;
 }
@@ -11,11 +95,11 @@ a {
   -webkit-border-radius: 6px; 
   -o-border-radius: 6px; 
   border-radius: 6px;
-  position: relative;
+  /*position: relative;*/
 }
 
 #languages {
-  position: absolute;
+  /*position: absolute;*/
   top: 1em;
   right: 2.5em;
 }
@@ -25,11 +109,11 @@ a {
   margin-left: 0.5em;
 }
 
-#languages li a {
+/*#languages li a {
   color: #9F9983;
-}
+}*/
 
-h1 {
+/*h1 {
   color: #433F38;
   font-size: 2.2em;
   margin-bottom: 1.5em;
@@ -41,7 +125,7 @@ h1 {
   border-radius: 6px;
   background-color: #ECE8DA;
   background-image: url(/images/ui-bg_gloss-wave_100_ece8da_500x100.png);
-}
+}*/
 
 #header {
   margin-bottom: 3em;
@@ -227,7 +311,7 @@ ul.cached_actions_list li {
 }
 
 .search {
-  position: absolute;
+  /*position: absolute;*/
   top: 18.5em;
   left: 14em;
   border: solid 1px #DFD9C3;
@@ -246,7 +330,7 @@ ul.cached_actions_list li {
 }
 
 .controls {
-  position: absolute;
+  /*position: absolute;*/
   width: 50%;
   height: 2em;
   overflow: hidden;
@@ -280,7 +364,7 @@ ul.cached_actions_list li {
 }
 
 .main {
-  position: relative;
+  /*position: relative;*/
 }
 
 #facebox {
@@ -313,7 +397,7 @@ ul.cached_actions_list li {
 }
 
 #facebox .close {
-  position: absolute;
+  /*position: absolute;*/
   bottom: 1em;
   right: 1em;
 }
