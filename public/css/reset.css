@@ -9,10 +9,10 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pr
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
 /* fonts */
 body {
-  font: 13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;
+  font: 16px/1.5 futura-pt;*font-size:small;*font:x-small;
 }
 select,input,button,textarea {
-  font: 99% arial,helvetica,clean,sans-serif;
+  font: 99% georgia,serif;
 }
 table {
   font-size: inherit;

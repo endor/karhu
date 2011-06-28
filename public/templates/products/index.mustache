@@ -1,6 +1,6 @@
-<h2>{{?products}}</h2>
+<h2 class="marker">{{?products}}</h2>
 
-<nav class="product_nav">
+<nav class="product_nav hidden">
   <ul>
     <li>
       <a href="#/products/new" class="button" data-key="a">
@@ -18,7 +18,7 @@
       <th class="unit_price_column"><a href="#/products?sort=unit_price">{{?price}}</a></th>
       <th class="valid_to_column"><a href="#/products?sort=valid_to">{{?valid_to}}</a></th>
       <th class="category_column"><a href="#/products?sort=category">{{?category}}</a></th>
-      <th>{{?actions}}</th>
+      <th class="action_column">{{?actions}}</th>
     </tr>
   </thead>
   <tbody>
