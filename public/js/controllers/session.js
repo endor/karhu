@@ -2,6 +2,7 @@ karhu.Session = function(app) {
   app.get('#/session/new', function(context) {
     context.objectForValidation = new karhu.SessionValidations();
     context.partial('templates/session/new.mustache');
+    context.clearAddButton();
   });
   
   app.put('#/session', function(context) {

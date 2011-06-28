@@ -60,5 +60,16 @@ karhu.ApplicationHelper = {
       var validations = this.objectForValidation.validations();
       $('.main form').validate(karhu.i18n.translateValidationMessages(validations));
     }
+  },
+  
+  renderAddButton: function(pluralName, addClass, removeClass) {
+    this.render('templates/' + pluralName + '/add.mustache', {}, function(template) {
+      $('.addAction').html(template);
+      $('.addAction').removeClass(removeClass).addClass(addClass);
+    });
+  },
+  
+  clearAddButton: function() {
+    $('.addAction').html('');
   }
 };

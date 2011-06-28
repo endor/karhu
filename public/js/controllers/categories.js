@@ -2,6 +2,7 @@ karhu.Categories = function(app) {
   app.get('#/categories', function(context) {
     karhu.Category.all(context.params, function(categories) {
       context.partial('templates/categories/index.mustache', {categories: categories});
+      context.renderAddButton('categories', 'category', 'product');
     });
   });
   
