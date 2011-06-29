@@ -1,6 +1,6 @@
-﻿#Writing a business oriented web application using IE9 + HTML5 local storage
+﻿# Writing a business oriented web application using IE9 + HTML5 local storage
 
-A lot of people still consider JavaScript a "toy language", despite the fact that it has received much attention lately and there are quite a number of high quality libraries and frameworks available for creating production-ready applications. This article will follow the creation of a basic business oriented application. The application is meant as a starting point for digging deeper into the existing options and to experience how much fun coding quality JavaScript can be and how the integration of HTML5 applications with Internet Explorer 9 into the Windows operating system will enhance the user experience. 
+A lot of people still consider JavaScript a "toy language", despite the fact that it has received much attention lately and there are quite a number of high quality libraries and frameworks available for creating production-ready applications. This article will follow the creation of a basic business oriented application. The application is meant as a starting point for digging deeper into the existing options and to experience how much fun coding quality JavaScript can be. The purpose is also to show how the integration of HTML5 applications with Internet Explorer 9 into the Windows operating system will enhance the user experience. 
 
 The basic application that was developed alongside this article catalogues products and divides them into categories. Those categories as well as the products can be created, updated and deleted. In addition to this typical CRUD approach, there are other standard tasks that will be handled: internationalization, validation of input and controlling the application via the keyboard. One of the most important aspects of the app is that it will use HTML5 local storage in order to allow offline editing.
 
@@ -267,14 +267,16 @@ In addition, the available partials and template need to be cached. This can eit
 
     context.load('templates/products/index.mustache', {cache: true});
 
-## Integrating into Windows
 
-Internet Explorer 9 is great in running HTML5 applications. Further it gives Web applications the ability to natively integrate into the Windows 7 Operating System with Jump Lists. Jump Lists integration is straightforward, in its simplest level just a declaration of meta tag attributes. This is exactly the approach used in Karhu. Direct jump list tasks to add product and categories and navigate between them. This is how it looks to declare a simple jump list task:
+## Integration into Windows
+
+Internet Explorer 9 is great in running HTML5 applications. Further it gives web applications the ability to natively integrate into the Windows 7 Operating System with Jump Lists. The integration of Jump Lists is straightforward, in its simplest form just a declaration of meta tag attributes. This is exactly the approach used in karhu. Direct Jump List tasks to add product and categories and navigate between them. The following code demonstrates how to declare a simple jump list task:
 
     <meta name="msapplication-task"
           content="name=Products;
           action-uri=#/products;
           icon-uri=images/karhu.ico" />
+
 
 ## Conclusion
 
@@ -285,15 +287,7 @@ If you always write tests and pay attention to the structure of the application,
 The code of the example application can be found on [codeplex](). Other starting points for getting a better understanding of the subject are the documentations of the aforementioned libraries and frameworks, other example applications and, of course, JavaScript books.
 
 
+## Authors
 
-
-# TODO
-* I/you vs. we
-* Present tense vs. past tense
-
-
-## Authoren
-
-Frank Prößdorf <<fp@notjusthosting.com>> ([http://fp.njh6.de](http://fp.njh6.de))
-
-Dariusz Parys <<dparys@microsoft.com>> ([http://downtocode.net](http://downtocode.net))
+  * Frank Prößdorf <<fp@notjusthosting.com>> ([http://fp.njh6.de](http://fp.njh6.de))
+  * Dariusz Parys <<dparys@microsoft.com>> ([http://downtocode.net](http://downtocode.net))
