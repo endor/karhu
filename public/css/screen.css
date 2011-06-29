@@ -27,6 +27,7 @@ html {
   display:block;
   position:absolute;
   top: 62px;
+  z-index:99;
 }
 .headerBottomBg {
   background: url(/images/headerBottomBg.png) repeat-x 0 top;
@@ -338,22 +339,19 @@ label {
 }
 
 #flash {
+  width: 100%;
   display: none;
-  position: fixed;
-  top: 1em;
-  right: 1em;
-  padding: 1em;
-  padding-left: 2em;
-  padding-right: 2em;
-  font-weight: bold;
+  position: absolute;
+  padding: 59.5px 0 59.5px 186px;
+  font-weight: 100;
   color: #FFF;
-  font-size: 18px;
-  background-color: #444;
-  background-color: rgba(0,0,0,0.7);
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  z-index: 980;
+  font-size: 42px;
+  background-color: rgb(255,102,102);
+  z-index:98;
+  text-align:center;
+  top:0;
+}
+#flash {
 }
 
 table {

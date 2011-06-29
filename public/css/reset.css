@@ -46,7 +46,7 @@ oocss globales
 .lastUnit{float:none;display:block;display:table-cell;width:9999em;*width:auto;*zoom:1;_position:relative;_left:-3px;_margin-right:-3px;}
 
 .mod {
-  /*position:relative;*/
+  position:relative;
 }
 .bd {
   overflow: hidden;
