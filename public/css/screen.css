@@ -101,6 +101,11 @@ html {
 .newForm input {
   width: 518px;
 }
+.newForm select {
+  margin-top:15px;
+  font-family: futura-pt,sans-serif;
+  font-size: 12px;
+}
 .newForm textarea {
   outline:0;
   border:0;
@@ -279,7 +284,7 @@ a.button:after {
 }
 input.theButton {
   color:rgb(0,0,0);
-  font: 14px/1.5 futura-pt;
+  font: 14px/1.5 futura-pt,sans-serif;
   font-weight:700;
   cursor:pointer;
   background-color:transparent;
@@ -440,37 +445,39 @@ ul.cached_actions_list li {
 
 
 .controls {
-  /*position: absolute;*/
-  width: 50%;
-  height: 2em;
   overflow: hidden;
-  top: 18.5em;
-  right: 1em;
-  border: solid 1px #DFD9C3;
-  padding: 0.4em;
-  padding-left: 1em;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px; 
-  -o-border-radius: 6px; 
-  border-radius: 6px;
-  z-index: 200;
+  padding: 0 24px;
+  font: 400 12px/1.5 futura-pt,sans-serif;
+  text-transform:lowercase;
+  margin-bottom: 24px;
 }
-
-.controls .pagination li {
+.controls .pages,
+.pagination {
+  float:right;
+}
+.pages {
+  line-height:2;
+}
+.pagination {
+  margin-right: 12px;
+}
+.pagination li {
   display: inline-block;
-  margin-right: 0.3em
 }
-
-.controls .pagination {
-  float: left;
-  width: 80%;
+.pagination li a {
+  color:rgb(255,255,255);
+  margin-left: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  height: 28px;
+  width: 28px;
+  text-align:center;
+  display:block;
+  line-height:2;
+  background-color:rgba(255,102,102,0.5);
 }
-
-.controls .pages {
-  float: left;
-  height: 2em;
-  width: 3em;
-  margin: 0px;
+.pagination li a:hover {
+  background-color:rgb(255,102,102);
 }
 
 .main {
