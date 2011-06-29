@@ -9,7 +9,7 @@ html {
 }
 .whiteBg {
   border-top: 1px solid rgb(218,218,218);
-  border-bottom: 1px solid rgb(218,218,218)
+  /*border-bottom: 1px solid rgb(218,218,218);*/
 }
 .modHeaderBg {
   background: url(/images/tile1.gif) repeat 0 0;
@@ -66,7 +66,22 @@ html {
   font-weight: 100;
   font-size: 42px;
   display:block;
+  position:relative;
 }
+.modMainNav nav a:hover:after,
+.productView nav .products:after,
+.categoryView nav .categories:after {
+  position:absolute;
+  border: 20px solid transparent;
+  border-bottom-color: rgb(255,102,102);
+  content:"";
+  bottom: -24px;
+  left:40%;
+}
+.modMainNav nav a.products:after {
+  
+}
+
 .addAction {
   width:186px;
   float:left;
@@ -83,9 +98,6 @@ html {
   padding: 36px 0;
 }
 
- {
-  
-}
 
 .main {
   position:relative;
@@ -217,8 +229,9 @@ form input {
   font-family: futura-pt,sans-serif;
   font-weight: 400;
   position:relative;
-  top:-95px;
-  margin-left:60px;
+  top:-131px;
+  width: 186px;
+  text-align:center;
 }
 .marker:after,
 .main h2:after {
@@ -230,7 +243,7 @@ form input {
 .marker:after,
 .main h2:after {
   top:32px;
-  left:-46px;
+  right:30px;
 }
 
 .actions {
@@ -339,17 +352,21 @@ label {
 }
 
 #flash {
-  width: 100%;
+  width: 920px;
   display: none;
   position: absolute;
-  padding: 59.5px 0 59.5px 186px;
+  padding: 59.5px 0;
   font-weight: 100;
   color: #FFF;
   font-size: 42px;
   background-color: rgb(255,102,102);
   z-index:98;
-  text-align:center;
+  text-align:right;
   top:0;
+  border: 9000px solid rgb(255,102,102);
+  border-top:0;
+  border-bottom:0;
+  left:-8606px;
 }
 #flash {
 }
@@ -529,4 +546,52 @@ ul.cached_actions_list li {
   content:"close";
   border-bottom: 2px solid rgb(0,0,0);
   
+}
+
+#ui-datepicker-div a.ui-datepicker-prev,
+#ui-datepicker-div a.ui-datepicker-next  {
+  font: 700 12px/1.5 futura-pt,sans-serif;
+  border-bottom: 2px solid rgb(0,0,0);
+  margin-bottom: 24px;
+  color: rgb(0,0,0);
+}
+#ui-datepicker-div a.ui-datepicker-prev {
+  float:left;
+  cursor:w-resize;
+}
+#ui-datepicker-div a.ui-datepicker-next {
+  float: right;
+  cursor:e-resize;
+}
+
+#ui-datepicker-div .ui-datepicker-title {
+  clear:both;
+}
+#ui-datepicker-div .ui-datepicker-title select {
+  margin-right: 12px;
+}
+
+#ui-datepicker-div {
+  background-color: rgb(255,255,255);
+  border: 20px solid rgb(255,102,102);
+  padding: 24px;
+  font: 700 12px/1.5 futura-pt,sans-serif;
+}
+
+#ui-datepicker-div:after {
+  content:"";
+  position:relative;
+  border: 20px solid transparent;
+  border-top-color: rgb(255,102,102);
+  bottom: -80px;
+  left: -24px;
+}
+
+
+#ui-datepicker-div table td {
+  padding: 6px;
+}
+#ui-datepicker-div table td a {
+  color: rgba(0,0,0,0.75);
+  font: 400 12px/1.5 futura-pt,sans-serif;
 }
