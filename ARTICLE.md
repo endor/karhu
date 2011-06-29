@@ -273,8 +273,8 @@ Internet Explorer 9 is great in running HTML5 applications. Further it gives Web
 
     <meta name="msapplication-task"
           content="name=Products;
-          action-uri=/#products;
-          icon-uri=/images/karhu.ico" />
+          action-uri=#/products;
+          icon-uri=images/karhu.ico" />
 
 ## Conclusion
 
