@@ -95,4 +95,4 @@ The app is built upon [Sammy.js](http://sammyjs.org) and the `master` branch is 
 
 Thank you!
 
-  * Hannes Kunstreich <<hannes@kunstreich.name>> ([http://hannes.kunstreich.name]http://hannes.kunstreich.name)) for the Design, Interaction & Frontend
+  * Hannes Kunstreich <<hannes@kunstreich.name>> ([http://hannes.kunstreich.name](http://hannes.kunstreich.name)) for the Design, Interaction & Frontend
