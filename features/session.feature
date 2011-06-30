@@ -22,5 +22,5 @@ Feature: Session
     Then I should see "Add Product"
     When I follow "Log out"
     Then I should not see "Add Product"
-      But I should see "Log in"
+      But I should see "Password"
   

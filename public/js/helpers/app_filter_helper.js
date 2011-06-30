@@ -9,8 +9,14 @@ karhu.AppFilterHelper = {
   markActiveMenuItem: function(context) {
     var type = context.path.match(/\#\/([^\/\?]+)/);
     if(type && type[1] !== 'pages') {
-      $('#header nav a, #header nav li').removeClass('active');
-      $('#header nav .' + type[1]).addClass('active').parent().addClass('active');
+      var clazz;
+      switch(type[1]) {
+        case 'products': clazz = 'productView'; break;
+        case 'categories': clazz = 'categoryView'; break;
+        case 'queue': clazz = 'queueView'; break;
+      }
+      $('body').removeClass('productView categoryView queueView');
+      $('body').addClass(clazz);
     }
   },
   
