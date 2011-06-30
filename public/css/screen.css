@@ -6,6 +6,7 @@ oocss modules
 
 html {
   background: url(/images/tile2.gif) repeat 0 0;
+  overflow-x:hidden;
 }
 .whiteBg {
   border-top: 1px solid rgb(218,218,218);
@@ -354,7 +355,7 @@ label {
 #flash {
   width: 920px;
   display: none;
-  position: absolute;
+  position: fixed;
   padding: 59.5px 0;
   font-weight: 100;
   color: #FFF;
@@ -366,7 +367,7 @@ label {
   border: 9000px solid rgb(255,102,102);
   border-top:0;
   border-bottom:0;
-  left:-8606px;
+  left:-8830px;
 }
 #flash {
 }
@@ -548,6 +549,9 @@ ul.cached_actions_list li {
   
 }
 
+#ui-datepicker-div {
+  display:none;
+}
 #ui-datepicker-div a.ui-datepicker-prev,
 #ui-datepicker-div a.ui-datepicker-next  {
   font: 700 12px/1.5 futura-pt,sans-serif;
