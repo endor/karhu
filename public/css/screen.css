@@ -44,6 +44,10 @@ html {
   text-transform: uppercase;
   font-weight: 700;
   line-height:2;
+  /*filter: 
+    Shadow(Color=#666666,
+		Direction=135, 
+		Strength=1);*/
 }
 .modHeader nav a:hover {
   border-bottom: 2px solid rgb(255,102,102);
@@ -229,7 +233,7 @@ form input {
   font-family: futura-pt,sans-serif;
   font-weight: 400;
   position:relative;
-  top:-131px;
+  top:-116px;
   width: 186px;
   text-align:center;
 }
@@ -242,13 +246,13 @@ form input {
 }
 .marker:after,
 .main h2:after {
-  top:34px;
+  top:19px;
   right:30px;
 }
 
 .actions {
   min-width: 235px;
-  vertical-align: bottom;
+  vertical-align: top;
   overflow:hidden;
 }
 .actions .floater {
@@ -490,7 +494,7 @@ ul.cached_actions_list li {
 }
 .pagination li a {
   color:rgb(255,255,255);
-  margin-left: 24px;
+  margin-left: 8px;
   font-size: 14px;
   font-weight: 700;
   height: 28px;
