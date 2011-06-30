@@ -532,6 +532,7 @@ ul.cached_actions_list li {
 #facebox .info li {
   text-align: left;
   margin-bottom: 16px;
+  font-size: 12px;
 }
 
 #facebox .info span {
