@@ -6,14 +6,14 @@ karhu.Categories = function(app) {
       context.clearMain();
     });
   });
-  
+
   app.get('#/categories/new', function(context) {
     context.handleLastAccess(null, 'last_added_category', function(last_added_category) {
       context.objectForValidation = new karhu.Category();
       context.partial('templates/categories/new.mustache', new karhu.EditCategory({}, last_added_category));
     });
   });
-  
+
   app.post('#/categories', function(context) {
     context.store.clear('last_added_category');
     
