@@ -74,7 +74,8 @@ html {
 }
 .modMainNav nav a:hover:after,
 .productView nav .products:after,
-.categoryView nav .categories:after {
+.categoryView nav .categories:after,
+.queueView nav .categories:after {
   position:absolute;
   border: 20px solid transparent;
   border-bottom-color: rgb(255,102,102);
