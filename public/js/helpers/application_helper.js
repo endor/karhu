@@ -5,6 +5,7 @@ karhu.ApplicationHelper = {
   },
   
   beautifyInputElements: function() {
+    $('textarea').autoResize();
     $('.datepicker').datepicker(_.extend(karhu.config.datepicker, {
       onClose: function() { $('body').trigger('datepickerClosed'); }
     }));
