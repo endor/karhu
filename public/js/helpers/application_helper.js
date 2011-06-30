@@ -33,6 +33,8 @@ karhu.ApplicationHelper = {
       $('.logout, .keyboard_shortcuts').parent().show();
     } else {
       $('.logout, .keyboard_shortcuts').parent().hide();
+      this.clearAddButton();
+      this.clearTable();
     }
   },
 
@@ -75,5 +77,9 @@ karhu.ApplicationHelper = {
   
   clearMain: function() {
     $('.main').html('');
+  },
+  
+  clearTable: function() {
+    $('.tableView').html('');
   }
 };
