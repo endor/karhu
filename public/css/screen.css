@@ -64,7 +64,7 @@ html {
   font-family: futura-pt,sans-serif;
   color: rgb(0,0,0);
   text-transform: uppercase;
-  font-weight: 100;
+  font-weight: 300;
   font-size: 42px;
   display:block;
   position:relative;
@@ -248,9 +248,12 @@ form input {
 }
 
 .actions {
-  min-width: 180px;
-  vertical-align: middle;
+  min-width: 235px;
+  vertical-align: bottom;
   overflow:hidden;
+}
+.actions .floater {
+  float:right;
 }
 
 .button {
@@ -357,7 +360,7 @@ label {
   display: none;
   position: fixed;
   padding: 59.5px 0;
-  font-weight: 100;
+  font-weight: 300;
   color: #FFF;
   font-size: 42px;
   background-color: rgb(255,102,102);
@@ -510,7 +513,7 @@ ul.cached_actions_list li {
 #facebox h3 {
   font-size: 42px;
   margin-bottom: 24px;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 #facebox .info {

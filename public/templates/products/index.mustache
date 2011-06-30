@@ -19,6 +19,7 @@
           <td class="valid_to_column">{{valid_to}}</td>
           <td class="category_column">{{#category}}{{name}}{{/category}}</td>
           <td class="actions">
+            <div class="floater">
             {{#id}}
               <a href="#/products/{{id}}/edit" class="button actionEdit" title="Edit {{name}}"><span>{{?edit}}</span></a>
               <form method="delete" action="#/products/{{id}}" class="button actionDel delete_form">
@@ -26,6 +27,7 @@
                 <input class="theButton" type="submit" value="{{?remove}}" title="Delete {{name}}" />
               </form>
             {{/id}}
+            </div>
           </td>
         </tr>
       {{/products}}
