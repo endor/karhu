@@ -394,6 +394,7 @@ table td {
   vertical-align: top;
   font: normal 14px/1.5 georgia,serif;
   color:#333333;
+  background-color:rgba(255,255,255,0.33);
 }
 table td {
   text-align: left;
@@ -594,12 +595,31 @@ ul.cached_actions_list li {
   bottom: -80px;
   left: -24px;
 }
-
-
 #ui-datepicker-div table td {
   padding: 6px;
 }
 #ui-datepicker-div table td a {
   color: rgba(0,0,0,0.75);
   font: 400 12px/1.5 futura-pt,sans-serif;
+}
+
+footer {
+  background: url(/images/footerBottomBg.png) repeat-x 0 top; 
+  padding-top:31px;
+  margin-top: 36px;
+}
+.footerContainer {
+  background: url(/images/tile1.gif) repeat 0 0;
+  padding: 36px 0;
+}
+.footerContainer small {
+  float:right;
+  color:rgb(0,0,0);
+  font-size: 12px;
+  font-weight: 300;
+  padding:0 12px;
+}
+.footerContainer small a {
+  color:inherit;
+  border-bottom: 1px solid rgb(0,0,0);
 }
