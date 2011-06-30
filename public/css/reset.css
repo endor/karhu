@@ -55,9 +55,6 @@ oocss globales
 .centered {
   width: 920px;
   margin: 0 auto;
-  /*border:1px solid red;
-  border-top: 0;
-  border-bottom: 0;*/
 }
 
 .clear:after {

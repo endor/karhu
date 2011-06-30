@@ -10,7 +10,6 @@ html {
 }
 .whiteBg {
   border-top: 1px solid rgb(218,218,218);
-  /*border-bottom: 1px solid rgb(218,218,218);*/
 }
 .modHeaderBg {
   background: url(/images/tile1.gif) repeat 0 0;
@@ -27,7 +26,7 @@ html {
   width: 186px;
   display:block;
   position:absolute;
-  top: 62px;
+  top: 22px;
   z-index:99;
 }
 .headerBottomBg {
@@ -36,7 +35,7 @@ html {
 }
 .modHeader nav {
   float:right;
-  margin: 144px 0 4px 218px;
+  margin: 108px 0 4px 218px;
 }
 .modHeader nav a {
   font-family: futura-pt,sans-serif;
@@ -50,7 +49,7 @@ html {
   border-bottom: 2px solid rgb(255,102,102);
 }
 .modMainNav {
-  padding: 56px 0 24px;
+  padding: 24px 0 24px;
 }
 .modMainNav nav {
   width:734px;
@@ -243,7 +242,7 @@ form input {
 }
 .marker:after,
 .main h2:after {
-  top:32px;
+  top:34px;
   right:30px;
 }
 
@@ -265,7 +264,9 @@ form input {
   margin-left: 24px;
   float:left;
   text-transform:lowercase;
+  display:block;
 }
+
 .button:hover span,
 input.theButton:hover {
   border-bottom: 2px solid rgb(0,0,0);
