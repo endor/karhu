@@ -82,5 +82,6 @@ karhu.ApplicationHelper = {
   
   clearTable: function() {
     $('.tableView').html('');
+    $('.controls').hide();
   }
 };
