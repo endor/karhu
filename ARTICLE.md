@@ -1,4 +1,4 @@
-﻿# Writing a business oriented web application using IE9 + HTML5 local storage
+﻿# Writing a business oriented web application using IE9 & HTML5 local storage
 
 A lot of people still consider JavaScript a "toy language", despite the fact that it has received much attention lately and there are quite a number of high quality libraries and frameworks available for creating production-ready applications. This article will follow the creation of a basic business oriented application. The application is meant as a starting point for digging deeper into the existing options and to experience how much fun coding quality JavaScript can be. The purpose is also to show how the integration of HTML5 applications with Internet Explorer 9 into the Windows operating system will enhance the user experience. 
 
